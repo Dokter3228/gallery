@@ -60,6 +60,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Удаляем куки из обьекта с сессиями
+router.post("/logout", (req, res) => {
+  const sessionId = req.headers.cookie?.split("=")[1];
+  delete sessions[sessionId];
+
+  res.set("Set-Cookie", `session=null`);
+  res.send("Succesfully logged out");
+});
+
 router.delete("/deleteUser/:id", async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
