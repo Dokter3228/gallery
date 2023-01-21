@@ -5,6 +5,8 @@ const User = require("../models/user");
 
 const router = express.Router();
 
+const sessions = {};
+
 // Добавляем нового юзера
 router.post("/newUser", async (req, res) => {
   const user = new User({
@@ -20,7 +22,15 @@ router.post("/newUser", async (req, res) => {
   }
 });
 
-const sessions = {};
+//  Если куки есть, то обрабатываем запрос положительно, если нет, выбрасываем ошибку.
+router.get("/getUsers", (req, res) => {
+  const sessionId = req.headers.cookie?.split("=")[1];
+  const userSession = sessions[sessionId];
+  if (!userSession) {
+    return res.status(401).send("Invalid session");
+  }
+  res.status(200).send("Works");
+});
 
 // Проверяем находится ли заданный юзер в базе данных. Если да, то генерируем куки, задаем их ему в браузер и сохраняем к себе в обьект с сессиями.
 router.post("/login", async (req, res) => {
