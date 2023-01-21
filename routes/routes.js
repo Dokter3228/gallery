@@ -65,7 +65,7 @@ router.post("/logout", (req, res) => {
   const sessionId = req.headers.cookie?.split("=")[1];
   delete sessions[sessionId];
 
-  res.set("Set-Cookie", `session=null`);
+  res.set("Set-Cookie", `session=; expires=Thu, 01 Jan 1970 00:00:00 GMT`);
   res.send("Succesfully logged out");
 });
 
