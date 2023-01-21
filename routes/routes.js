@@ -1,12 +1,13 @@
 const express = require("express");
 const { v4: uuid } = require("uuid");
-
+const cookieParser = require("cookie-parser");
 const User = require("../models/user");
 
 const router = express.Router();
 
 const sessions = {};
 
+router.use(cookieParser());
 // Добавляем нового юзера
 router.post("/newUser", async (req, res) => {
   const user = new User({
@@ -66,7 +67,7 @@ router.post("/logout", (req, res) => {
   delete sessions[sessionId];
 
   res.set("Set-Cookie", `session=; expires=Thu, 01 Jan 1970 00:00:00 GMT`);
-  res.send("Succesfully logged out");
+  res.status(200).send(req.headers.cookie);
 });
 
 router.delete("/deleteUser/:id", async (req, res) => {

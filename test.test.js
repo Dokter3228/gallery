@@ -67,31 +67,33 @@ describe("/users", () => {
       expect(res.body.login).toBe(mockUser.login);
       expect(res.body.password).toBe(mockUser.password);
 
-      const cookies = res.headers["Set-Cookie"];
-
+      const cookies = res.headers.cookie;
       // cookies : { [key:string] : string}
     } catch (error) {
       res.send(error);
     }
   });
 
-  // it("user/logout GET ", async () => {
-  //   const res = await request.get("/user/logout");
+  it("logout ", async () => {
+    await request
+      .post("/users/login")
+      .send({ login: mockUser.login, password: mockUser.password });
+    const res = await request.post("/user/logout");
 
-  //   const cookies = resp.headers["set-cookie"];
+    const cookies = res.headers.cookie;
 
-  //   expect(res.status).toBe(200);
-  //   expect(res.body.login).toBe(userName.login);
-  //   expect(res.body.password).toBe(userName.password);
+    expect(res.status).toBe(200);
+    expect(res.body.login).toBe(userName.login);
+    expect(res.body.password).toBe(userName.password);
 
-  //   // айди из монги
-  //   expect(res.body._id).toBe("user");
+    // айди из монги
+    // expect(res.body._id).toBe("user");
 
-  //   const savedUser = await User.findById(res.body._id);
-  //   expect(savedUser.login).toBe(res.body.login);
-  //   expect(savedUser.password).toBe(res.body.password);
+    const savedUser = await User.findById(res.body._id);
+    expect(savedUser.login).toBe(res.body.login);
+    expect(savedUser.password).toBe(res.body.password);
 
-  //   expect(cookies.token).toBeFalsy();
-  //   done();
-  // });
+    expect(cookies).toBeFalsy();
+    done();
+  });
 });
