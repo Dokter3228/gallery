@@ -5,6 +5,7 @@ const User = require("../models/user");
 
 const router = express.Router();
 
+// Добавляем нового юзера
 router.post("/newUser", async (req, res) => {
   const user = new User({
     login: req.body.login,
@@ -21,6 +22,7 @@ router.post("/newUser", async (req, res) => {
 
 const sessions = {};
 
+// Проверяем находится ли заданный юзер в базе данных. Если да, то генерируем куки, задаем их ему в браузер и сохраняем к себе в обьект с сессиями.
 router.post("/login", async (req, res) => {
   const { login, password, _id } = req.body;
   const doesUserExist = await User.findOne(
@@ -45,24 +47,6 @@ router.post("/login", async (req, res) => {
       login,
       password,
     });
-  }
-});
-
-router.get("/getUser/:id", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-    res.json(user);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-});
-
-router.get("/getUsers", async (req, res) => {
-  try {
-    const users = await User.find();
-    res.json(users);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
 });
 
