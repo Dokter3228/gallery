@@ -41,7 +41,10 @@ router.post("/login", async (req, res) => {
     const sessionId = uuid();
     sessions[sessionId] = { login, _id };
     res.set("Set-Cookie", `session=${sessionId}`);
-    res.status(200).send(sessions);
+    res.status(200).send({
+      login,
+      password,
+    });
   }
 });
 

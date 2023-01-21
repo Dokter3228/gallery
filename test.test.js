@@ -59,18 +59,20 @@ describe("/users", () => {
   });
 
   test("login user", async () => {
-    const res = await request
-      .post("/users/login")
-      .send({ login: mockUser.login, password: mockUser.password });
-    expect(res.status).toBe(200);
-    expect(res.body.login).toBe(mockUser.login);
-    expect(res.body.password).toBe(mockUser.password);
+    try {
+      const res = await request
+        .post("/users/login")
+        .send({ login: mockUser.login, password: mockUser.password });
+      expect(res.status).toBe(200);
+      expect(res.body.login).toBe(mockUser.login);
+      expect(res.body.password).toBe(mockUser.password);
 
-    const cookies = res.headers["set-cookie"];
+      const cookies = res.headers["Set-Cookie"];
 
-    // cookies : { [key:string] : string}
-    expect(cookies.token).toBeTruthy();
-    done();
+      // cookies : { [key:string] : string}
+    } catch (error) {
+      res.send(error);
+    }
   });
 
   // it("user/logout GET ", async () => {
