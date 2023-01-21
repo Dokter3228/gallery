@@ -1,4 +1,5 @@
 const express = require("express");
+const { v4: uuid } = require("uuid");
 
 const User = require("../models/user");
 
@@ -15,6 +16,32 @@ router.post("/newUser", async (req, res) => {
     res.status(301).json(userToSave);
   } catch (error) {
     res.status(400).json({ message: error.message });
+  }
+});
+
+const sessions = {};
+
+router.post("/login", async (req, res) => {
+  const { login, password, _id } = req.body;
+  const doesUserExist = await User.findOne(
+    { $and: [{ login: login }, { password: password }] },
+    (err, res) => {
+      if (err) {
+        res.status(500).send(err);
+        return;
+      }
+      return true;
+    }
+  )
+    .clone()
+    .catch(function (err) {
+      console.log(err);
+    });
+  if (doesUserExist) {
+    const sessionId = uuid();
+    sessions[sessionId] = { login, _id };
+    res.set("Set-Cookie", `session=${sessionId}`);
+    res.status(200).send(sessions);
   }
 });
 

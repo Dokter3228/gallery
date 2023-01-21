@@ -30,15 +30,12 @@ describe("/users", () => {
   });
 
   beforeEach(async () => {
-    let userName = new User({
-      login: "Gleb",
-      password: "123456",
-    });
+    let userName = new User(mockUser);
     await userName.save();
   });
 
   afterEach(async () => {
-    await User.deleteMany();
+    User.deleteMany();
   });
 
   afterAll(async () => {
@@ -56,26 +53,25 @@ describe("/users", () => {
 
     // айди из монги
     // expect(res.body._id).toBe("user");
-
     const savedUser = await User.findById(res.body._id);
     expect(savedUser.login).toBe(res.body.login);
     expect(savedUser.password).toBe(res.body.password);
   });
 
-  // it("login user", async () => {
-  //   const res = await request
-  //     .post("/user/login")
-  //     .send({ login: userName.login, password: userName.password });
-  //   expect(res.status).toBe(200);
-  //   expect(res.body.login).toBe(userName.login);
-  //   expect(res.body.password).toBe(userName.password);
+  test("login user", async () => {
+    const res = await request
+      .post("/users/login")
+      .send({ login: mockUser.login, password: mockUser.password });
+    expect(res.status).toBe(200);
+    expect(res.body.login).toBe(mockUser.login);
+    expect(res.body.password).toBe(mockUser.password);
 
-  //   const cookies = resp.headers["set-cookie"];
+    const cookies = res.headers["set-cookie"];
 
-  //   // cookies : { [key:string] : string}
-  //   expect(cookies.token).toBeTruthy();
-  //   done();
-  // });
+    // cookies : { [key:string] : string}
+    expect(cookies.token).toBeTruthy();
+    done();
+  });
 
   // it("user/logout GET ", async () => {
   //   const res = await request.get("/user/logout");
