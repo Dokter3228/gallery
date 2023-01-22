@@ -25,7 +25,29 @@ router.post("/newUser", async (req, res) => {
   }
 });
 
-// Проверяем находится ли заданный юзер в базе данных. Если да, то генерируем куки, задаем их ему в браузер и сохраняем к себе в обьект с сессиями.
+router.post('/checkAuth', async(req,res) => {
+  const { login, password, _id } = req.body;
+  const doesUserExist = await User.findOne(
+      { $and: [{ login: login }, { password: password }] },
+      (err, res) => {
+        if (err) {
+          res.status(500).send(err);
+          return;
+        }
+        return true;
+      }
+  )
+      .clone()
+      .catch(function (err) {
+        console.log(err);
+      });
+  if(doesUserExist) {
+    res.status(200).send("User exists")
+  } else {
+    res.status(401).send('User is not authorized')
+  }
+})
+
 router.post("/login", async (req, res) => {
   const { login, password, _id } = req.body;
   const doesUserExist = await User.findOne(

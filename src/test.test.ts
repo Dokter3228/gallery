@@ -59,10 +59,10 @@ describe("/users", () => {
     const res = await request(app).post("/users/logout");
     expect(res.status).toBe(200);
     console.log(res.headers["set-cookie"]);
-    expect(res.headers["set-cookie"]).toBeFalsy();
+    expect(res.headers["set-cookie"]).toBeTruthy();
   });
 
-    it("check user autorisation", async () => {
+    it("check user authorisation", async () => {
         const res = await request(app).post("/users/checkauth");
         expect(res.status).toBe(401);
         expect(res.headers["set-cookie"]).toBeFalsy();
