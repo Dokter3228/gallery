@@ -86,6 +86,7 @@ router.post("/login", async (req, res) => {
 // Удаляем куки из обьекта с сессиями
 router.post("/logout", (req, res) => {
   res.clearCookie("token");
+  res.clearCookie('set-cookie');
   res.status(200).send("you logged out");
 });
 

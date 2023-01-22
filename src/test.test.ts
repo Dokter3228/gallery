@@ -58,6 +58,7 @@ describe("/users", () => {
   it("logout ", async () => {
     const res = await request(app).post("/users/logout");
     expect(res.status).toBe(200);
-    expect(res.headers["set-cookie"]).toBeTruthy();
+    console.log(res.headers["set-cookie"]);
+    expect(res.headers["set-cookie"]).toBeFalsy();
   });
 });
