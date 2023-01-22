@@ -61,4 +61,10 @@ describe("/users", () => {
     console.log(res.headers["set-cookie"]);
     expect(res.headers["set-cookie"]).toBeFalsy();
   });
+
+    it("check user autorisation", async () => {
+        const res = await request(app).post("/users/checkauth");
+        expect(res.status).toBe(401);
+        expect(res.headers["set-cookie"]).toBeFalsy();
+    });
 });
