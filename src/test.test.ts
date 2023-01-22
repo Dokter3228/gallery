@@ -40,11 +40,12 @@ describe("/users", () => {
     // expect(res.body._id).toBe("user");
     const savedUser = await User.findById(res.body._id);
     expect(savedUser.login).toBe(res.body.login);
+    console.log(savedUser.login,res.body.login)
+
     expect(savedUser.password).toBe(res.body.password);
   });
 
   test("login user", async () => {
-    try {
       const res =  await request(app)
         .post("/users/login")
         .send({ login: mockUser.login, password: mockUser.password });
@@ -54,22 +55,16 @@ describe("/users", () => {
 
       const cookies = res.cookie["token"];
 
-    } catch (error) {
-      console.log(error);
-    }
+
   });
 
   it("logout ", async () => {
-    try {
       const res = await request(app).post("/users/logout");
       expect(res.status).toBe(200);
       expect(res.body.login).toBe(mockUser.login);
       expect(res.body.password).toBe(mockUser.password);
-
       const cookies = res.cookie["token"];
       expect(cookies).toBeFalsy();
-    } catch (error) {
-      console.log(error);
-    }
+
   });
 });
