@@ -49,8 +49,9 @@ router.post("/login", async (req, res) => {
       user = jwt.verify(token, "hellosecret");
     }
     if (user) {
-      console.log(req.cookies["Set-Cookie"]);
-      res.send("you are already logged in");
+      res.json({
+        login, password
+      })
     } else {
       const token = jwt.sign(
         {
@@ -63,9 +64,21 @@ router.post("/login", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true,
       });
-      console.log(res.cookie);
-
-      res.status(200).send("you logged in for the first time");
+      res.status(200).json({
+        login,
+        password,
+      })
+    }
+  } else {
+    const user = new User({
+      login: req.body.login,
+      password: req.body.password,
+    });
+    try {
+      const userToSave = await user.save();
+      res.status(200).json(userToSave);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
     }
   }
 });
