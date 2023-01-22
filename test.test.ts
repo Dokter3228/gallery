@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 import {app} from "./index";
-import * as request from "supertest";
+import request from "supertest";
 
 import User from "./models/user";
 
@@ -45,7 +45,7 @@ describe("/users", () => {
 
   test("login user", async () => {
     try {
-      const res = await request(app)
+      const res =  await request(app)
         .post("/users/login")
         .send({ login: mockUser.login, password: mockUser.password });
       expect(res.status).toBe(200);

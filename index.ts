@@ -8,7 +8,7 @@ config();
 
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGO_URL;
-mongoose.connect(mongoUrl);
+mongoose.connect(mongoUrl).then();
 const database = mongoose.connection;
 
 database.on("error", (err) => {
