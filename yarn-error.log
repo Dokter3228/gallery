@@ -31,10 +31,10 @@ npm manifest:
     "name": "gallery",
     "version": "1.0.0",
     "description": "",
-    "main": "index.ts",
+    "main": "server.ts",
     "scripts": {
       "test": "jest --watchAll",
-      "start": "nodemon --exec babel-node .index.ts --extensions .ts"
+      "start": "nodemon --exec babel-node .server.ts --extensions .ts"
     },
     "keywords": [],
     "author": "",
