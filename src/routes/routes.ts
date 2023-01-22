@@ -86,10 +86,7 @@ router.post("/login", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true,
       });
-      res.status(200).json({
-        login,
-        password,
-      })
+      res.status(200)
     }
   } else {
     const user = new User({
@@ -97,8 +94,7 @@ router.post("/login", async (req, res) => {
       password: req.body.password,
     });
     try {
-      const userToSave = await user.save();
-      res.status(200).json(userToSave);
+      res.status(200)
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
