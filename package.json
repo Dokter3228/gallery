@@ -29,6 +29,7 @@
   },
   "dependencies": {
     "@types/jest": "^29.2.6",
+    "@types/supertest": "^2.0.12",
     "cookie-parser": "^1.4.6",
     "jsonwebtoken": "^9.0.0",
     "uuid": "^9.0.0"

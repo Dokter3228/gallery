@@ -1,10 +1,9 @@
-require("dotenv").config();
+import mongoose from "mongoose";
+import express from "express";
+import routes from "./routes/routes";
+import {config} from "dotenv";
 
-const express = require("express");
-const mongoose = require("mongoose");
-
-const routes = require("./routes/routes");
-
+config();
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGO_URL;
 mongoose.connect(mongoUrl);
@@ -28,4 +27,4 @@ app.listen(port, () => {
 
 app.use("/users", routes);
 
-module.exports = app;
+export{app};

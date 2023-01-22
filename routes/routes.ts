@@ -1,9 +1,9 @@
-const express = require("express");
-const { v4: uuid } = require("uuid");
-const cookieParser = require("cookie-parser");
-const jwt = require("jsonwebtoken");
+import express from "express";
+import {v4 as uuid} from "uuid";
 
-const User = require("../models/user");
+import cookieParser from "cookie-parser";
+import jwt from "jsonwebtoken";
+import User from "../models/user";
 
 const router = express.Router();
 
@@ -85,4 +85,4 @@ router.delete("/deleteUser/:id", async (req, res) => {
   }
 });
 
-module.exports = router;
+export{router};

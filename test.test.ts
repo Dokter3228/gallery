@@ -1,8 +1,10 @@
-const mongoose = require("mongoose");
-const User = require("./models/user");
-const supertest = require("supertest");
-const app = require("./index");
-const request = supertest(app);
+import mongoose from "mongoose";
+
+import {app} from "./index";
+import * as request from "supertest";
+
+import User from "./models/user";
+
 
 const mockUser = {
   login: "Vladimir",
@@ -12,10 +14,6 @@ const mockUser = {
 describe("/users", () => {
   beforeAll(() => {
     mongoose.connect(process.env.MONGO_URL, {
-      user:'mongoadmin',
-      pass:'bdung',
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
     });
   });
 
@@ -30,8 +28,8 @@ describe("/users", () => {
   });
 
   test("creating user", async () => {
-    const res = await request
-      .post("/users/newUser")
+    const res = await request(app)
+  .post("/users/newUser")
       .send({ login: mockUser.login, password: mockUser.password });
 
     expect(res.status).toBe(301);
@@ -47,7 +45,7 @@ describe("/users", () => {
 
   test("login user", async () => {
     try {
-      const res = await request
+      const res = await request(app)
         .post("/users/login")
         .send({ login: mockUser.login, password: mockUser.password });
       expect(res.status).toBe(200);
@@ -63,7 +61,7 @@ describe("/users", () => {
 
   it("logout ", async () => {
     try {
-      const res = await request.post("/users/logout");
+      const res = await request(app).post("/users/logout");
       expect(res.status).toBe(200);
       expect(res.body.login).toBe(mockUser.login);
       expect(res.body.password).toBe(mockUser.password);
