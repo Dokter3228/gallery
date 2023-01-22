@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
 import express from "express";
-import routes from "./routes/routes";
+
 import {config} from "dotenv";
+import {router} from "./routes/routes";
 
 config();
+
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGO_URL;
 mongoose.connect(mongoUrl);
@@ -25,6 +27,6 @@ app.listen(port, () => {
   console.log(`Server Started at ${port}`);
 });
 
-app.use("/users", routes);
+app.use("/users", router);
 
 export{app};
