@@ -86,7 +86,10 @@ router.post("/login", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true,
       });
-      res.status(200)
+      res.status(200).send({
+        login,
+        password,
+      })
     }
   } else {
     const user = new User({
@@ -107,7 +110,6 @@ router.post("/logout", (req, res) => {
   res.clearCookie('set-cookie');
   res.status(200).send("you logged out");
 });
-
 router.delete("/deleteUser/:id", async (req, res) => {
   try {
     const deletedUser = await User.findByIdAndDelete(req.params.id);
