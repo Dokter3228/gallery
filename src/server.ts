@@ -2,9 +2,10 @@ import mongoose from "mongoose";
 import express from "express";
 
 import {config} from "dotenv";
-import {router} from "./routes/routes";
-
 config();
+
+import {userRouter} from "./routes/userRoutes";
+import {imageRouter} from "./routes/imageRoutes";
 
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGO_URL;
@@ -27,6 +28,7 @@ app.listen(port, () => {
   console.log(`Server Started at ${port}`);
 });
 
-app.use("/users", router);
+app.use("/users", userRouter);
+app.use("/images", imageRouter);
 
 export{app};

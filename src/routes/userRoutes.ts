@@ -3,15 +3,19 @@ import {v4 as uuid} from "uuid";
 
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
+
 import User from "../models/user";
 
-const router = express.Router();
+
+const userRouter = express.Router();
 
 const sessions = {};
 
-router.use(cookieParser("secret key"));
+
+userRouter.use(cookieParser("secret key"));
+
 // Добавляем нового юзера
-router.post("/newUser", async (req, res) => {
+userRouter.post("/newUser", async (req, res) => {
   const user = new User({
     login: req.body.login,
     password: req.body.password,
@@ -25,7 +29,7 @@ router.post("/newUser", async (req, res) => {
   }
 });
 
-router.post('/checkAuth', async(req,res) => {
+userRouter.post('/checkAuth', async(req,res) => {
   const { login, password, _id } = req.body;
   const doesUserExist = await User.findOne(
       { $and: [{ login: login }, { password: password }] },
@@ -48,7 +52,7 @@ router.post('/checkAuth', async(req,res) => {
   }
 })
 
-router.post("/login", async (req, res) => {
+userRouter.post("/login", async (req, res) => {
   const { login, password, _id } = req.body;
   const doesUserExist = await User.findOne(
     { $and: [{ login: login }, { password: password }] },
@@ -83,7 +87,7 @@ router.post("/login", async (req, res) => {
         "hellosecret",
         { expiresIn: "15m" }
       );
-      res.cookie("token", token, {
+      res.cookie("set-cookie", token, {
         httpOnly: true,
       });
       res.status(200).send({
@@ -92,12 +96,13 @@ router.post("/login", async (req, res) => {
       })
     }
   } else {
-    const user = new User({
+    const user = await new User({
       login: req.body.login,
       password: req.body.password,
     });
     try {
-      res.status(200)
+      await user.save()
+      res.status(200).send(user)
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -105,18 +110,9 @@ router.post("/login", async (req, res) => {
 });
 
 // Удаляем куки из обьекта с сессиями
-router.post("/logout", (req, res) => {
-  res.clearCookie("token");
+userRouter.post("/logout", (req, res) => {
   res.clearCookie('set-cookie');
   res.status(200).send("you logged out");
 });
-router.delete("/deleteUser/:id", async (req, res) => {
-  try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
-    res.json({ deletedUser });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-});
 
-export{router};
+export{userRouter};
