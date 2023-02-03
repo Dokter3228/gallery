@@ -1,6 +1,7 @@
 
 
 const checkAuth = (req, res, next) => {
+    console.log(res.header['set-cookie'])
     if (req.headers?.cookie) {
         next();
     } else {

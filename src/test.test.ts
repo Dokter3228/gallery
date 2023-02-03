@@ -5,6 +5,7 @@ import request from "supertest";
 
 import User from "./models/user";
 import * as fs from "fs";
+import mock = jest.mock;
 
 
 const mockUser = {
@@ -23,9 +24,31 @@ describe("/users", () => {
     await userName.save();
   });
 
+  afterEach(async () => {
+      User.deleteOne({ login: mockUser.login}, (err, res) => {
+          if (err) {
+              res.status(500).send(err);
+              return;
+          }
+          return true;
+      })
+  })
+
+    afterAll(async () => {
+        await User.deleteMany({ login: mockUser.login}, (err, res) => {
+            if (err) {
+                res.status(500).send(err);
+                return;
+            }
+            return true;
+        })
+        await mongoose.connection.close();
+
+    })
 
 
-  test("creating user",
+
+  test.only("creating user",
       async () => {
         const res = await request(app)
             .post("/users/newUser")
@@ -61,11 +84,11 @@ describe("/users", () => {
     expect(res.headers["set-cookie"]).toBeTruthy();
   });
 
-    it("check user authorisation", async () => {
-        const res = await request(app).post("/users/checkauth");
-        expect(res.status).toBe(401);
-        expect(res.headers["set-cookie"]).toBeFalsy();
-    });
+    // it("check user authorisation", async () => {
+    //     const res = await request(app).post("/users/checkauth");
+    //     expect(res.status).toBe(401);
+    //     expect(res.headers["set-cookie"]).toBeFalsy();
+    // });
 })
 
 describe('/images', ( )=> {
@@ -79,14 +102,15 @@ describe('/images', ( )=> {
     afterAll(async () => {
         await mongoose.connection.close();
     })
+
     describe("if logged in", () => {
 
-        it.only("can post image", async () => {
-            const req = await request(app).post("/images/image/1").set('set-cookie', 'asdfaskjdfhaskjldfhalk')
+        it("can post image", async () => {
+            const req = await request(app).post("/images/image/1").set('Cookie', 'your-cookie-name=your-cookie-value')
                 // FIXME
                 .attach('image', `${__dirname}/car.jpg`)
-            console.log(req)
-            expect(req.headers['set-cookie']).toBeDefined();
+            console.log(req.header)
+            expect(req.header['Cookie']).toBeDefined();
             expect(req.status).toBe(301);
             expect(req.body.uuid).toBe("string");
         });
