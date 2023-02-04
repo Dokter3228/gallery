@@ -1,5 +1,6 @@
 import User from "../models/user";
 import jwt from "jsonwebtoken";
+import user from "../models/user";
 
 
 const doesUserExistCheck = async function(login, password) {
@@ -46,26 +47,33 @@ class userController {
         const doesUserExist = await doesUserExistCheck(login, password);
         if (doesUserExist) {
             const token = req.cookies['set-cookie'];
-            let userAuthorized = token && jwt.verify(token, "hellosecret");
-            if (!userAuthorized) {
-                const token = jwt.sign(
-                    {
+            try {
+                let userAuthorized = token && jwt.verify(token, process.env.JWT_SECRET_KEY);
+                console.log(userAuthorized)
+                if (!userAuthorized) {
+                    const token = jwt.sign(
+                        {
+                            login,
+                            password,
+                        },
+                        process.env.JWT_SECRET_KEY,
+                        { expiresIn: "15m" }
+                    );
+                    res.cookie("set-cookie", token, {
+                        httpOnly: true,
+                    });
+                    res.status(200).send({
                         login,
                         password,
-                    },
-                    "hellosecret",
-                    { expiresIn: "15m" }
-                );
-                res.cookie("set-cookie", token, {
-                    httpOnly: true,
-                });
-                res.status(200).send({
-                    login,
-                    password,
-                })
-            } else {
-                res.status(200).json({message: "you are logged in"})
+                    })
+                } else {
+                    res.status(200).json({message: "you are  logged in"})
+                }
+            } catch(e) {
+                console.log(e)
+                res.status(400).json({message: "log in again, jwt has already expired"})
             }
+
         } else {
             res.status(401).json({message: "you are not signed up"})
         }

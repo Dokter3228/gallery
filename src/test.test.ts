@@ -106,11 +106,11 @@ describe('/images', ( )=> {
     describe("if logged in", () => {
 
         it("can post image", async () => {
-            const req = await request(app).post("/images/image/1").set('Cookie', 'your-cookie-name=your-cookie-value')
+            const req = await request(app).post("/images/image/1").set('set-cookie', 'your-cookie-name=your-cookie-value')
                 // FIXME
                 .attach('image', `${__dirname}/car.jpg`)
             console.log(req.header)
-            expect(req.header['Cookie']).toBeDefined();
+            expect(req.header['set-cookie']).toBeDefined();
             expect(req.status).toBe(301);
             expect(req.body.uuid).toBe("string");
         });
@@ -134,7 +134,7 @@ describe('/images', ( )=> {
             expect(res.body.date).toBeTruthy();
             expect(res.body.comment).toBe('HELLO WORLD');
         });
-        it("in can get image", async () => {
+        it("can get image", async () => {
             const res = await request(app).get("/images/image/1");
             expect(res.status).toBe(200);
             expect(res.headers["set-cookie"]).toBeTruthy();
