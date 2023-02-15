@@ -25,10 +25,9 @@ const app = express();
 app.use(express.json());
 app.use(express.static('public'));
 app.listen(port, () => {
-  console.log(`Server Started at ${port}`);
 });
 
 app.use("/users", userRouter);
-app.use("/images", imageRouter);
+
 
 export{app};

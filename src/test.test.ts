@@ -98,6 +98,7 @@ describe('/images', ( )=> {
         const res =  await request(app)
             .post("/users/login")
             .send({ login: mockUser.login, password: mockUser.password });
+        expect(res.status).toBe(200)
     });
     afterAll(async () => {
         await mongoose.connection.close();
