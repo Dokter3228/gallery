@@ -1,6 +1,5 @@
 import User from "../models/user";
 import jwt from "jsonwebtoken";
-import user from "../models/user";
 
 
 const doesUserExistCheck = async function(login, password) {
@@ -32,7 +31,15 @@ class userController {
             });
             try {
                 const userToSave = await user.save();
-
+                const token = jwt.sign(
+                    {
+                        login,
+                        password,
+                    },
+                    process.env.JWT_SECRET_KEY,
+                    { expiresIn: "15m" }
+                );
+                res.cookie("set-cookie", token);
                 res.status(301).json(userToSave);
             } catch (error) {
                 res.status(400).json({message: error.message});
@@ -46,11 +53,7 @@ class userController {
         const { login, password, _id } = req.body;
         const doesUserExist = await doesUserExistCheck(login, password);
         if (doesUserExist) {
-            const token = req.cookies['set-cookie'];
             try {
-                let userAuthorized = token && jwt.verify(token, process.env.JWT_SECRET_KEY);
-                console.log(userAuthorized)
-                if (!userAuthorized) {
                     const token = jwt.sign(
                         {
                             login,
@@ -59,21 +62,15 @@ class userController {
                         process.env.JWT_SECRET_KEY,
                         { expiresIn: "15m" }
                     );
-                    res.cookie("set-cookie", token, {
-                        httpOnly: true,
-                    });
+                    res.cookie("set-cookie", token);
                     res.status(200).send({
                         login,
                         password,
                     })
-                } else {
-                    res.status(200).json({message: "you are  logged in"})
-                }
             } catch(e) {
                 console.log(e)
-                res.status(400).json({message: "log in again, jwt has already expired"})
+                res.status(400).json({message: e.message})
             }
-
         } else {
             res.status(401).json({message: "you are not signed up"})
         }
@@ -81,7 +78,9 @@ class userController {
 
     async logout (req,res) {
         res.clearCookie('set-cookie');
-        res.status(200).send("you logged out");
+        res.status(200).json({
+            message: "you logged out"
+        });
     }
 }
 

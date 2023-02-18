@@ -1,13 +1,16 @@
+const jwt = require("jsonwebtoken");
 
 
 const checkAuth = (req, res, next) => {
-    console.log(res.header['set-cookie'])
-    if (req.headers?.cookie) {
-        next();
-    } else {
-        res.status(401).json({ message: 'Not authorized' });
-
-
+    try {
+        const token = req.cookies['set-cookie'];
+        let userAuthorized = token && jwt.verify(token, process.env.JWT_SECRET_KEY);
+        if (userAuthorized) {
+            next();
+        }
+    } catch (e) {
+        console.log(e)
+        res.redirect("/users/login")
     }
 };
 

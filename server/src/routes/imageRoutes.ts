@@ -7,7 +7,7 @@ const checkAuth = require('../../middleware/auth');
 
 const imageRouter = express.Router();
 
-imageRouter.use(checkAuth)
+// imageRouter.use(checkAuth)
 
 imageRouter.use(fileUpload({
     createParentPath: true

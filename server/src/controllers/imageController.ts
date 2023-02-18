@@ -2,11 +2,9 @@ import Image from "../models/image";
 import { v4 as uuidv4 } from 'uuid';
 import path from "path";
 import jwt from "jsonwebtoken";
-import User from "../models/user";
 
 class imageController {
     async setImage (req,res ) {
-
         try {
             const token = req.headers?.cookie.split('set-cookie=').join('');
             const {login} = jwt.verify(token, process.env.JWT_SECRET_KEY);
