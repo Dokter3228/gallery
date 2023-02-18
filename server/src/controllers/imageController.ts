@@ -6,8 +6,9 @@ import jwt from "jsonwebtoken";
 class imageController {
     async setImage (req,res ) {
         try {
-            const token = req.headers?.cookie.split('set-cookie=').join('');
-            const {login} = jwt.verify(token, process.env.JWT_SECRET_KEY);
+            // const token = req.headers?.cookie.split('set-cookie=').join('');
+            // const {login = "somebody"} = jwt.verify(token, process.env.JWT_SECRET_KEY);
+            const login = req.body.login
             const comment = req.body.comment;
             const uuid = uuidv4();
             let image;
@@ -30,7 +31,7 @@ class imageController {
             image.mv(uploadPath, function (err) {
                 if (err)
                     return res.status(500).send(err);
-                res.status(301).send(imageToSave);
+                res.status(200).send(imageToSave);
             })
         } catch (e) {
             if(e.name === 'TokenExpiredError') {
@@ -60,6 +61,16 @@ class imageController {
         image.comment = comment;
         await image.save()
         res.json(image);
+    }
+
+    async getAllImages(req,res) {
+        const uuidsArray = []
+        const images = await Image.find();
+        console.log(images)
+        images.forEach(img => {
+            uuidsArray.push(img.uuid)
+        })
+        res.send(uuidsArray)
     }
 }
 

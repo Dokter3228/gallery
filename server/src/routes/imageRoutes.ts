@@ -16,6 +16,7 @@ imageRouter.use(fileUpload({
 
 imageRouter.post('/image/:id', imageController.setImage);
 imageRouter.get('/image/:id', imageController.getImageMeta)
+imageRouter.get('/allImages/', imageController.getAllImages)
 imageRouter.put('/image/:id', imageController.changeImageMeta)
 
 export{imageRouter};
