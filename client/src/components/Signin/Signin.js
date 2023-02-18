@@ -47,19 +47,19 @@ export default function Signin({ setToken, setSignInPage }) {
         setPassword("")
     }
     return(
-        <div className="login-wrapper">
+        <div className="mt-40">
             <h1>You can Sign In here</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="my-10"  onSubmit={handleSubmit}>
                 <label>
                     <p>Login</p>
-                    <input type="text" value={login} onChange={e => setLogin(e.target.value)}/>
+                    <input className="text-black" type="text" value={login} onChange={e => setLogin(e.target.value)}/>
                 </label>
                 <label>
                     <p>Password</p>
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input className="text-black" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
                 </label>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button className="mt-6 text-green-300" type="submit">Submit</button>
                 </div>
             </form>
             {userAlreadyExistsError && <h1 style={{

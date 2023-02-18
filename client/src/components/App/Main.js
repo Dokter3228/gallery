@@ -58,24 +58,24 @@ function Main() {
 
     if(!token && signInPage === false) {
         return (
-            <>
+            <div className="overflow-hidden text-center pb-20 text-lg h-screen w-screen bg-gray-900 text-white flex-col items-center justify-center">
                 <Login setToken={setToken} />
-                <button onClick={() => setSignInPage(true)}>Don't have an account? Sign in here</button>
-            </>
+                <button className="text-red-200" onClick={() => setSignInPage(true)}>Don't have an account? Sign in here</button>
+            </div>
             )
     } else if(signInPage) {
         return (
-            <>
+            <div className="overflow-hidden text-center pb-20 text-lg h-screen w-screen bg-gray-900 text-white flex-col items-center justify-center">
                 <Signin setSignInPage={setSignInPage} setToken={setToken} />
-                <button onClick={() => setSignInPage(false)}>Already have an account? Log in here!</button>
-            </>
+                <button className="text-red-200" onClick={() => setSignInPage(false)}>Already have an account? Log in here!</button>
+            </div>
             )
 
     }
   return (
-    <div>
-      <h1>Gallery main page</h1>
-        <form>`
+    <div className="bg-gray-900 text-white">
+      <h1 className="text-2xl text-center py-10">Gallery main page</h1>
+        <form className="text-center my-6 mb-10 flex items-center justify-center gap-20">
             <input
                 type="file"
                 name="screenshot"
@@ -83,15 +83,14 @@ function Main() {
                     setSelectedFile(e.target.files[0]);
                 }}
             />
-            <button onClick={(e) => upload(e)}>Submit</button>
+            <button onClick={(e) => upload(e)}>Upload the image</button>
         </form>
-        {images.length > 0 ? images.map((img) => {
-            const imgSrc = "http://localhost:17540/images/" + img + ".jpeg"
-            return <img key={img} style={{
-            width: "200px"
-            }
-            } src={imgSrc} />
-        }) : <h1>No images now!</h1>}
+        <div className="flex flex-wrap gap-20 items-center justify-center my-20">
+            {images.length > 0 ? images.map((img) => {
+                const imgSrc = "http://localhost:17540/images/" + img + ".jpeg"
+                return <img key={img} className="rounded-2xl w-60 h-22" src={imgSrc} />
+            }) : <h1>No images now!</h1>}
+        </div>
         <Logout setToken={setToken} />
     </div>
   );

@@ -17,7 +17,7 @@ export default function Logout({ setToken }) {
         return redirect("/");
     }
     return(
-        <div className="login-wrapper">
+        <div className="text-center pb-20 text-lg">
             <form onSubmit={handleSubmit}>
                 <button>
                     Logout

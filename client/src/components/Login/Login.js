@@ -35,19 +35,19 @@ export default function Login({ setToken }) {
         setPassword("")
     }
     return(
-        <div className="login-wrapper">
+        <div className="mt-40">
             <h1>Please Log In</h1>
-            <form onSubmit={handleSubmit}>
-                <label>
+            <form className="my-10" onSubmit={handleSubmit}>
+                <label >
                     <p>Login</p>
-                    <input type="text" value={login} onChange={e => setLogin(e.target.value)}/>
+                    <input className="text-black" type="text" value={login} onChange={e => setLogin(e.target.value)}/>
                 </label>
-                <label>
+                <label >
                     <p>Password</p>
-                    <input type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input className="text-black"  type="password" value={password} onChange={e => setPassword(e.target.value)}/>
                 </label>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button className="mt-6 text-green-300" type="submit">Submit</button>
                 </div>
                 {authError && <h1 style={{
                     color: "red"
