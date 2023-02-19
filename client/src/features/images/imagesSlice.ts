@@ -1,6 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from '@reduxjs/toolkit'
-
 export interface ImagesState {
     imagesArray: string[]
 }
@@ -20,6 +18,6 @@ export const counterSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addImage} = counterSlice.actions
+export const { addImage } = counterSlice.actions
 
 export default counterSlice.reducer
