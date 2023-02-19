@@ -34,7 +34,6 @@ function Main() {
             },
         }).then((res) => {
             setImages(prev => [...prev, res.data.uuid])
-            console.log("Success ", res.data.uuid);
         });
     };
 
@@ -52,25 +51,17 @@ function Main() {
                         setImages( res)
                 })
         }
-        console.log(1)
         getAllImages()
     }, [] );
 
-    if(!token && signInPage === false) {
+    if(!token || signInPage) {
         return (
             <div className="overflow-hidden text-center pb-20 text-lg h-screen w-screen bg-gray-900 text-white flex-col items-center justify-center">
-                <Login setToken={setToken} />
-                <button className="text-red-200" onClick={() => setSignInPage(true)}>Don't have an account? Sign in here</button>
+                {!signInPage ?  <Login setToken={setToken} /> :  <Signin setSignInPage={setSignInPage} setToken={setToken} /> }
+                <button className="text-red-200" onClick={() => setSignInPage(!signInPage)}>{signInPage ? "Already have an" +
+                    " account? Log in here!" : "Don't have an account? Sign in here"}</button>
             </div>
-            )
-    } else if(signInPage) {
-        return (
-            <div className="overflow-hidden text-center pb-20 text-lg h-screen w-screen bg-gray-900 text-white flex-col items-center justify-center">
-                <Signin setSignInPage={setSignInPage} setToken={setToken} />
-                <button className="text-red-200" onClick={() => setSignInPage(false)}>Already have an account? Log in here!</button>
-            </div>
-            )
-
+        )
     }
   return (
     <div className="bg-gray-900 text-white">

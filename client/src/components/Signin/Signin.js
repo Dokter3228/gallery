@@ -21,14 +21,13 @@ async function createUser(credentials) {
     })
         .then(data => data.json()).then(res => res)
 }
-export default function Signin({ setToken, setSignInPage }) {
-    const [login, setLogin] = useState("");
-    const [password, setPassword] = useState("");
+export default function Signin(props) {
+    const [credentials, setCredentials ] = useState({login: "", password: ""})
     const [userAlreadyExistsError, setUserAlreadyExistsError] = useState(false)
     const handleSubmit = async e => {
         e.preventDefault();
         const check = await checkIfUserExists({
-            login, password
+            login: credentials.login, password: credentials.password
         })
         if(check.login) {
             setUserAlreadyExistsError(true)
@@ -38,13 +37,11 @@ export default function Signin({ setToken, setSignInPage }) {
             return;
         }
         const token = await createUser({
-            login,
-            password
+            login: credentials.login, password: credentials.password
         });
-            setToken(token);
-            setSignInPage(false)
-        setLogin("")
-        setPassword("")
+            props.setToken(token);
+            props.setSignInPage(false)
+            setCredentials({login: "", password: ""})
     }
     return(
         <div className="mt-40">
@@ -52,11 +49,11 @@ export default function Signin({ setToken, setSignInPage }) {
             <form className="my-10"  onSubmit={handleSubmit}>
                 <label>
                     <p>Login</p>
-                    <input className="text-black" type="text" value={login} onChange={e => setLogin(e.target.value)}/>
+                    <input className="text-black" type="text" value={credentials.login} onChange={e => setCredentials(prev => ({...prev, login: e.target.value}))}/>
                 </label>
                 <label>
                     <p>Password</p>
-                    <input className="text-black" type="password" value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input className="text-black" type="password" value={credentials.password} onChange={e => setCredentials((prev) => ({...prev, password: e.target.value}))}/>
                 </label>
                 <div>
                     <button className="mt-6 text-green-300" type="submit">Submit</button>

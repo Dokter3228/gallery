@@ -1,28 +1,21 @@
-import React, {useState} from "react";
-import { redirect } from "react-router-dom";
+import React from "react";
 async function logoutUser() {
     return fetch('/users/logout', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
     })
         .then(data => data.json()).then(res => res)
 }
-export default function Logout({ setToken }) {
+export default function Logout(props) {
     const handleSubmit = async e => {
         e.preventDefault();
         await logoutUser();
-        setToken(false)
-        return redirect("/");
+        props.setToken(false)
     }
     return(
         <div className="text-center pb-20 text-lg">
-            <form onSubmit={handleSubmit}>
-                <button>
+                <button type="submit" onClick={handleSubmit} >
                     Logout
                 </button>
-            </form>
         </div>
     )
 }
