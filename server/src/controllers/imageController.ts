@@ -66,7 +66,6 @@ class imageController {
     async getAllImages(req,res) {
         const uuidsArray = []
         const images = await Image.find();
-        console.log(images)
         images.forEach(img => {
             uuidsArray.push(img.uuid)
         })

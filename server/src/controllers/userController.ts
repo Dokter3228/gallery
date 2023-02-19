@@ -1,7 +1,6 @@
 import User from "../models/user";
 import jwt from "jsonwebtoken";
 
-
 const doesUserExistCheck = async function(login, password) {
     const doesUserExist = await User.findOne(
         { $and: [{ login: login }, { password: password }] },
@@ -37,7 +36,7 @@ class userController {
                         password,
                     },
                     process.env.JWT_SECRET_KEY,
-                    { expiresIn: "15m" }
+                    { expiresIn: "15m" },
                 );
                 res.cookie("set-cookie", token);
                 res.status(200).json(userToSave);

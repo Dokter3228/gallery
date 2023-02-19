@@ -1,5 +1,4 @@
 const jwt = require("jsonwebtoken");
-const User = require('../src/models/user')
 
 
 const checkAuth = (req, res) => {
@@ -8,7 +7,7 @@ const checkAuth = (req, res) => {
         let userAuthorized = token && jwt.verify(token, process.env.JWT_SECRET_KEY);
         if (userAuthorized) {
             const {login} = userAuthorized
-            res.json({
+            res.status(200).json({
                 login
             })
         } else {
