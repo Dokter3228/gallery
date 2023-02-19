@@ -1,13 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import addImage from "../features/images/imagesSlice";
 import {imagesApi} from "../features/api/imagesApi";
+import {usersApi} from "../features/api/usersApi";
 export const store = configureStore({
     reducer: {
         [imagesApi.reducerPath]: imagesApi.reducer,
+        [usersApi.reducerPath]: usersApi.reducer,
         images: addImage
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(imagesApi.middleware),
+        getDefaultMiddleware().concat(imagesApi.middleware, usersApi.middleware),
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

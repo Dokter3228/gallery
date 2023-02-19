@@ -40,7 +40,7 @@ class userController {
                     { expiresIn: "15m" }
                 );
                 res.cookie("set-cookie", token);
-                res.status(301).json(userToSave);
+                res.status(200).json(userToSave);
             } catch (error) {
                 res.status(400).json({message: error.message});
             }
@@ -50,7 +50,7 @@ class userController {
     }
 
     async login(req,res) {
-        const { login, password, _id } = req.body;
+        const { login, password } = req.body;
         const doesUserExist = await doesUserExistCheck(login, password);
         if (doesUserExist) {
             try {
