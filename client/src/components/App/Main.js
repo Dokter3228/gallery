@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import Cookies from 'js-cookie';
-import { isExpired, decodeToken } from "react-jwt";
+import { isExpired} from "react-jwt";
 import Login from "../Login/Login";
 import Signin from "../Signin/Signin";
 import Logout from "../Logout/Logout";

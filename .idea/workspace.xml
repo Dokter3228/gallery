@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5afef5a4-f8a4-4194-9194-4ec7910bb161" name="Changes" comment="">
+    <list default="true" id="5afef5a4-f8a4-4194-9194-4ec7910bb161" name="Changes" comment="refactor props, credentials state, unnecessary code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/client/node_modules/.cache/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/default-development/0.pack" beforeDir="false" afterPath="$PROJECT_DIR$/client/node_modules/.cache/default-development/0.pack" afterDir="false" />
@@ -19,6 +19,7 @@
       <change beforePath="$PROJECT_DIR$/client/node_modules/.cache/default-development/index.pack.old" beforeDir="false" afterPath="$PROJECT_DIR$/client/node_modules/.cache/default-development/index.pack.old" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App/Main.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/Main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Logout/Logout.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Signin/Signin.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Signin/Signin.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/node_modules/.cache/@babel/register/.babel.7.20.12.development.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/node_modules/.cache/@babel/register/.babel.7.20.12.development.json" afterDir="false" />
@@ -200,7 +201,7 @@
       <workItem from="1676709733769" duration="11485000" />
       <workItem from="1676722253349" duration="880000" />
       <workItem from="1676725446466" duration="8895000" />
-      <workItem from="1676803865640" duration="1715000" />
+      <workItem from="1676803865640" duration="2067000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -223,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676733141380</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="refactor props, credentials state, unnecessary code">
+      <created>1676805932069</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1676805932069</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,6 +252,7 @@
     <MESSAGE value="fasdfas" />
     <MESSAGE value="basic login signin image fetching functionality" />
     <MESSAGE value="basic image adding and fetching functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="basic image adding and fetching functionality" />
+    <MESSAGE value="refactor props, credentials state, unnecessary code" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor props, credentials state, unnecessary code" />
   </component>
 </project>
