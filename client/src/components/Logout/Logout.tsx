@@ -1,19 +1,14 @@
-import {useState} from "react";
 import { redirect } from "react-router-dom";
-async function logoutUser() {
-    return fetch('/users/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-    })
-        .then(data => data.json()).then(res => res)
-}// @ts-ignore
+
+import {useLogoutMutation} from "../../features/api/usersApi";
+
+// @ts-ignore
 export default function Logout({ setToken }) {
+    const [logoutUser2] = useLogoutMutation()
     // @ts-ignore
     const handleSubmit = async e => {
         e.preventDefault();
-        await logoutUser();
+        await logoutUser2("")
         setToken(false)
         return redirect("/");
     }

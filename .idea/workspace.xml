@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="test commit">
-      <change afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="fixed initial functionality">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/car.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -279,7 +276,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676908707435</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="fixed initial functionality">
+      <created>1676915339230</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1676915339230</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -307,7 +311,8 @@
     <MESSAGE value="add RTK Query fetching and auto-mutation" />
     <MESSAGE value="add replace all the fetch and axios with RTK query" />
     <MESSAGE value="test commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="test commit" />
+    <MESSAGE value="fixed initial functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed initial functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

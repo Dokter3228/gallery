@@ -31,6 +31,7 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
                 url: "/users/newUser",
                 method: "POST",
                 body,
+                credentials: 'include'
             }),
         })
     }),

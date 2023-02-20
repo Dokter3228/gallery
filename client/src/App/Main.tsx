@@ -4,61 +4,42 @@ import { isExpired } from "react-jwt";
 import Login from "../components/Login/Login";
 import Signin from "../components/SignIn/Signin";
 import Logout from "../components/Logout/Logout";
-import Axios from "axios";
-async function getUser() {
-    const cookie = Cookies.get("set-cookie");
-    return fetch("http://localhost:17548/users/getUser/", {
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({token: cookie})
-    })
-        .then(data => data.json()).then(res => res)
-}
+
+
+import {useGetImagesQuery, useAddImageMutation} from "../features/api/imagesApi";
+import {useCheckUserMutation} from "../features/api/usersApi";
 
 function Main() {
     const [token, setToken] = useState(false)
     const [signInPage, setSignInPage] = useState(false)
-    const [images, setImages] = useState([])
     const [selectedFile, setSelectedFile] = useState(null)
+
+    const {data: imagesH, isLoading} = useGetImagesQuery("")
+    const [addImageHere] = useAddImageMutation()
+    const [checkIfUserExists] = useCheckUserMutation()
     // @ts-ignore
     const upload = async (e) => {
         e.preventDefault();
-        const {login} = await getUser()
+        const cookie = Cookies.get("set-cookie");
+        // @ts-ignore
+        const {data} = await checkIfUserExists({token: cookie});
+        // const {login} = await getUser()
         let formData = new FormData();
         // @ts-ignore
         formData.append("image", selectedFile);
-        formData.append("login", login)
-        Axios.post("http://localhost:17548/images/image/2", formData, {
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-        }).then((res) => {
-            // @ts-ignore
-            setImages(prev => [...prev, res.data.uuid])
-            console.log("Success ", res.data.uuid);
-        });
+        formData.append("login", data.login)
+        addImageHere(formData)
     };
 
     useEffect( () => {
         const cookie = Cookies.get("set-cookie");
         // @ts-ignore
         setToken(!isExpired(cookie))
-        async function getAllImages() {
-            return fetch("/images/allImages/", {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            })
-                .then(data => data.json()).then(res => {
-                        setImages( res)
-                })
-        }
-        console.log(images)
-        getAllImages()
     }, [] );
+
+    if(isLoading) {
+        return <h1>Wait pls!</h1>
+    }
 
     if(!token && signInPage === false) {
         return (
@@ -91,7 +72,7 @@ function Main() {
             <button onClick={(e) => upload(e)}>Upload the image</button>
         </form>
         <div className="flex flex-wrap gap-20 items-center justify-center my-20">
-            {images.length > 0 ? images.map((img) => {
+            {!isLoading ? imagesH.map((img) => {
                 const imgSrc = "http://localhost:17548/images/" + img + ".jpeg"
                 return <img key={img} className="rounded-2xl w-60 h-22" src={imgSrc} />
             }) : <h1>No images now!</h1>}

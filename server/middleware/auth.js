@@ -11,7 +11,7 @@ const checkAuth = (req, res) => {
                 login
             })
         } else {
-            res.json({no: "no"})
+            res.status(400).json({no: "no"})
         }
     } catch (e) {
         console.log(e)
