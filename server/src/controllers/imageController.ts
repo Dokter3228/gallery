@@ -8,8 +8,10 @@ class imageController {
         try {
             // const token = req.headers?.cookie.split('set-cookie=').join('');
             // const {login = "somebody"} = jwt.verify(token, process.env.JWT_SECRET_KEY);
+            // FIXME looks wierd
             const login = req.body.login
             const comment = req.body.comment;
+            // FIXME refactor to nanoid
             const uuid = uuidv4();
             let image;
             let uploadPath;
@@ -18,6 +20,7 @@ class imageController {
             }
             image = req.files.image;
             const fileExtension = image.name.split('.')[1]
+            // FIXME looks wierd
             uploadPath = path.resolve(__dirname, '..', '..', "public/images" ) + "/" + uuid + "."+  fileExtension;
             const date = new Date().toLocaleDateString();
             // Use the mv() method to place the file somewhere on your server
@@ -43,6 +46,8 @@ class imageController {
         }
     }
 
+
+    // FIXME resolve author, comments, dates
     async getImageMeta (req,res) {
         const uuid = req.params.id;
         const image = await Image.findOne(
@@ -60,7 +65,7 @@ class imageController {
         image.author = author;
         image.comment = comment;
         await image.save()
-        res.json(image);
+        res.status(200).json(image);
     }
 
     async getAllImages(req,res) {
@@ -69,7 +74,7 @@ class imageController {
         images.forEach(img => {
             uuidsArray.push(img.uuid)
         })
-        res.send(uuidsArray)
+        res.status(200).send(uuidsArray)
     }
 }
 
