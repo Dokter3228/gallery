@@ -63,6 +63,7 @@ class imageController {
             { uuid: uuid }
         )
         image.author = author;
+            // @ts-ignore
         image.comment = comment;
         await image.save()
         res.status(200).json(image);

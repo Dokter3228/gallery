@@ -1,5 +1,5 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import * as React from 'react'
+import * as ReactDOM from "react-dom/client"
 import Main from './App/Main';
 import {store, useAppSelector} from './App/store'
 import { Provider } from 'react-redux'

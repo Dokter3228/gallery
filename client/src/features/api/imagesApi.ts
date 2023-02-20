@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const imagesApi = createApi({
     reducerPath: 'getImages',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:17540/',
+        baseUrl: 'http://localhost:17548/',
     }),
     tagTypes: ['Images'],
     endpoints: (builder) => ({
