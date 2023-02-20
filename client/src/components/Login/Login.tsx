@@ -31,7 +31,6 @@ export default function Login({ setToken }) {
             setToken(false)
         } else {
             setToken(token);
-
         }
         setLogin("")
         setPassword("")

@@ -5,33 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="test commit">
-      <change afterPath="$PROJECT_DIR$/client/src/App/Main.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/favicon.ico" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/client/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/logo192.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/logo512.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/manifest.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/public/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.test.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/react-app-env.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/reportWebVitals.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/setupTests.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.env" beforeDir="false" afterPath="$PROJECT_DIR$/server/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/car.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="godblessme" />
+        <entry key="$PROJECT_DIR$" value="godblessmeplease" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -89,7 +74,7 @@
       <recent name="$PROJECT_DIR$/server" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="npm.start (2)">
     <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -156,8 +141,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.start (2)" />
+        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.test" />
         <item itemvalue="npm.start" />
         <item itemvalue="Mocha./images.if logged in.can get image meta" />
@@ -287,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676905736716</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="test commit">
+      <created>1676908707435</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1676908707435</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -7,7 +7,7 @@ import Logout from "../components/Logout/Logout";
 import Axios from "axios";
 async function getUser() {
     const cookie = Cookies.get("set-cookie");
-    return fetch("http://localhost:17540/users/getUser/", {
+    return fetch("http://localhost:17548/users/getUser/", {
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -30,7 +30,7 @@ function Main() {
         // @ts-ignore
         formData.append("image", selectedFile);
         formData.append("login", login)
-        Axios.post("http://localhost:17540/images/image/2", formData, {
+        Axios.post("http://localhost:17548/images/image/2", formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
@@ -56,7 +56,7 @@ function Main() {
                         setImages( res)
                 })
         }
-        console.log(1)
+        console.log(images)
         getAllImages()
     }, [] );
 
@@ -92,7 +92,7 @@ function Main() {
         </form>
         <div className="flex flex-wrap gap-20 items-center justify-center my-20">
             {images.length > 0 ? images.map((img) => {
-                const imgSrc = "http://localhost:17540/images/" + img + ".jpeg"
+                const imgSrc = "http://localhost:17548/images/" + img + ".jpeg"
                 return <img key={img} className="rounded-2xl w-60 h-22" src={imgSrc} />
             }) : <h1>No images now!</h1>}
         </div>
