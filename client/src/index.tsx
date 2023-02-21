@@ -5,7 +5,7 @@ import {store, useAppSelector} from './App/store'
 import { Provider } from 'react-redux'
 import {ApiProvider} from "@reduxjs/toolkit/dist/query/react";
 import {extendedImagesApi} from "./features/api/imagesApi";
-import './index.css'
+import './index.scss'
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(

@@ -25,7 +25,7 @@ const App = () => {
     }
     return (
         <div className="bg-gray-900 text-white">
-      <h1 className="text-2xl text-center py-10 ">Gallery main page</h1>
+      <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
         <form className="text-center my-6 mb-10 flex items-center justify-center gap-20">
             <input
                 type="file"
@@ -42,6 +42,7 @@ const App = () => {
                 const imgSrc = "http://localhost:17548/images/" + img + ".jpeg"
                 return <img key={img} className="rounded-2xl w-60 h-22" src={imgSrc} />
             }) : <h1>No images now!</h1>}
+            {imagesH.length === 0 && <h1 className="text-2xl text-red-300">There's no images yet! Upload</h1>}
         </div>
             <Logout />
         </div>
