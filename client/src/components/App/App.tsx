@@ -1,5 +1,4 @@
 import React from 'react';
-import Cookies from "js-cookie";
 import {useState} from "react";
 import {useCheckUserMutation} from "../../features/api/usersApi";
 import {useAddImageMutation, useGetImagesQuery} from "../../features/api/imagesApi";
@@ -12,9 +11,8 @@ const App = () => {
     // @ts-ignore
     const upload = async (e) => {
         e.preventDefault();
-        const cookie = Cookies.get("set-cookie");
         // @ts-ignore
-        const {data} = await checkIfUserExists({token: cookie});
+        const {data} = await checkIfUserExists();
         // const {login} = await getUser()
         let formData = new FormData();
         // @ts-ignore

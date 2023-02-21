@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import {useLoginMutation} from "../../features/api/usersApi";
 import {Link, useNavigate} from "react-router-dom";
@@ -7,9 +6,7 @@ import {Link, useNavigate} from "react-router-dom";
 export default function Login() {
     const [credentials, setCredentials] = useState({login: "", password: ""})
     const [authError, setAuthError] = useState(false)
-
     const navigate = useNavigate();
-
     const [loginUser2] = useLoginMutation();
 
     // @ts-ignore
