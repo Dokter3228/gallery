@@ -51,7 +51,7 @@ describe("/users", () => {
   test.only("creating user",
       async () => {
         const res = await request(app)
-            .post("/users/newUser")
+            .post("/users/registration")
             .send({login: mockUser.login, password: mockUser.password});
 
         expect(res.status).toBe(301);

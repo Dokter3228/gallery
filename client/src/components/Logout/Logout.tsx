@@ -1,7 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {useLogoutMutation} from "../../features/api/usersApi";
 
-// @ts-ignore
 export default function Logout() {
     let navigate = useNavigate()
     const [logoutUser2] = useLogoutMutation()

@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add cookie redirect server handling fix">
-      <change afterPath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" afterDir="false" />
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="create cookie controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/middleware/auth.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/middleware/authMiddleware.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/userController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/linux/Desktop/gallery/client",
+    "last_opened_file_path": "/home/linux/Desktop/fire-offer",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -199,7 +208,7 @@
       <workItem from="1676725446466" duration="8895000" />
       <workItem from="1676803865640" duration="16160000" />
       <workItem from="1676822483180" duration="2022000" />
-      <workItem from="1676973788969" duration="11300000" />
+      <workItem from="1676973788969" duration="13343000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -320,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676987312305</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="create cookie controller">
+      <created>1676987604826</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1676987604826</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -354,7 +370,8 @@
     <MESSAGE value="add server-side cookie handling" />
     <MESSAGE value="add scss and max 1mb file upload" />
     <MESSAGE value="add cookie redirect server handling fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="add cookie redirect server handling fix" />
+    <MESSAGE value="create cookie controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="create cookie controller" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

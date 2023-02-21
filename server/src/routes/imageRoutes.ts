@@ -1,7 +1,6 @@
 import express from 'express';
 const fileUpload = require('express-fileupload');
 import imageController from "../controllers/imageController";
-import {authMiddleware} from "../middleware/authMiddleware";
 const imageRouter = express.Router();
 
 
@@ -22,7 +21,7 @@ imageRouter.get('/image/:id', imageController.getImageMeta)
 // add comment -> new uuid
 // patch comment -> new uuid
 // remove comment of image -> UUID[]
-imageRouter.get('/allImages/', imageController.getAllImages)
+imageRouter.get('/', imageController.getAllImages)
 imageRouter.put('/image/:id', imageController.changeImageMeta)
 
 export{imageRouter};

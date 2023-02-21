@@ -24,13 +24,11 @@ const App = () => {
     const {data: imagesH, isLoading} = useGetImagesQuery("")
     const [addImageHere] = useAddImageMutation()
     const [checkIfUserExists] = useCheckUserMutation()
-    // @ts-ignore
     const upload = async (e) => {
         e.preventDefault();
         // @ts-ignore
         const {data} = await checkIfUserExists();
         let formData = new FormData();
-        // @ts-ignore
         formData.append("image", selectedFile);
         formData.append("login", data.login)
         addImageHere(formData)
@@ -48,7 +46,6 @@ const App = () => {
                 type="file"
                 name="screenshot"
                 onChange={(e) => {
-                    // @ts-ignore
                     setSelectedFile(e.target.files[0]);
                 }}
             />

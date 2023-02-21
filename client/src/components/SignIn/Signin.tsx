@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import {useLoginMutation, useSignupMutation, useCheckCookieMutation} from "../../features/api/usersApi";
 import {Link, useNavigate} from "react-router-dom";
 
-// @ts-ignore
 export default function Signin() {
     const [credentials, setCredentials] = useState({login: "", password: ""})
     const [userAlreadyExistsError, setUserAlreadyExistsError] = useState(false)
@@ -15,9 +14,9 @@ export default function Signin() {
     useEffect(() => {
         const redirectIfHasCookie = async () => {
             const res = await checkCookie("")
-                // @ts-ignore
+            // @ts-ignore
             if(res?.error) {
-                return
+                return;
             }
             navigate("/")
         }
@@ -31,7 +30,7 @@ export default function Signin() {
             login: credentials.login,
             password: credentials.password
         })
-    // @ts-ignore
+        // @ts-ignore
         if(check?.data?.login) {
             setUserAlreadyExistsError(true)
             setTimeout(() => {

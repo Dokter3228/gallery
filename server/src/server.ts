@@ -4,11 +4,11 @@ import express from "express";
 import {config} from "dotenv";
 config();
 
-import {authMiddleware} from "./middleware/authMiddleware";
-import cookieParser from "cookie-parser";
 
 import {userRouter} from "./routes/userRoutes";
 import {imageRouter} from "./routes/imageRoutes";
+
+
 const whitelist = ['http://localhost:3000'];
 
 const cors=require("cors");
@@ -19,7 +19,7 @@ const corsOptions ={
 
     callback(new Error('Not allowed by CORS'));
   },
-  credentials:true,            //access-control-allow-credentials:true
+  credentials:true,
   optionSuccessStatus:200,
 }
 
@@ -39,13 +39,13 @@ database.once("connected", () => {
 });
 
 const app = express();
-app.use(cookieParser());
+
 app.use(express.json());
 app.use(express.static('public'));
 app.use(cors(corsOptions))
 
 app.listen(port, () => {
-  console.log(`Server Started at ${port}`);
+  console.log(`Server Started at port: ${port}`);
 });
 
 

@@ -23,7 +23,6 @@ class imageController {
             // FIXME looks wierd
             uploadPath = path.resolve(__dirname, '..', '..', "public/images" ) + "/" + uuid + "."+  fileExtension;
             const date = new Date().toLocaleDateString();
-            // Use the mv() method to place the file somewhere on your server
             const imageDb = new Image({
                 author: login,
                 uuid: uuid,
@@ -63,7 +62,7 @@ class imageController {
             { uuid: uuid }
         )
         image.author = author;
-            // @ts-ignore
+        // @ts-ignore
         image.comment = comment;
         await image.save()
         res.status(200).json(image);

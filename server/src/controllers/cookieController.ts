@@ -4,7 +4,7 @@ class cookieController {
       try {
         const token = req.cookies["set-cookie"]
         const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
-          res.status(200).json({approve: decodedToken})
+        res.status(200).json({approve: decodedToken})
       } catch(e) {
         res.status(401).json({
           error: e.message
@@ -16,6 +16,7 @@ class cookieController {
         const token = req.cookies["set-cookie"]
         let userAuthorized = token && jwt.verify(token, process.env.JWT_SECRET_KEY);
         if (userAuthorized) {
+            // @ts-ignore
             const {login} = userAuthorized
             res.status(200).json({
                 login
@@ -24,7 +25,6 @@ class cookieController {
             res.status(400).json({message: "user is not authorized"} )
         }
     } catch (e) {
-        console.log(e)
         res.status(400).json({message: e.message})
     }
 };

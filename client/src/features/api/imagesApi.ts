@@ -3,7 +3,7 @@ import {imagesApiTagged} from "./emptySplitApi";
 export const extendedImagesApi = imagesApiTagged.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query({
-            query: () => '/images/allImages',
+            query: () => '/images/',
             providesTags: (result, error, arg) =>
                 result
                     // @ts-ignore

@@ -20,7 +20,7 @@ const doesUserExistCheck = async function(login, password) {
 }
 
 class userController {
-    async newUser  (req,res) {
+    async createNewUser  (req,res) {
         const { login, password } = req.body;
         const doesUserExist = await doesUserExistCheck(login, password);
         if(!doesUserExist) {
@@ -43,9 +43,8 @@ class userController {
             } catch (error) {
                 res.status(400).json({message: error.message});
             }
-        } else {
-            res.status(301).json({message: "this user already exists"})
         }
+        res.status(301).json({message: "this user already exists"})
     }
 
     async login(req,res) {
@@ -70,9 +69,8 @@ class userController {
                 console.log(e)
                 res.status(400).json({message: e.message})
             }
-        } else {
-            res.status(401).json({message: "you are not signed up"})
         }
+        res.status(401).json({message: "you are not signed up"})
     }
 
     async logout (req,res) {
