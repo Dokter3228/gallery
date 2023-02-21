@@ -1,10 +1,8 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import userController from "../controllers/userController";
+import cookieController from "../controllers/cookieController";
 const userRouter = express.Router();
-import checkAuth from '../middleware/auth'
-import {authMiddleware} from "../middleware/authMiddleware";
-
 
 userRouter.use(cookieParser("secret key"));
 
@@ -14,7 +12,7 @@ userRouter.post("/login",  userController.login);
 userRouter.post("/logout", userController.logout);
 // FIXME patch user-meta/:id name/avatar -> user
 // FIXME why this looks wired in rest api and what is the correct endpoint path
-userRouter.post("/getUser", checkAuth)
-userRouter.post('/checkCookie', authMiddleware)
+userRouter.post("/getUser", cookieController.checkAuth)
+userRouter.post('/checkCookie', cookieController.authCheckCookie)
 // FIXME add prettier
 export{userRouter};
