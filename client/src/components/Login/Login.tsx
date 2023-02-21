@@ -1,11 +1,14 @@
 
 import { useState } from 'react';
 import {useLoginMutation} from "../../features/api/usersApi";
+import {Link, useNavigate} from "react-router-dom";
 
 // @ts-ignore
-export default function Login({ setToken }) {
+export default function Login() {
     const [credentials, setCredentials] = useState({login: "", password: ""})
     const [authError, setAuthError] = useState(false)
+
+    const navigate = useNavigate();
 
     const [loginUser2] = useLoginMutation();
 
@@ -23,30 +26,32 @@ export default function Login({ setToken }) {
             setTimeout(() => {
                 setAuthError(false)
             }, 2000)
-            setToken(false)
         } else {
-            setToken(true);
+            navigate('/')
         }
         setCredentials({login: "", password: ""})
     }
     return(
-        <div className="mt-40">
-            <h1>Please Log In</h1>
-            <form className="my-10" onSubmit={handleSubmit}>
-                <label >
+        <div className="pb-32 h-screen text-white flex items-center justify-center gap-10">
+            <div>
+                <h1 className="text-3xl mb-8">Please Log In</h1>
+            <form className="h-full" onSubmit={handleSubmit}>
+                <label className="flex-col items-center justify-center" >
                     <p>Login</p>
                     <input className="text-black" type="text" value={credentials.login} onChange={e =>
                         setCredentials(prev => { return {...prev, login: e.target.value}})}/>
                 </label>
-                <label >
+                <label className="my-6" >
                     <p>Password</p>
                     <input className="text-black"  type="password" value={credentials.password} onChange={e => setCredentials(prev => { return {...prev, password: e.target.value}})}/>
                 </label>
                 <div>
-                    <button className="mt-6 text-green-300" type="submit">Submit</button>
+                    <button className="my-6 text-green-300" type="submit">Submit</button>
                 </div>
                 {authError && <h1 className="text-red-400">wrong credentials!</h1>}
             </form>
+                <Link className="text-red-300 mt-6" to="/signin">Don't have an account? Sign In here</Link>
+            </div>
         </div>
     )
 }

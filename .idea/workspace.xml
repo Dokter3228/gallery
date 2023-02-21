@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="fixed initial functionality">
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="almost completely recreated initial functionality and added inject endpoints feature">
+      <change afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/App/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/Main.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/middleware/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/server/middleware/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +36,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/linux/Desktop/gallery/client",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "/home/rootisalie/WebstormProjects/gallery/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "ts.external.directory.path": "/home/linux/Desktop/gallery/client/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/gallery/client&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/home/rootisalie/WebstormProjects/gallery/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/linux/Desktop/gallery/client/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client" />
@@ -71,7 +68,7 @@
       <recent name="$PROJECT_DIR$/server" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (2)">
+  <component name="RunManager" selected="npm.start (1)">
     <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -138,8 +135,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (2)" />
         <item itemvalue="npm.start (1)" />
+        <item itemvalue="npm.start (2)" />
         <item itemvalue="npm.test" />
         <item itemvalue="npm.start" />
         <item itemvalue="Mocha./images.if logged in.can get image meta" />
@@ -149,7 +146,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5afef5a4-f8a4-4194-9194-4ec7910bb161" name="Changes" comment="" />
+      <changelist id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="almost completely recreated initial functionality and added inject endpoints feature" />
       <created>1674405077078</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -198,6 +195,7 @@
       <workItem from="1676725446466" duration="8895000" />
       <workItem from="1676803865640" duration="16160000" />
       <workItem from="1676822483180" duration="2022000" />
+      <workItem from="1676973788969" duration="3748000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -283,7 +281,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676915339230</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="almost completely recreated initial functionality and added inject endpoints feature">
+      <created>1676918951763</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1676918951763</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -312,7 +317,8 @@
     <MESSAGE value="add replace all the fetch and axios with RTK query" />
     <MESSAGE value="test commit" />
     <MESSAGE value="fixed initial functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed initial functionality" />
+    <MESSAGE value="almost completely recreated initial functionality and added inject endpoints feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="almost completely recreated initial functionality and added inject endpoints feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,11 +1,13 @@
 import { useState } from 'react';
 
 import {useLoginMutation, useSignupMutation} from "../../features/api/usersApi";
+import {Link, useNavigate} from "react-router-dom";
 
 // @ts-ignore
-export default function Signin({ setToken, setSignInPage }) {
+export default function Signin() {
     const [credentials, setCredentials] = useState({login: "", password: ""})
     const [userAlreadyExistsError, setUserAlreadyExistsError] = useState(false)
+    const navigate = useNavigate()
 
     const [checkIfUserAlreadySignedIn] = useLoginMutation()
     const [signInTheUser] = useSignupMutation()
@@ -28,27 +30,29 @@ export default function Signin({ setToken, setSignInPage }) {
            login: credentials.login,
             password: credentials.password
         });
-            setToken(true);
-            setSignInPage(false)
+             navigate('/')
          setCredentials({login: "", password: ""})
     }
     return(
-        <div className="mt-40">
-            <h1>You can Sign In here</h1>
-            <form className="my-10"  onSubmit={handleSubmit}>
-                <label>
+        <div className="pb-32 h-screen text-white flex items-center justify-center gap-10">
+            <div>
+                <h1 className="text-3xl mb-8">You can Sign In here</h1>
+            <form className="h-full"  onSubmit={handleSubmit}>
+                <label className="flex-col items-center justify-center">
                     <p>Login</p>
                     <input className="text-black" type="text" value={credentials.login} onChange={e => setCredentials(prev => { return {...prev, login: e.target.value}})}/>
                 </label>
-                <label>
+                <label className="my-6">
                     <p>Password</p>
                     <input className="text-black" type="password" value={credentials. password} onChange={e => setCredentials(prev => { return {...prev, password: e.target.value}})}/>
                 </label>
                 <div>
-                    <button className="mt-6 text-green-300" type="submit">Submit</button>
+                    <button className="my-6 text-green-300" type="submit">Submit</button>
                 </div>
+                 {userAlreadyExistsError && <h1 className="text-red-400">This user already exists</h1>}
             </form>
-            {userAlreadyExistsError && <h1 className="text-red-400">This user already exists</h1>}
+                <Link className="text-red-300 mt-6" to="/login">Already have an account? Log in here</Link>
+            </div>
         </div>
     )
 }

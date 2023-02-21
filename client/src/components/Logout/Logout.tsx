@@ -1,16 +1,16 @@
-import { redirect } from "react-router-dom";
+import {redirect, useNavigate} from "react-router-dom";
 
 import {useLogoutMutation} from "../../features/api/usersApi";
 
 // @ts-ignore
-export default function Logout({ setToken }) {
+export default function Logout() {
+    let navigate = useNavigate()
     const [logoutUser2] = useLogoutMutation()
     // @ts-ignore
     const handleSubmit = async e => {
         e.preventDefault();
         await logoutUser2("")
-        setToken(false)
-        return redirect("/");
+        return navigate("/login");
     }
     return(
         <div className="text-center pb-20 text-lg">
