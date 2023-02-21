@@ -1,29 +1,24 @@
 import mongoose from "mongoose";
 import express from "express";
 
-import {config} from "dotenv";
+import { config } from "dotenv";
 config();
 
+import { userRouter } from "./routes/userRoutes";
+import { imageRouter } from "./routes/imageRoutes";
 
-import {userRouter} from "./routes/userRoutes";
-import {imageRouter} from "./routes/imageRoutes";
+const whitelist = ["http://localhost:3000"];
 
-
-const whitelist = ['http://localhost:3000'];
-
-const cors=require("cors");
-const corsOptions ={
+const cors = require("cors");
+const corsOptions = {
   origin: (origin, callback) => {
-    if(whitelist.includes(origin))
-      return callback(null, true)
+    if (whitelist.includes(origin)) return callback(null, true);
 
-    callback(new Error('Not allowed by CORS'));
+    callback(new Error("Not allowed by CORS"));
   },
-  credentials:true,
-  optionSuccessStatus:200,
-}
-
-
+  credentials: true,
+  optionSuccessStatus: 200,
+};
 
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGO_URL;
@@ -41,15 +36,14 @@ database.once("connected", () => {
 const app = express();
 
 app.use(express.json());
-app.use(express.static('public'));
-app.use(cors(corsOptions))
+app.use(express.static("public"));
+app.use(cors(corsOptions));
 
 app.listen(port, () => {
   console.log(`Server Started at port: ${port}`);
 });
 
-
 app.use("/users", userRouter);
-app.use("/images",  imageRouter);
+app.use("/images", imageRouter);
 
-export{app};
+export { app };

@@ -8,11 +8,12 @@ userRouter.use(cookieParser("secret key"));
 
 // FIXME why this looks wired in rest api and what is the correct endpoint path
 userRouter.post("/registration", userController.createNewUser);
-userRouter.post("/login",  userController.login);
+userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
+userRouter.post('/current-user', userController.currentUser)
 // FIXME patch user-meta/:id name/avatar -> user
 // FIXME why this looks wired in rest api and what is the correct endpoint path
-userRouter.post("/checkAuth", cookieController.checkAuth)
-userRouter.post('/checkCookie', cookieController.authCheckCookie)
+userRouter.post("/checkAuth", cookieController.checkAuth);
+userRouter.post("/checkCookie", cookieController.authCheckCookie);
 // FIXME add prettier
-export{userRouter};
+export { userRouter };

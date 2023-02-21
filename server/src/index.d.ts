@@ -1,9 +1,9 @@
 export {};
 
 declare global {
-    namespace Express {
-        interface Request {
-            cookie: string;
-        }
+  namespace Express {
+    interface Request {
+      cookie: string;
     }
+  }
 }
