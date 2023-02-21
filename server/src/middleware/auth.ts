@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 const checkAuth = (req, res) => {
     try {
         const token = req.cookies["set-cookie"]
@@ -9,12 +9,12 @@ const checkAuth = (req, res) => {
                 login
             })
         } else {
-            res.status(400).json({no: "no"})
+            res.status(400).json({message: "user is not authorized"} )
         }
     } catch (e) {
         console.log(e)
-        res.status(400).send('Хуй')
+        res.status(400).json({message: e.message})
     }
 };
 
-module.exports = checkAuth;
+export default checkAuth

@@ -15,6 +15,7 @@ export const extendedImagesApi = imagesApiTagged.injectEndpoints({
                 url: "/images/image/1",
                 method: "POST",
                 body,
+                credentials: "include"
             }),
             invalidatesTags: ["Images"]
         })

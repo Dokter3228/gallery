@@ -4,9 +4,11 @@ import express from "express";
 import {config} from "dotenv";
 config();
 
+import {authMiddleware} from "./middleware/authMiddleware";
+import cookieParser from "cookie-parser";
+
 import {userRouter} from "./routes/userRoutes";
 import {imageRouter} from "./routes/imageRoutes";
-
 const whitelist = ['http://localhost:3000'];
 
 const cors=require("cors");
@@ -37,23 +39,17 @@ database.once("connected", () => {
 });
 
 const app = express();
-
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.static('public'));
-
 app.use(cors(corsOptions))
 
 app.listen(port, () => {
   console.log(`Server Started at ${port}`);
 });
 
-app.use("/users", userRouter);
-app.use("/images", imageRouter);
 
-app.get('/api', (req,res) => {
-  res.json({
-    name: "suck"
-  })
-})
+app.use("/users", userRouter);
+app.use("/images",  imageRouter);
 
 export{app};

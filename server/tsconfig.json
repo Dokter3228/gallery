@@ -12,7 +12,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
+    "module": "es2020",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "strict": false,
@@ -20,6 +20,9 @@
     "noEmit": true,
     "jsx": "react",
     "checkJs": false
+  },
+  "ts-node": {
+    "esm": true
   },
   "exclude": [
     "../node_modules"

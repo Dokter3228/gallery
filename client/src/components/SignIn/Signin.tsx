@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-import {useLoginMutation, useSignupMutation} from "../../features/api/usersApi";
+import {useLoginMutation, useSignupMutation, useCheckCookieMutation} from "../../features/api/usersApi";
 import {Link, useNavigate} from "react-router-dom";
 
 // @ts-ignore
@@ -11,6 +11,19 @@ export default function Signin() {
 
     const [checkIfUserAlreadySignedIn] = useLoginMutation()
     const [signInTheUser] = useSignupMutation()
+    const [checkCookie] = useCheckCookieMutation()
+    useEffect(() => {
+        const redirectIfHasCookie = async () => {
+            const res = await checkCookie("")
+                // @ts-ignore
+            if(res?.error) {
+                return
+            }
+            navigate("/")
+        }
+        redirectIfHasCookie()
+    }, []);
+
     // @ts-ignore
     const handleSubmit = async e => {
         e.preventDefault();

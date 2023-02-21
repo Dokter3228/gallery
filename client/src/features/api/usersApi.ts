@@ -33,12 +33,20 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
                 body,
                 credentials: 'include'
             }),
+        }),
+        checkCookie: builder.mutation({
+            query: (body) => ({
+                url: "/users/checkCookie",
+                method: "POST",
+                body,
+                credentials: 'include'
+            }),
         })
     }),
   overrideExisting: false,
 })
 
-export const { useLoginMutation, useSignupMutation, useLogoutMutation, useCheckUserMutation } = extendedUsersApi
+export const { useLoginMutation, useSignupMutation, useLogoutMutation, useCheckUserMutation, useCheckCookieMutation } = extendedUsersApi
 
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'

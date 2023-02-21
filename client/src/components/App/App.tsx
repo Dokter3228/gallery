@@ -1,9 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useState} from "react";
 import {useCheckUserMutation} from "../../features/api/usersApi";
 import {useAddImageMutation, useGetImagesQuery} from "../../features/api/imagesApi";
+import {useCheckCookieMutation} from "../../features/api/usersApi";
 import Logout from "../Logout/Logout";
+import {useNavigate} from "react-router-dom";
+
 const App = () => {
+    const navigate = useNavigate()
+    const [checkCookie ] = useCheckCookieMutation()
+    useEffect(() => {
+        const redirectIfNoCookie = async () => {
+            const res = await checkCookie("")
+                // @ts-ignore
+            if(res?.error) {
+                navigate("/login")
+            }
+        }
+        redirectIfNoCookie()
+    }, []);
+
     const [selectedFile, setSelectedFile] = useState(null)
     const {data: imagesH, isLoading} = useGetImagesQuery("")
     const [addImageHere] = useAddImageMutation()
@@ -13,16 +29,17 @@ const App = () => {
         e.preventDefault();
         // @ts-ignore
         const {data} = await checkIfUserExists();
-        // const {login} = await getUser()
         let formData = new FormData();
         // @ts-ignore
         formData.append("image", selectedFile);
         formData.append("login", data.login)
         addImageHere(formData)
     };
+
     if(isLoading) {
         return <h1>Wait pls!</h1>
     }
+
     return (
         <div className="bg-gray-900 text-white">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
