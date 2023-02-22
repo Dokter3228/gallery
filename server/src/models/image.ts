@@ -1,5 +1,5 @@
-import mongoose, {Schema} from "mongoose";
-import {Comment} from "./comments";
+import mongoose, { Schema } from "mongoose";
+import { Comment } from "./comments";
 
 const imageSchema = new mongoose.Schema({
   author: {
@@ -14,13 +14,16 @@ const imageSchema = new mongoose.Schema({
     require: true,
     type: String,
   },
-  comments: [{
-    type: Schema.Types.ObjectId, ref: "Comment"
-  }],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
   src: {
     type: String,
-    require: true
-  }
+    require: true,
+  },
 });
 
 // {
@@ -31,7 +34,6 @@ const imageSchema = new mongoose.Schema({
 //     updatedDate: Date.now(),
 //     comments: ['sadfasdas',"SADASDSA"]
 // }
-
 
 export type Author = {
   login: string;

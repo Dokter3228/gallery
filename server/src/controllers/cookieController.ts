@@ -29,8 +29,6 @@ class cookieController {
       res.status(400).json({ message: e.message });
     }
   };
-
-
 }
 
 export default new cookieController();

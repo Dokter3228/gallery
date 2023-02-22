@@ -5,18 +5,22 @@ import {
   useAddImageMutation,
   useGetImagesQuery,
 } from "../../features/api/imagesApi";
-import { useCheckCookieMutation, useCurrentUserQuery } from "../../features/api/usersApi";
+import {
+  useCheckCookieMutation,
+  useCurrentUserQuery,
+} from "../../features/api/usersApi";
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector } from "react-redux";
+import {useAppSelector} from "../../App/store";
 
 const App = () => {
   // @ts-ignore
-  const imageSelector = useSelector(state => state?.images?.entities)
+  const imageSelector = useAppSelector((state) => state.images.entities)
   const navigate = useNavigate();
   const [checkCookie] = useCheckCookieMutation();
-  const {data: {author} = {}} = useCurrentUserQuery("")
+  const { data: { author } = {} } = useCurrentUserQuery("");
 
   useEffect(() => {
     const redirectIfNoCookie = async () => {
@@ -29,11 +33,11 @@ const App = () => {
     redirectIfNoCookie();
   }, []);
 
-  const [selectedFile, setSelectedFile] = useState(null);
-  const {data: imagesH, isLoading } = useGetImagesQuery("");
+  const [selectedFile, setSelectedFile] = useState<File | string| Blob>("");
+  const { data: imagesH, isLoading } = useGetImagesQuery();
   const [addImageHere] = useAddImageMutation();
   const [checkIfUserExists] = useCheckUserMutation();
-  const upload = async (e) => {
+  const upload = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     // @ts-ignore
     const { data } = await checkIfUserExists();
@@ -47,7 +51,6 @@ const App = () => {
     return <h1>Wait pls!</h1>;
   }
 
-
   return (
     <div className="bg-gray-900 text-white">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
@@ -55,7 +58,8 @@ const App = () => {
         <input
           type="file"
           name="screenshot"
-          onChange={(e) => {
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            if (!e.target.files) return;
             setSelectedFile(e.target.files[0]);
           }}
         />
@@ -65,8 +69,8 @@ const App = () => {
         {!isLoading ? (
           Object.values(imageSelector).map((img) => {
             return (
-            // @ts-ignore
-                <ImagePlate key={img.uuid} img={img} currentUser={author} />
+              // @ts-ignore
+              <ImagePlate key={img.uuid} img={img} currentUser={author} />
             );
           })
         ) : (

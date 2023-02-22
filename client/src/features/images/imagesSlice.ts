@@ -1,26 +1,34 @@
-import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 
-const imagesAdapter = createEntityAdapter({
-// @ts-ignore
-    selectId: image => image.uuid
-})
+export type Image = {
+  author: string;
+  comments: [Comment]
+  creationDate: string;
+  src: string;
+  uuid: string;
+};
+
+export type Comment = {
+  author: string,
+  text: string
+}
+
+const imagesAdapter = createEntityAdapter<Image>({
+  selectId: (image) => image.uuid,
+});
 
 const imagesSlice = createSlice({
-    name: "Images",
-    initialState: imagesAdapter.getInitialState(),
-    reducers: {
-        setAllImages: imagesAdapter.setAll,
-        addImage: imagesAdapter.addOne,
-        setComments: imagesAdapter.upsertOne
-    },
-})
+  name: "Images",
+  initialState: imagesAdapter.getInitialState(),
+  reducers: {
+    setAllImages: imagesAdapter.setAll,
+    addImage: imagesAdapter.addOne,
+    setComments: imagesAdapter.upsertOne,
+  },
+});
 
-export const { setAllImages, addImage, setComments } = imagesSlice.actions
-export default imagesSlice.reducer
-
-
-
-
+export const { setAllImages, addImage, setComments } = imagesSlice.actions;
+export default imagesSlice.reducer;
 
 // import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";
 // import {RootState} from "../../App/store";

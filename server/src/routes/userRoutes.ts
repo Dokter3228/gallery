@@ -10,7 +10,7 @@ userRouter.use(cookieParser("secret key"));
 userRouter.post("/registration", userController.createNewUser);
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
-userRouter.post('/current-user', userController.currentUser)
+userRouter.post("/current-user", userController.currentUser);
 // FIXME patch user-meta/:id name/avatar -> user
 // FIXME why this looks wired in rest api and what is the correct endpoint path
 userRouter.post("/checkAuth", cookieController.checkAuth);

@@ -1,22 +1,25 @@
 import { imagesApiTagged } from "./emptySplitApi";
-import {setAllImages} from "../images/imagesSlice";
-
+import { setAllImages } from "../images/imagesSlice";
+import {Image} from "../images/imagesSlice";
 export const extendedImagesApi = imagesApiTagged.injectEndpoints({
   endpoints: (builder) => ({
-    getImages: builder.query({
+    getImages: builder.query<Image[], void>({
+      keepUnusedDataFor: 0,
       query: () => "/images/",
-      async onQueryStarted(id, {dispatch, queryFulfilled}) {
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
-          const {data} = await queryFulfilled
-          dispatch(setAllImages(data))
+          const { data } = await queryFulfilled;
+          dispatch(setAllImages(data));
         } catch (err) {
-          dispatch(setAllImages([]))
+          dispatch(setAllImages([]));
         }
       },
-      providesTags: (result, error, arg) => {
-        const res = result ? [ ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })), "Images",]  : ["Images"]
-        return res
-      }
+      providesTags: (result, error, arg) => result
+          ? [
+              ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })),
+              "Images",
+            ]
+          : ["Images"]
     }),
     addImage: builder.mutation({
       query: (body) => ({
@@ -25,12 +28,12 @@ export const extendedImagesApi = imagesApiTagged.injectEndpoints({
         body,
         credentials: "include",
       }),
-      async onQueryStarted(id, {dispatch, queryFulfilled}) {
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
-          const {data} = await queryFulfilled
-          dispatch(setAllImages(data))
+          const { data } = await queryFulfilled;
+          dispatch(setAllImages(data));
         } catch (err) {
-          dispatch(setAllImages([]))
+          dispatch(setAllImages([]));
         }
       },
       invalidatesTags: ["Images"],
@@ -48,7 +51,11 @@ export const extendedImagesApi = imagesApiTagged.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetImagesQuery, useAddImageMutation, useSetImageCommentMutation } = extendedImagesApi;
+export const {
+  useGetImagesQuery,
+  useAddImageMutation,
+  useSetImageCommentMutation,
+} = extendedImagesApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 // export const imagesApi = createApi({

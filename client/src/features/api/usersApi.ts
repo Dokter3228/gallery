@@ -60,5 +60,5 @@ export const {
   useLogoutMutation,
   useCheckUserMutation,
   useCheckCookieMutation,
-  useCurrentUserQuery
+  useCurrentUserQuery,
 } = extendedUsersApi;

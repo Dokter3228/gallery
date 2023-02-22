@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 
-
 const imageCommentSchema = new mongoose.Schema({
   author: String,
-  text: String
-})
+  text: String,
+});
 
-const Comment = mongoose.model('Comment', imageCommentSchema)
-
+const Comment = mongoose.model("Comment", imageCommentSchema);
 
 export type CommentType = {
   author: string;
@@ -15,5 +13,4 @@ export type CommentType = {
   // id: EntityId;
 };
 
-export {Comment}
-
+export { Comment };

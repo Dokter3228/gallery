@@ -44,7 +44,7 @@ class userController {
         res.status(400).json({ message: error.message });
       }
     } else {
-    res.status(301).json({ message: "this user already exists" });
+      res.status(301).json({ message: "this user already exists" });
     }
   }
 
@@ -71,7 +71,7 @@ class userController {
         res.status(400).json({ message: e.message });
       }
     } else {
-    res.status(401).json({ message: "you are not signed up" });
+      res.status(401).json({ message: "you are not signed up" });
     }
   }
 
@@ -92,7 +92,7 @@ class userController {
     } catch (e) {
       res.status(400).json({ message: e.message });
     }
-  };
+  }
 
   async logout(req, res) {
     res.clearCookie("set-cookie");

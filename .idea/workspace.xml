@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add entityAdapter and image slice">
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add redux comment state">
+      <change afterPath="$PROJECT_DIR$/client/src/hooks.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/userController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +94,26 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start (2)">
+    <configuration name="prettier (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/server/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prettier" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="prettier" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prettier" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -99,26 +134,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="test" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <configuration name="trystart" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -130,19 +145,19 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="npm.prettier" />
+      <item itemvalue="npm.prettier (1)" />
       <item itemvalue="npm.trystart" />
       <item itemvalue="npm.start (1)" />
       <item itemvalue="npm.start (2)" />
-      <item itemvalue="npm.test" />
-      <item itemvalue="npm.start" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.start (2)" />
+        <item itemvalue="npm.prettier (1)" />
         <item itemvalue="npm.start (1)" />
+        <item itemvalue="npm.prettier" />
         <item itemvalue="npm.trystart" />
-        <item itemvalue="npm.test" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -201,7 +216,8 @@
       <workItem from="1676973788969" duration="21357000" />
       <workItem from="1677005163813" duration="1187000" />
       <workItem from="1677052769725" duration="13926000" />
-      <workItem from="1677087966179" duration="4299000" />
+      <workItem from="1677087966179" duration="5148000" />
+      <workItem from="1677097218836" duration="2998000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -357,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677088308356</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="add redux comment state">
+      <created>1677092294722</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1677092294722</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -396,7 +419,8 @@
     <MESSAGE value="add comments and authoring" />
     <MESSAGE value="add comments mongodb model and connect it to images" />
     <MESSAGE value="add entityAdapter and image slice" />
-    <option name="LAST_COMMIT_MESSAGE" value="add entityAdapter and image slice" />
+    <MESSAGE value="add redux comment state" />
+    <option name="LAST_COMMIT_MESSAGE" value="add redux comment state" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

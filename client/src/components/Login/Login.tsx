@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useLoginMutation } from "../../features/api/usersApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useCheckCookieMutation } from "../../features/api/usersApi";
@@ -20,7 +20,7 @@ export default function Login() {
     redirectIfHasCookie();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const res = await loginUser2({
       login: credentials.login,

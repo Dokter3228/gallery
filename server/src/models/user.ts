@@ -10,14 +10,14 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   avatar: {
-    type: String
+    type: String,
   },
   comments: {
-    type: []
+    type: [],
   },
   images: {
-    type: []
-  }
+    type: [],
+  },
 });
 
 export default mongoose.model("User", userSchema);

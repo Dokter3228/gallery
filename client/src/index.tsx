@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import Main from "./App/Main";
-import { store, useAppSelector } from "./App/store";
+import { store } from "./App/store";
 import { Provider } from "react-redux";
 import { ApiProvider } from "@reduxjs/toolkit/dist/query/react";
 import { extendedImagesApi } from "./features/api/imagesApi";

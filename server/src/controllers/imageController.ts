@@ -1,7 +1,7 @@
 import Image from "../models/image";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
-import {Comment} from "../models/comments";
+import { Comment } from "../models/comments";
 class imageController {
   async setImage(req, res) {
     try {
@@ -32,7 +32,7 @@ class imageController {
         uuid: uuid,
         creationDate: date,
         comments: [],
-        src: "http://localhost:17548/images/" + uuid + "." + fileExtension
+        src: "http://localhost:17548/images/" + uuid + "." + fileExtension,
       });
       const imageToSave = await imageDb.save();
       image.mv(uploadPath, function (err) {
@@ -60,30 +60,35 @@ class imageController {
     const image = await Image.findOne({ uuid: uuid });
     const commentDb = new Comment({
       author,
-      text: comment
-    })
-    await commentDb.save()
+      text: comment,
+    });
+    await commentDb.save();
     // @ts-ignore
-    await image.comments.push(commentDb)
+    await image.comments.push(commentDb);
     await image.save();
     res.status(200).json(image);
   }
 
   async getAllImages(req, res) {
-    const imagesData = []
+    const imagesData = [];
     const imagesDb = await Image.find();
-    for(const img of imagesDb) {
-      const coms = []
-      for(const imgCom of img.comments) {
-        const com = await Comment.findById(imgCom)
+    for (const img of imagesDb) {
+      const coms = [];
+      for (const imgCom of img.comments) {
+        const com = await Comment.findById(imgCom);
         coms.push({
           author: com.author,
-          text: com.text
-        })
+          text: com.text,
+        });
       }
-      const imgData = {uuid: img.uuid, author: img.author, comments: coms, src: img.src, creationDate:
-        img.creationDate}
-      imagesData.push(imgData)
+      const imgData = {
+        uuid: img.uuid,
+        author: img.author,
+        comments: coms,
+        src: img.src,
+        creationDate: img.creationDate,
+      };
+      imagesData.push(imgData);
     }
     res.status(200).json(imagesData);
   }

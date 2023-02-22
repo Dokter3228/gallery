@@ -5,8 +5,6 @@ import { emptySplitApi } from "../features/api/emptySplitApi";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import imagesReducer from "../features/images/imagesSlice";
 
-
-
 export const store = configureStore({
   reducer: {
     images: imagesReducer,
@@ -21,6 +19,5 @@ export const store = configureStore({
 export type RootState = ReturnType<typeof store.getState>;
 // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
 export type AppDispatch = typeof store.dispatch;
-
 export const useAppSelector: // | TypedUseSelectorHook<ServiceStore>
 TypedUseSelectorHook<RootState> = useSelector;
