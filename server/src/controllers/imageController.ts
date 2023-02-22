@@ -1,8 +1,7 @@
 import Image from "../models/image";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
-import {Comment} from "../models/image";
-import mongoose from "mongoose";
+import {Comment} from "../models/comments";
 class imageController {
   async setImage(req, res) {
     try {

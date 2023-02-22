@@ -4,7 +4,6 @@ import {useCurrentUserQuery} from "../../../features/api/usersApi";
 
 
 const ImagePlate = (props) => {
-    const imgSrc = "http://localhost:17548/images/" + props.img.uuid + ".jpeg";
     const [comment, setComment] = useState("")
     const [setImageComment] = useSetImageCommentMutation()
     const {data: {author} = {}} = useCurrentUserQuery("")

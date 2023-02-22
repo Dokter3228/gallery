@@ -1,12 +1,5 @@
-import mongoose, {mongo, Schema} from "mongoose";
-
-
-
-const imageCommentSchema = new mongoose.Schema({
-  author: String,
-  text: String
-})
-const Comment = mongoose.model('Comment', imageCommentSchema)
+import mongoose, {Schema} from "mongoose";
+import {Comment} from "./comments";
 
 const imageSchema = new mongoose.Schema({
   author: {
@@ -39,12 +32,6 @@ const imageSchema = new mongoose.Schema({
 //     comments: ['sadfasdas',"SADASDSA"]
 // }
 
-//
-// export type Comment = {
-//   author: string;
-//   text: string;
-//   // id: EntityId;
-// };
 
 export type Author = {
   login: string;
@@ -55,4 +42,3 @@ export type Author = {
 };
 
 export default mongoose.model("Image", imageSchema);
-export {Comment}

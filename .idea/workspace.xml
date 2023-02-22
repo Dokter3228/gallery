@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add comments and authoring">
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add comments mongodb model and connect it to images">
+      <change afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/8733986b-375c-424f-8eb4-1734be4a0d65.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/a584c1c1-026f-444a-8105-38fa924fae56.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,7 +206,7 @@
       <workItem from="1676822483180" duration="2022000" />
       <workItem from="1676973788969" duration="21357000" />
       <workItem from="1677005163813" duration="1187000" />
-      <workItem from="1677052769725" duration="3129000" />
+      <workItem from="1677052769725" duration="13926000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -345,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677004312259</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="add comments mongodb model and connect it to images">
+      <created>1677056135212</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1677056135212</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -382,7 +392,8 @@
     <MESSAGE value="create cookie controller" />
     <MESSAGE value="refactor" />
     <MESSAGE value="add comments and authoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="add comments and authoring" />
+    <MESSAGE value="add comments mongodb model and connect it to images" />
+    <option name="LAST_COMMIT_MESSAGE" value="add comments mongodb model and connect it to images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

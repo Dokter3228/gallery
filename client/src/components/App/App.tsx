@@ -9,9 +9,11 @@ import { useCheckCookieMutation } from "../../features/api/usersApi";
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
-
+import {useDispatch, useSelector} from "react-redux";
 
 const App = () => {
+  // @ts-ignore
+  const imageSelector = useSelector(state => state?.images?.entities)
   const navigate = useNavigate();
   const [checkCookie] = useCheckCookieMutation();
   useEffect(() => {
@@ -43,6 +45,7 @@ const App = () => {
     return <h1>Wait pls!</h1>;
   }
 
+
   return (
     <div className="bg-gray-900 text-white">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
@@ -58,15 +61,17 @@ const App = () => {
       </form>
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">
         {!isLoading ? (
-          imagesH.map((img) => {
+          Object.values(imageSelector).map((img) => {
+            console.log(img)
             return (
+            // @ts-ignore
                 <ImagePlate key={img.uuid} img={img} />
             );
           })
         ) : (
           <h1>No images now!</h1>
         )}
-        {imagesH.length === 0 && (
+        {Object.values(imageSelector).length === 0 && (
           <h1 className="text-2xl text-red-300">
             There's no images yet! Upload
           </h1>

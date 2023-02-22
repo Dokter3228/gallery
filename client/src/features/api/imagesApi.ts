@@ -1,17 +1,22 @@
 import { imagesApiTagged } from "./emptySplitApi";
+import {setAllImages} from "../images/imagesSlice";
 
 export const extendedImagesApi = imagesApiTagged.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query({
       query: () => "/images/",
-      providesTags: (result, error, arg) =>
-        result
-          ? // @ts-ignore
-            [
-              ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })),
-              "Images",
-            ]
-          : ["Images"],
+      async onQueryStarted(id, {dispatch, queryFulfilled}) {
+        try {
+          const {data} = await queryFulfilled
+          dispatch(setAllImages(data))
+        } catch (err) {
+          dispatch(setAllImages([]))
+        }
+      },
+      providesTags: (result, error, arg) => {
+        const res = result ? [ ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })), "Images",]  : ["Images"]
+        return res
+      }
     }),
     addImage: builder.mutation({
       query: (body) => ({
@@ -20,6 +25,14 @@ export const extendedImagesApi = imagesApiTagged.injectEndpoints({
         body,
         credentials: "include",
       }),
+      async onQueryStarted(id, {dispatch, queryFulfilled}) {
+        try {
+          const {data} = await queryFulfilled
+          dispatch(setAllImages(data))
+        } catch (err) {
+          dispatch(setAllImages([]))
+        }
+      },
       invalidatesTags: ["Images"],
     }),
     setImageComment: builder.mutation({

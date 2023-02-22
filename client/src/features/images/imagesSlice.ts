@@ -1,49 +1,77 @@
-import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";
-export interface ImagesState {
-  imagesArray: string[];
-}
+import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
 
-export type Image = {
-  id: EntityId;
-  src: string;
-  // comments : array of uniq comments from entityProvider of Comment
-  comments: EntityId[];
-  author: string;
-};
+const imagesAdapter = createEntityAdapter({
+// @ts-ignore
+    selectId: image => image.uuid
+})
 
-export type Comment = {
-  author: string;
-  text: string;
-  id: EntityId;
-};
-
-export const commentEntityAdapter = createEntityAdapter<Comment>({
-  selectId: (comment) => {
-    return comment.id;
-  },
-});
-
-export const imageEntityAdapter = createEntityAdapter<Image>({
-  selectId: (image) => {
-    return image.id;
-  },
-});
-
-const initialState: ImagesState = {
-  imagesArray: [],
-};
-
-export const counterSlice = createSlice({
-  name: "counter",
-  initialState,
-  reducers: {
-    addImage: (state, action) => {
-      state.imagesArray.push(action.payload);
+const imagesSlice = createSlice({
+    name: "Images",
+    initialState: imagesAdapter.getInitialState(),
+    reducers: {
+        setAllImages: imagesAdapter.setAll,
+        addImage: imagesAdapter.addOne
     },
-  },
-});
+})
 
-// Action creators are generated for each case reducer function
-export const { addImage } = counterSlice.actions;
+export const { setAllImages, addImage } = imagesSlice.actions
+export default imagesSlice.reducer
 
-export default counterSlice.reducer;
+
+
+
+
+// import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";
+// import {RootState} from "../../App/store";
+// export interface ImagesState {
+//   imagesArray: string[];
+// }
+//
+// export type Image = {
+//   author: string;
+//   uuid: EntityId;
+//   src: string;
+//   // comments : array of uniq comments from entityProvider of Comment
+//   comments: EntityId[],
+//   creationDate: string
+// };
+//
+// export type Comment = {
+//   author: string;
+//   text: string;
+//   _id: EntityId;
+// };
+//
+// export const commentEntityAdapter = createEntityAdapter<Comment>({
+//   selectId: (comment) => comment._id,
+// });
+//
+// export const imageEntityAdapter = createEntityAdapter<Image>({
+//   selectId: (image) => image.uuid,
+// });
+//
+// const initialState: ImagesState = {
+//   imagesArray: ["124141"
+//   ],
+// };
+//
+// export const imagesSlice = createSlice({
+//   name: "images",
+//   initialState,
+//   reducers: {
+// // @ts-ignore
+//     addImage: imageEntityAdapter.addOne,
+//     setImages(state, action) {
+//       // @ts-ignore
+//       imageEntityAdapter.setAll(state, action.payload.imagesArray)
+//     }
+//   },
+// });
+//
+// export const imagesSelectors = imageEntityAdapter.getSelectors<RootState>(
+// // @ts-ignore
+//     state => state.imagesArray
+// )
+// export const { addImage } = imagesSlice.actions;
+//
+// export default imagesSlice.reducer;
