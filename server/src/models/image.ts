@@ -1,4 +1,12 @@
-import mongoose from "mongoose";
+import mongoose, {mongo, Schema} from "mongoose";
+
+
+
+const imageCommentSchema = new mongoose.Schema({
+  author: String,
+  text: String
+})
+const Comment = mongoose.model('Comment', imageCommentSchema)
 
 const imageSchema = new mongoose.Schema({
   author: {
@@ -9,13 +17,16 @@ const imageSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  date: {
+  creationDate: {
     require: true,
     type: String,
   },
-  // comments: String[]
-  comments: {
-    type: []
+  comments: [{
+    type: Schema.Types.ObjectId, ref: "Comment"
+  }],
+  src: {
+    type: String,
+    require: true
   }
 });
 
@@ -28,11 +39,12 @@ const imageSchema = new mongoose.Schema({
 //     comments: ['sadfasdas',"SADASDSA"]
 // }
 
-export type Comment = {
-  author: string;
-  text: string;
-  // id: EntityId;
-};
+//
+// export type Comment = {
+//   author: string;
+//   text: string;
+//   // id: EntityId;
+// };
 
 export type Author = {
   login: string;
@@ -43,3 +55,4 @@ export type Author = {
 };
 
 export default mongoose.model("Image", imageSchema);
+export {Comment}

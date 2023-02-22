@@ -14,6 +14,9 @@ const userSchema = new mongoose.Schema({
   },
   comments: {
     type: []
+  },
+  images: {
+    type: []
   }
 });
 

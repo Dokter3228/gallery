@@ -19,8 +19,9 @@ const ImagePlate = (props) => {
     return (
         <div>
             <h1>{comment}</h1>
-            <img className="rounded-2xl w-60 h-22" src={imgSrc} />
+            <img className="rounded-2xl w-60 h-22" src={props.img.src} />
             <h3 className="text-center">Author: <span className="font-bold " >{props.img.author}</span></h3>
+            <h3 className="text-center">Creation Date: <span className="font-bold " >{props.img.creationDate}</span></h3>
             <input value={comment} onChange={(e) => setComment(e.target.value)} name="myInput" className="text-black"  type="text" placeholder="leave a comment" />
             <button onClick={handleCommentSending} type="submit" className="text-black rounded-sm bg-green-400">Send</button>
             <div className="bg-gray-50" >
@@ -28,7 +29,7 @@ const ImagePlate = (props) => {
                 {props.img && props.img.comments.map((comment, index) => {
                       return <div key={index} className="text-black flex justify-between mx-2 " >
                           <h1 className="text-2xl">{comment.author}</h1>
-                    <p >{comment.comment}</p>
+                    <p >{comment.text}</p>
                       </div>
                 })}
             </div>

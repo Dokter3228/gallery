@@ -1,8 +1,8 @@
 import Image from "../models/image";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
-import jwt from "jsonwebtoken";
-
+import {Comment} from "../models/image";
+import mongoose from "mongoose";
 class imageController {
   async setImage(req, res) {
     try {
@@ -31,8 +31,9 @@ class imageController {
       const imageDb = new Image({
         author: login,
         uuid: uuid,
-        date: date,
-        comment: comment,
+        creationDate: date,
+        comments: [],
+        src: "http://localhost:17548/images/" + uuid + "." + fileExtension
       });
       const imageToSave = await imageDb.save();
       image.mv(uploadPath, function (err) {
@@ -58,24 +59,34 @@ class imageController {
   async changeImageMeta(req, res) {
     const { uuid, comment, author } = req.body;
     const image = await Image.findOne({ uuid: uuid });
+    const commentDb = new Comment({
+      author,
+      text: comment
+    })
+    await commentDb.save()
     // @ts-ignore
-    image.comments = [...image.comments, {
-      comment,
-      author
-    }]
-    const savedImage = await image.save();
+    await image.comments.push(commentDb)
+    await image.save();
     res.status(200).json(image);
   }
 
   async getAllImages(req, res) {
-    const uuidsArray = [];
-    const newArray = []
-    const images = await Image.find();
-    images.forEach((img) => {
-      uuidsArray.push(img.uuid);
-      newArray.push({uuid: img.uuid, author: img.author, comments: img.comments})
-    });
-    res.status(200).json(newArray);
+    const imagesData = []
+    const imagesDb = await Image.find();
+    for(const img of imagesDb) {
+      const coms = []
+      for(const imgCom of img.comments) {
+        const com = await Comment.findById(imgCom)
+        coms.push({
+          author: com.author,
+          text: com.text
+        })
+      }
+      const imgData = {uuid: img.uuid, author: img.author, comments: coms, src: img.src, creationDate:
+        img.creationDate}
+      imagesData.push(imgData)
+    }
+    res.status(200).json(imagesData);
   }
 }
 
