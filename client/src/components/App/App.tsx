@@ -5,7 +5,7 @@ import {
   useAddImageMutation,
   useGetImagesQuery,
 } from "../../features/api/imagesApi";
-import { useCheckCookieMutation } from "../../features/api/usersApi";
+import { useCheckCookieMutation, useCurrentUserQuery } from "../../features/api/usersApi";
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
@@ -16,6 +16,8 @@ const App = () => {
   const imageSelector = useSelector(state => state?.images?.entities)
   const navigate = useNavigate();
   const [checkCookie] = useCheckCookieMutation();
+  const {data: {author} = {}} = useCurrentUserQuery("")
+
   useEffect(() => {
     const redirectIfNoCookie = async () => {
       const res = await checkCookie("");
@@ -62,10 +64,9 @@ const App = () => {
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">
         {!isLoading ? (
           Object.values(imageSelector).map((img) => {
-            console.log(img)
             return (
             // @ts-ignore
-                <ImagePlate key={img.uuid} img={img} />
+                <ImagePlate key={img.uuid} img={img} currentUser={author} />
             );
           })
         ) : (

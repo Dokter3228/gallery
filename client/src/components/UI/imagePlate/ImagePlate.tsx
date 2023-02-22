@@ -1,19 +1,28 @@
 import React, {useEffect, useState} from 'react';
 import {useSetImageCommentMutation} from "../../../features/api/imagesApi";
-import {useCurrentUserQuery} from "../../../features/api/usersApi";
+import {useDispatch} from "react-redux";
+import {setComments} from "../../../features/images/imagesSlice";
+import {Simulate} from "react-dom/test-utils";
+import change = Simulate.change;
 
 
 const ImagePlate = (props) => {
     const [comment, setComment] = useState("")
     const [setImageComment] = useSetImageCommentMutation()
-    const {data: {author} = {}} = useCurrentUserQuery("")
+
+    const dispatch = useDispatch()
     const handleCommentSending = (e) => {
         e.preventDefault()
-        setImageComment({
-            comment,
-            author,
-            uuid: props.img.uuid
-        })
+        // setImageComment({
+        //     comment,
+        //     author: props.currentUser,
+        //     uuid: props.img.uuid
+        // })
+        dispatch(setComments({uuid: props.img.uuid, comments:  [...props.img.comments, {
+            author: props.currentUser,
+                text: comment
+            }] } ))
+        setComment("")
     }
     return (
         <div>
@@ -25,7 +34,8 @@ const ImagePlate = (props) => {
             <button onClick={handleCommentSending} type="submit" className="text-black rounded-sm bg-green-400">Send</button>
             <div className="bg-gray-50" >
                 <h1 className="text-black">Comments: </h1>
-                {props.img && props.img.comments.map((comment, index) => {
+                {props.img && props.img?.comments?.length > 0 && props.img.comments.map((comment, index) => {
+                    console.log(props)
                       return <div key={index} className="text-black flex justify-between mx-2 " >
                           <h1 className="text-2xl">{comment.author}</h1>
                     <p >{comment.text}</p>

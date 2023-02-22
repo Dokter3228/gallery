@@ -10,11 +10,12 @@ const imagesSlice = createSlice({
     initialState: imagesAdapter.getInitialState(),
     reducers: {
         setAllImages: imagesAdapter.setAll,
-        addImage: imagesAdapter.addOne
+        addImage: imagesAdapter.addOne,
+        setComments: imagesAdapter.upsertOne
     },
 })
 
-export const { setAllImages, addImage } = imagesSlice.actions
+export const { setAllImages, addImage, setComments } = imagesSlice.actions
 export default imagesSlice.reducer
 
 
