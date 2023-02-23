@@ -1,4 +1,6 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
+import {Comment} from "./comments";
+import Image from "./image";
 
 const userSchema = new mongoose.Schema({
   login: {
@@ -12,12 +14,18 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  comments: {
-    type: [],
-  },
-  images: {
-    type: [],
-  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  images: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Image"
+    }
+  ]
 });
 
 export default mongoose.model("User", userSchema);

@@ -1,6 +1,6 @@
 import React, {  useState } from "react";
 import { useSetImageCommentMutation } from "../../../features/api/imagesApi";
-import {Comment, Image, setComments} from "../../../features/images/imagesSlice";
+import {Comment, Image, addComment} from "../../../features/images/imagesSlice";
 import { Simulate } from "react-dom/test-utils";
 import {useAppDispatch} from "../../../hooks";
 
@@ -16,24 +16,24 @@ const ImagePlate: React.FC<ImagePlateProps> = (props) => {
   const dispatch = useAppDispatch()
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
-    // setImageComment({
-    //     comment,
-    //     author: props.currentUser,
-    //     uuid: props.img.uuid
-    // })
-      dispatch(
-      setComments({
-        uuid: props.img.uuid,
-      // @ts-ignore
-        comments: [
-          ...props.img.comments,
-          {
-            author: props.currentUser,
-            text: comment,
-          },
-        ],
-      })
-    );
+    setImageComment({
+        comment,
+        author: props.currentUser,
+        uuid: props.img.uuid
+    })
+    //   dispatch(
+    //   addComment({
+    //     uuid: props.img.uuid,
+    //   // @ts-ignore
+    //     comments: [
+    //       ...props.img.comments,
+    //       {
+    //         author: props.currentUser,
+    //         text: comment,
+    //       },
+    //     ],
+    //   })
+    // );
     setComment("");
   };
   return (

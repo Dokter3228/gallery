@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useCheckUserMutation } from "../../features/api/usersApi";
 import {
   useAddImageMutation,
-  useGetImagesQuery,
+  useGetImagesQuery, useSetImageCommentMutation,
 } from "../../features/api/imagesApi";
 import {
   useCheckCookieMutation,
@@ -13,7 +13,7 @@ import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
 import {useAppSelector} from "../../App/store";
-import {addImage} from "../../features/images/imagesSlice";
+import {addImage, addComment} from "../../features/images/imagesSlice";
 import {useAppDispatch} from "../../hooks";
 
 
@@ -41,6 +41,7 @@ const App = () => {
   const { data: imagesH, isLoading } = useGetImagesQuery();
   const [addImageHere] = useAddImageMutation();
   const [checkIfUserExists] = useCheckUserMutation();
+  const [setImageComment] = useSetImageCommentMutation()
   const upload = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     // @ts-ignore
@@ -60,8 +61,7 @@ const App = () => {
 
   const handleImageSending = async (e:any) => {
     e.preventDefault()
-    let myBlob;
-    for(myBlob of blobState) {
+    for(let myBlob of blobState) {
       let blob = await fetch(myBlob).then(r => r.blob());
       const myFile = new File([blob], 'image.jpeg', {
         type: "image/file"
@@ -74,6 +74,19 @@ const App = () => {
       formData.append("login", data.login);
       addImageHere(formData);
     }
+    //
+    // for(let entity of Object.values(imageSelector)) {
+    //   if(!entity) return
+    //     for(let comment of entity.comments) {
+    //         if(!comment) return
+    //         setImageComment({
+    //                 comment: comment.text,
+    //                 author: comment.author,
+    //                 uuid: entity.uuid
+    //         })
+    //     }
+    // }
+
     setBlobState([])
   }
 
@@ -81,7 +94,7 @@ const App = () => {
     <div className="bg-gray-900 text-white">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
       <h1 className="text-3xl text-center py-10 text-green-600" >Uploaded images</h1>
-      <div className="mx-80 flex justify-center items-center">
+      <div className="mx-80 flex justify-center items-center gap-x-10">
         {blobState && blobState.map( blob => {
           return <img className="w-56" src={blob} alt="asdfas"/>
         } )}
@@ -115,7 +128,7 @@ const App = () => {
         />
         {/*<button onClick={(e) => upload(e)}>Upload the image</button>*/}
         <button onClick={handleImageSending}>
-          Send uploaded images
+          Save Changes
         </button>
       </form>
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">

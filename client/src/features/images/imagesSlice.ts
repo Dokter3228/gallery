@@ -23,11 +23,11 @@ const imagesSlice = createSlice({
   reducers: {
     setAllImages: imagesAdapter.setAll,
     addImage: imagesAdapter.addOne,
-    setComments: imagesAdapter.upsertOne,
+    addComment: imagesAdapter.upsertOne,
   },
 });
 
-export const { setAllImages, addImage, setComments } = imagesSlice.actions;
+export const { setAllImages, addImage, addComment } = imagesSlice.actions;
 export default imagesSlice.reducer;
 
 // import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";

@@ -4,31 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add types(typescript)">
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add local upload without server participation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/024892ed-4141-4898-8aea-f42e22570bed.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/02c7f1d1-567a-43d9-8ddc-09725b423557.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/0610dc7e-eaf0-49c6-83d7-4e5e94a5b53d.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/0abb476f-7125-46ab-87d5-4ac296aeab91.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/1644c9af-33d8-4c99-a4b4-52c83734737d.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/1abc573c-9ec7-471e-be2d-7e7be800b3c6.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/36273532-702f-44e0-a6a7-b5a8eb52c3c3.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/50120eef-bf21-44c1-822e-dc890dfa01c0.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/66cdab7c-0f0e-4d74-86a1-b406fda1cb17.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/70ce8bab-e4a5-4b32-b2df-4d4c2fca2ef2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/71fa22a9-24c1-4475-b890-f46f8286186c.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/78cebd33-8d4d-4678-bd4c-820db0ea2de2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/7aab5619-4186-4707-bd6f-06fc4796367c.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/96bf2336-5a66-47d2-bfe1-07773c661bad.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/a07dac1a-162c-4d86-a5ee-d6b646e1e522.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/ae7c6edb-0c2f-4980-a8ae-be674d138a18.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/c11963e4-aa9b-4902-bdb9-ad393a73c6b5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/c633b6d3-7c13-4c08-ab2f-66593abdfee5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/e34e1a4b-629a-4a7f-a16d-efec52d39bdb.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/fce23e51-285c-429f-9d1b-d782f9ded5a8.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/fea70434-acde-464d-bd35-2921df94f1fa.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/15547729-7cde-488b-b875-32b8ff3857b3.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/346668c5-1a6a-46a1-a9d2-46659bdccac0.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/382a0529-12fd-4e23-abb7-deee583d75c0.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/4106aa36-21e7-4874-8f8a-4e90ad725412.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/68b847e4-6396-4067-99f0-2b028c522181.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/716af73f-52e3-431a-ba1f-0c6da98e3297.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/93f04955-8fa5-4d85-9248-0720cd6b7594.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/b6d8b80e-71a4-4a84-9629-af22c2a17bc1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/baba1613-5093-4fbf-9316-7f9ec796b806.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/d29b0e19-ed65-4121-aa4d-121a957a21e4.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -223,7 +216,7 @@
       <workItem from="1677052769725" duration="13926000" />
       <workItem from="1677087966179" duration="5148000" />
       <workItem from="1677097218836" duration="3119000" />
-      <workItem from="1677141378561" duration="5399000" />
+      <workItem from="1677141378561" duration="11159000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -393,7 +386,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677100302495</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add local upload without server participation">
+      <created>1677147468214</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1677147468214</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,7 +434,8 @@
     <MESSAGE value="add entityAdapter and image slice" />
     <MESSAGE value="add redux comment state" />
     <MESSAGE value="add types(typescript)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add types(typescript)" />
+    <MESSAGE value="add local upload without server participation" />
+    <option name="LAST_COMMIT_MESSAGE" value="add local upload without server participation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

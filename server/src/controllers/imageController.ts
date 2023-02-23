@@ -2,6 +2,7 @@ import Image from "../models/image";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import { Comment } from "../models/comments";
+import User from "../models/user";
 class imageController {
   async setImage(req, res) {
     try {
@@ -34,6 +35,10 @@ class imageController {
         comments: [],
         src: "http://localhost:17548/images/" + uuid + "." + fileExtension,
       });
+      const user = await User.findOne({login})
+      // @ts-ignore
+      user.images.push(imageDb)
+      await user.save()
       const imageToSave = await imageDb.save();
       image.mv(uploadPath, function (err) {
         if (err) return res.status(500).send(err);
@@ -58,11 +63,16 @@ class imageController {
   async changeImageMeta(req, res) {
     const { uuid, comment, author } = req.body;
     const image = await Image.findOne({ uuid: uuid });
+    const user = await User.findOne({login: author})
     const commentDb = new Comment({
       author,
       text: comment,
     });
     await commentDb.save();
+    // @ts-ignore
+    await user.comments.push(commentDb)
+    // @ts-ignore
+    await user.save()
     // @ts-ignore
     await image.comments.push(commentDb);
     await image.save();
