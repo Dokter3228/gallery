@@ -1,14 +1,15 @@
-import mongoose, {Schema} from "mongoose";
-import {Comment} from "./comments";
+import mongoose, { Schema } from "mongoose";
+import { Comment, CommentType } from "./comments";
 import Image from "./image";
 
 export type UserType = {
   login: string;
-  password: string
+  password: string;
   name?: string;
   avatar?: string;
   images: [string];
-  comments: [string];
+  comments: CommentType[];
+  isAdmin: boolean;
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -17,7 +18,7 @@ const userSchema = new mongoose.Schema<UserType>({
     type: String,
   },
   name: {
-    type: String
+    type: String,
   },
   password: {
     required: true,
@@ -25,6 +26,10 @@ const userSchema = new mongoose.Schema<UserType>({
   },
   avatar: {
     type: String,
+  },
+  isAdmin: {
+    type: Boolean,
+    required: true,
   },
   comments: [
     {
@@ -35,11 +40,9 @@ const userSchema = new mongoose.Schema<UserType>({
   images: [
     {
       type: Schema.Types.ObjectId,
-      ref: "Image"
-    }
-  ]
+      ref: "Image",
+    },
+  ],
 });
-
-
 
 export default mongoose.model("User", userSchema);

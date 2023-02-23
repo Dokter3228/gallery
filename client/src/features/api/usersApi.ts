@@ -1,13 +1,12 @@
-import { usersApiTagged } from "./emptySplitApi";
+import { api } from "./emptySplitApi";
 
-export const extendedUsersApi = usersApiTagged.injectEndpoints({
+export const extendedUsersApi = api.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body) => ({
         url: "/users/login",
         method: "POST",
         body,
-        credentials: "include",
       }),
     }),
     checkUser: builder.mutation({
@@ -15,7 +14,6 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
         url: "/users/checkAuth",
         method: "POST",
         body,
-        credentials: "include",
       }),
     }),
     logout: builder.mutation({
@@ -23,7 +21,6 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
         url: "/users/logout",
         method: "POST",
         body,
-        credentials: "include",
       }),
     }),
     signup: builder.mutation({
@@ -31,7 +28,6 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
         url: "/users/registration",
         method: "POST",
         body,
-        credentials: "include",
       }),
     }),
     checkCookie: builder.mutation({
@@ -39,7 +35,6 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
         url: "/users/checkCookie",
         method: "POST",
         body,
-        credentials: "include",
       }),
     }),
     currentUser: builder.query({
@@ -47,13 +42,22 @@ export const extendedUsersApi = usersApiTagged.injectEndpoints({
         url: "/users/current-user",
         method: "POST",
         body,
-        credentials: "include",
       }),
     }),
   }),
   overrideExisting: false,
 });
 
+// TODO add types
+export const config = api.injectEndpoints({
+  endpoints: (builder) => ({
+    getConfig: builder.query({
+      query: () => "/config",
+    }),
+  }),
+});
+
+export const { useGetConfigQuery } = config;
 export const {
   useLoginMutation,
   useSignupMutation,

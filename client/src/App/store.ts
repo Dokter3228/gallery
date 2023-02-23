@@ -1,18 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { extendedImagesApi } from "../features/api/imagesApi";
-import { extendedUsersApi } from "../features/api/usersApi";
-import { emptySplitApi } from "../features/api/emptySplitApi";
+import {api} from "../features/api/emptySplitApi";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import imagesReducer from "../features/images/imagesSlice";
 
 export const store = configureStore({
   reducer: {
     images: imagesReducer,
-    [emptySplitApi.reducerPath]: extendedImagesApi.reducer,
-    [extendedUsersApi.reducerPath]: extendedUsersApi.reducer,
+    [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(emptySplitApi.middleware),
+    getDefaultMiddleware().concat(api.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

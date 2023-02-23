@@ -48,7 +48,7 @@ export default function Login() {
               className="text-black"
               type="text"
               value={credentials.login}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setCredentials((prev) => {
                   return { ...prev, login: e.target.value };
                 })
@@ -61,7 +61,7 @@ export default function Login() {
               className="text-black"
               type="password"
               value={credentials.password}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setCredentials((prev) => {
                   return { ...prev, password: e.target.value };
                 })

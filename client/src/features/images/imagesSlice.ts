@@ -1,12 +1,13 @@
-import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
+import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";
 
 export type Image = {
   author: string;
   comments: [Comment]
   creationDate: string;
   src: string;
-  uuid: string;
+  uuid: EntityId;
 };
+
 
 export type Comment = {
   author: string,
@@ -17,8 +18,9 @@ const imagesAdapter = createEntityAdapter<Image>({
   selectId: (image) => image.uuid,
 });
 
+
 const imagesSlice = createSlice({
-  name: "Images",
+  name: "images",
   initialState: imagesAdapter.getInitialState(),
   reducers: {
     setAllImages: imagesAdapter.setAll,

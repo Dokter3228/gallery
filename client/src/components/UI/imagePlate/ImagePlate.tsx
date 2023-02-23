@@ -1,26 +1,29 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useSetImageCommentMutation } from "../../../features/api/imagesApi";
-import {Comment, Image, addComment} from "../../../features/images/imagesSlice";
+import {
+  Comment,
+  Image,
+  addComment,
+} from "../../../features/images/imagesSlice";
 import { Simulate } from "react-dom/test-utils";
-import {useAppDispatch} from "../../../hooks";
+import { useAppDispatch } from "../../../hooks";
 
 type ImagePlateProps = {
-    img: Image,
-    key: string,
-    currentUser: string
-}
-const ImagePlate: React.FC<ImagePlateProps> = (props) => {
+  img: Image;
+  currentUser: string;
+};
+const ImagePlate = (props: ImagePlateProps): JSX.Element => {
   const [comment, setComment] = useState("");
   const [setImageComment] = useSetImageCommentMutation();
 
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
     setImageComment({
-        comment,
-        author: props.currentUser,
-        uuid: props.img.uuid
-    })
+      comment,
+      author: props.currentUser,
+      uuid: props.img.uuid,
+    });
     //   dispatch(
     //   addComment({
     //     uuid: props.img.uuid,
@@ -46,23 +49,23 @@ const ImagePlate: React.FC<ImagePlateProps> = (props) => {
         Creation Date:{" "}
         <span className="font-bold ">{props.img.creationDate}</span>
       </h3>
-        <div className="flex justify-between items-center ">
-             <input
-                value={comment}
-                onChange={(e) => setComment(e.target.value)}
-                name="myInput"
-                className="text-black p-1 rounded-md"
-                type="text"
-                placeholder="leave a comment"
-            />
-              <button
-                onClick={handleCommentSending}
-                type="submit"
-                className="bg-green-500 text-black rounded-md p-1 m-2 font-semibold"
-              >
-                Send
-              </button>
-        </div>
+      <div className="flex justify-between items-center ">
+        <input
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          name="myInput"
+          className="text-black p-1 rounded-md"
+          type="text"
+          placeholder="leave a comment"
+        />
+        <button
+          onClick={handleCommentSending}
+          type="submit"
+          className="bg-green-500 text-black rounded-md p-1 m-2 font-semibold"
+        >
+          Send
+        </button>
+      </div>
       <div className="bg-gray-50 rounded-md p-4">
         <h1 className="text-black">Comments: </h1>
         {props.img &&

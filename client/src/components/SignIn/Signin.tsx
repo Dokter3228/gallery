@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   useLoginMutation,
@@ -57,14 +57,11 @@ export default function Signin() {
           <label className="flex-col items-center justify-center">
             <p>Login</p>
             <input
+              autoComplete=""
               className="text-black"
               type="text"
               value={credentials.login}
-              onChange={(e) =>
-                setCredentials((prev) => {
-                  return { ...prev, login: e.target.value };
-                })
-              }
+              onChange={handleChange}
             />
           </label>
           <label className="my-6">
@@ -95,4 +92,10 @@ export default function Signin() {
       </div>
     </div>
   );
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    return setCredentials((prev) => {
+      return { ...prev, login: e.target.value };
+    });
+  }
 }
