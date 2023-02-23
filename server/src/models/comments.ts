@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const imageCommentSchema = new mongoose.Schema({
+const imageCommentSchema = new mongoose.Schema<CommentType>({
   author: String,
   text: String,
 });
 
-const Comment = mongoose.model("Comment", imageCommentSchema);
+const Comment = mongoose.model<CommentType>("Comment", imageCommentSchema);
 
 export type CommentType = {
   author: string;

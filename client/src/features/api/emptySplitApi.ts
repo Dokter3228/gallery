@@ -2,16 +2,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // initialize an empty api service that we'll inject endpoints into later as needed
-export const emptySplitApi = createApi({
-  baseQuery: fetchBaseQuery(
-      { baseUrl: "http://localhost:17548/" }),
+export const api = createApi({
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:17548/",
+    credentials: "include",
+  }),
   endpoints: () => ({}),
-});
-
-export const imagesApiTagged = emptySplitApi.enhanceEndpoints({
-  addTagTypes: ["Images"],
-});
-
-export const usersApiTagged = emptySplitApi.enhanceEndpoints({
-  addTagTypes: ["Users"],
+  tagTypes: ["Images", "Users"],
 });

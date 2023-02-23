@@ -1,7 +1,7 @@
 import Image from "../models/image";
 import { v4 as uuidv4 } from "uuid";
 import path from "path";
-import { Comment } from "../models/comments";
+import { Comment, CommentType } from "../models/comments";
 import User from "../models/user";
 class imageController {
   async setImage(req, res) {
@@ -11,7 +11,6 @@ class imageController {
       // FIXME looks wierd
       const login = req.body.login;
       const comment = req.body.comment;
-      // FIXME refactor to nanoid
       const uuid = uuidv4();
       let image;
       let uploadPath;
@@ -33,12 +32,18 @@ class imageController {
         uuid: uuid,
         creationDate: date,
         comments: [],
-        src: "http://localhost:17548/images/" + uuid + "." + fileExtension,
+        src:
+          "http://localhost" +
+          process.env.PORT +
+          "/images/" +
+          uuid +
+          "." +
+          fileExtension,
       });
-      const user = await User.findOne({login})
+      const user = await User.findOne({ login });
       // @ts-ignore
-      user.images.push(imageDb)
-      await user.save()
+      user.images.push(imageDb);
+      await user.save();
       const imageToSave = await imageDb.save();
       image.mv(uploadPath, function (err) {
         if (err) return res.status(500).send(err);
@@ -63,18 +68,16 @@ class imageController {
   async changeImageMeta(req, res) {
     const { uuid, comment, author } = req.body;
     const image = await Image.findOne({ uuid: uuid });
-    const user = await User.findOne({login: author})
+    const user = await User.findOne({ login: author });
     const commentDb = new Comment({
       author,
       text: comment,
     });
     await commentDb.save();
+    user.comments.push(commentDb);
+    await user.save();
     // @ts-ignore
-    await user.comments.push(commentDb)
-    // @ts-ignore
-    await user.save()
-    // @ts-ignore
-    await image.comments.push(commentDb);
+    image.comments.push(commentDb);
     await image.save();
     res.status(200).json(image);
   }
@@ -83,10 +86,10 @@ class imageController {
     const imagesData = [];
     const imagesDb = await Image.find();
     for (const img of imagesDb) {
-      const coms = [];
+      const comments: CommentType[] = [];
       for (const imgCom of img.comments) {
         const com = await Comment.findById(imgCom);
-        coms.push({
+        comments.push({
           author: com.author,
           text: com.text,
         });
@@ -94,7 +97,7 @@ class imageController {
       const imgData = {
         uuid: img.uuid,
         author: img.author,
-        comments: coms,
+        comments: comments,
         src: img.src,
         creationDate: img.creationDate,
       };

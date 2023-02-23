@@ -3,7 +3,8 @@ import { useState } from "react";
 import { useCheckUserMutation } from "../../features/api/usersApi";
 import {
   useAddImageMutation,
-  useGetImagesQuery, useSetImageCommentMutation,
+  useGetImagesQuery,
+  useSetImageCommentMutation,
 } from "../../features/api/imagesApi";
 import {
   useCheckCookieMutation,
@@ -12,20 +13,18 @@ import {
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
-import {useAppSelector} from "../../App/store";
-import {addImage, addComment} from "../../features/images/imagesSlice";
-import {useAppDispatch} from "../../hooks";
+import { useAppSelector } from "../../App/store";
+import { useAppDispatch } from "../../hooks";
 
-
-
-const App = () => {
+const App = (): JSX.Element => {
   // @ts-ignore
-  const imageSelector = useAppSelector((state) => state.images.entities)
+  const imageSelector = useAppSelector((state) => state.images.entities);
   const navigate = useNavigate();
   const [checkCookie] = useCheckCookieMutation();
+  // FIXME
   const { data: { author } = {} } = useCurrentUserQuery("");
-  const [blobState, setBlobState] = useState([])
-  const dispatch = useAppDispatch()
+  const [blobState, setBlobState] = useState<string[]>([]);
+  const dispatch = useAppDispatch();
   useEffect(() => {
     const redirectIfNoCookie = async () => {
       const res = await checkCookie("");
@@ -37,11 +36,11 @@ const App = () => {
     redirectIfNoCookie();
   }, []);
 
-  const [selectedFile, setSelectedFile] = useState<File | string| Blob>("");
+  const [selectedFile, setSelectedFile] = useState<File | string | Blob>("");
   const { data: imagesH, isLoading } = useGetImagesQuery();
   const [addImageHere] = useAddImageMutation();
   const [checkIfUserExists] = useCheckUserMutation();
-  const [setImageComment] = useSetImageCommentMutation()
+  const [setImageComment] = useSetImageCommentMutation();
   const upload = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     // @ts-ignore
@@ -59,12 +58,13 @@ const App = () => {
     return <h1>Wait pls!</h1>;
   }
 
-  const handleImageSending = async (e:any) => {
-    e.preventDefault()
-    for(let myBlob of blobState) {
-      let blob = await fetch(myBlob).then(r => r.blob());
-      const myFile = new File([blob], 'image.jpeg', {
-        type: "image/file"
+  const handleImageSending = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    for (let myBlob of blobState) {
+      let blob = await fetch(myBlob).then((r) => r.blob());
+      const myFile = new File([blob], "image.jpeg", {
+        type: "image/file",
       });
       // @ts-ignore
       const { data } = await checkIfUserExists();
@@ -87,17 +87,22 @@ const App = () => {
     //     }
     // }
 
-    setBlobState([])
-  }
+    setBlobState([]);
+  };
 
   return (
     <div className="bg-gray-900 text-white px-6">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
-      <h1 className="text-3xl text-center py-10 text-green-600" >Uploaded images</h1>
+      <h1 className="text-3xl text-center py-10 text-green-600">
+        Uploaded images
+      </h1>
       <div className="mx-80 flex justify-center items-center gap-x-10">
-        {blobState && blobState.map( blob => {
-          return <img className="rounded-2xl w-60 h-22" src={blob} alt="asdfas"/>
-        } )}
+        {blobState &&
+          blobState.map((url) => {
+            return (
+              <img className="rounded-2xl w-60 h-22" src={url} alt="asdfas" />
+            );
+          })}
       </div>
       <form className="text-center my-6 mb-10 flex items-center justify-center gap-20">
         <input
@@ -106,9 +111,9 @@ const App = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             if (!e.target.files) return;
             setSelectedFile(e.target.files[0]);
-            const href = URL.createObjectURL(e.target.files[0])
+            const href = URL.createObjectURL(e.target.files[0]);
             // @ts-ignore
-            setBlobState(prev => [...prev, href])
+            setBlobState((prev) => [...prev, href]);
             // @ts-ignore
             // dispatch(
             //     addImage( {
@@ -127,7 +132,10 @@ const App = () => {
           }}
         />
         {/*<button onClick={(e) => upload(e)}>Upload the image</button>*/}
-        <button className="bg-green-500 text-black rounded-md p-1.5 font-semibold" onClick={handleImageSending}>
+        <button
+          className="bg-green-500 text-black rounded-md p-1.5 font-semibold"
+          onClick={handleImageSending}
+        >
           Save Changes
         </button>
       </form>

@@ -7,6 +7,7 @@ config();
 import { userRouter } from "./routes/userRoutes";
 import { imageRouter } from "./routes/imageRoutes";
 
+// FIXME add proxy to cra => how does cors changes
 const whitelist = ["http://localhost:3000"];
 
 const cors = require("cors");
@@ -42,6 +43,11 @@ app.use(cors(corsOptions));
 app.listen(port, () => {
   console.log(`Server Started at port: ${port}`);
 });
+// TODO add /config
+
+type Config = {
+  domain: string; // localhost:PORT/
+};
 
 app.use("/users", userRouter);
 app.use("/images", imageRouter);

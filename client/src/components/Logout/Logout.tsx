@@ -8,7 +8,7 @@ export default function Logout() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     await logoutUser2("");
-    return navigate("/login");
+    navigate("/login");
   };
   return (
     <div className="text-center pb-20 text-lg">

@@ -1,7 +1,7 @@
-import { imagesApiTagged } from "./emptySplitApi";
+import {api} from "./emptySplitApi";
 import { setAllImages } from "../images/imagesSlice";
 import {Image} from "../images/imagesSlice";
-export const extendedImagesApi = imagesApiTagged.injectEndpoints({
+export const extendedImagesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query<Image[], void>({
       keepUnusedDataFor: 0,

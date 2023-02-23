@@ -5,34 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add collections linking and partial upload with live comments sending">
+      <change afterPath="$PROJECT_DIR$/client/src/components/App/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/client/src/components/App/types.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/Main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/20d18410-d9bc-4c3a-995a-e62c64591538.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/31e2c10c-67a6-45a1-b8c5-c3b895a6a10c.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/392e410f-08c6-435c-85ed-a51abf559cfb.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/39a0a63d-ba4f-40d3-b1a1-4cbb1c5d5d29.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/3db48b96-85a4-4495-b045-a23f946be2b0.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/3e7bd2ef-c702-45e2-ae30-7d64830ae672.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/50d6721f-a360-4b8f-b095-b960a3940bb0.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/51138e75-9e3b-4d3d-a441-5d4ea872c708.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/6e14c9ae-416b-467d-9673-b745b589bdb5.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/87036335-9a28-4c7f-9423-88f8c1566e42.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/8b8bcddd-c93b-49f3-8eb7-f36b2f47de2a.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/8d045a62-06e5-43bc-87a2-f4d65e8b55b2.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/8db96d73-1bd2-4d68-9944-b27fb6514426.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/8fe1b408-41bf-4a22-9c04-0da3b104ea05.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/a7519635-d8d3-4957-9886-5ba52df9a653.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/a9d9ac85-66eb-45b4-ac84-b39d9f3b3e35.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/b0ba33cc-091b-4816-b1d3-7737bc030e9c.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/b12025f2-ff2e-453a-a73e-f32e99e46424.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/d4144a59-ea85-4e99-b7bb-9d3716129aab.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/d7411383-4fb5-471a-9b2b-fbed83670e2f.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/dcff2f60-8578-407b-92d0-b9adbce3335a.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/de3be481-2379-4458-b4d3-475fe6017b16.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +35,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="godblessmeplease" />
+        <entry key="$PROJECT_DIR$" value="76fee8448268c634078baa5bb9e07383b1384607" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,23 +63,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/fireoffer-monorepo&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/home/rootisalie/WebstormProjects/gallery/node_modules/jest&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.CommitDialog&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/linux/Desktop/gallery/client/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/linux/Desktop/fireoffer-monorepo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "/home/rootisalie/WebstormProjects/gallery/node_modules/jest",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "/home/rootisalie/WebstormProjects/gallery/client/node_modules/prettier",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "/home/rootisalie/WebstormProjects/gallery/client/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client" />
@@ -102,7 +96,7 @@
       <recent name="$PROJECT_DIR$/client/src/components/App" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (2)">
+  <component name="RunManager" selected="npm.start (1)">
     <configuration name="prettier (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -162,15 +156,18 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (2)" />
         <item itemvalue="npm.start (1)" />
+        <item itemvalue="npm.start (2)" />
+        <item itemvalue="npm.trystart" />
         <item itemvalue="npm.prettier (1)" />
         <item itemvalue="npm.prettier" />
-        <item itemvalue="npm.trystart" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="almost completely recreated initial functionality and added inject endpoints feature" />

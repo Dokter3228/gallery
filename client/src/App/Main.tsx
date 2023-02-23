@@ -18,8 +18,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-function Main() {
-  return <RouterProvider router={router} />;
-}
+const Main = (): JSX.Element => <RouterProvider router={router} />;
 
 export default Main;
