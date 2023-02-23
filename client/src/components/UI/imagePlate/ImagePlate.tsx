@@ -24,7 +24,7 @@ const ImagePlate: React.FC<ImagePlateProps> = (props) => {
       dispatch(
       setComments({
         uuid: props.img.uuid,
-    // @ts-ignore
+      // @ts-ignore
         comments: [
           ...props.img.comments,
           {
@@ -67,7 +67,6 @@ const ImagePlate: React.FC<ImagePlateProps> = (props) => {
         {props.img &&
           props.img?.comments?.length > 0 &&
           props.img.comments.map((comment, index) => {
-            console.log(props);
             return (
               <div
                 key={index}

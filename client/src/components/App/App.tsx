@@ -12,8 +12,11 @@ import {
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
-import { useSelector } from "react-redux";
 import {useAppSelector} from "../../App/store";
+import {addImage} from "../../features/images/imagesSlice";
+import {useAppDispatch} from "../../hooks";
+
+
 
 const App = () => {
   // @ts-ignore
@@ -21,7 +24,8 @@ const App = () => {
   const navigate = useNavigate();
   const [checkCookie] = useCheckCookieMutation();
   const { data: { author } = {} } = useCurrentUserQuery("");
-
+  const [blobState, setBlobState] = useState([])
+  const dispatch = useAppDispatch()
   useEffect(() => {
     const redirectIfNoCookie = async () => {
       const res = await checkCookie("");
@@ -44,6 +48,9 @@ const App = () => {
     let formData = new FormData();
     formData.append("image", selectedFile);
     formData.append("login", data.login);
+    // @ts-ignore
+    // const href = URL.createObjectURL(selectedFile)
+    // setBlobState(href)
     addImageHere(formData);
   };
 
@@ -51,9 +58,34 @@ const App = () => {
     return <h1>Wait pls!</h1>;
   }
 
+  const handleImageSending = async (e:any) => {
+    e.preventDefault()
+    let myBlob;
+    for(myBlob of blobState) {
+      let blob = await fetch(myBlob).then(r => r.blob());
+      const myFile = new File([blob], 'image.jpeg', {
+        type: "image/file"
+      });
+      // @ts-ignore
+      const { data } = await checkIfUserExists();
+      let formData = new FormData();
+      // @ts-ignore
+      formData.append("image", myFile);
+      formData.append("login", data.login);
+      addImageHere(formData);
+    }
+    setBlobState([])
+  }
+
   return (
     <div className="bg-gray-900 text-white">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
+      <h1 className="text-3xl text-center py-10 text-green-600" >Uploaded images</h1>
+      <div className="mx-80 flex justify-center items-center">
+        {blobState && blobState.map( blob => {
+          return <img className="w-56" src={blob} alt="asdfas"/>
+        } )}
+      </div>
       <form className="text-center my-6 mb-10 flex items-center justify-center gap-20">
         <input
           type="file"
@@ -61,9 +93,30 @@ const App = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             if (!e.target.files) return;
             setSelectedFile(e.target.files[0]);
+            const href = URL.createObjectURL(e.target.files[0])
+            // @ts-ignore
+            setBlobState(prev => [...prev, href])
+            // @ts-ignore
+            // dispatch(
+            //     addImage( {
+            //         author: "dfasdfa",
+            //         comments: [
+            //           {
+            //             author: "asdfasdfa",
+            //             text: "uploaded"
+            //           }
+            //         ],
+            //         creationDate: "fasdfas",
+            //         src: href,
+            //         uuid: "dfasoudfhliawuehflaiw",
+            //     })
+            //   );
           }}
         />
-        <button onClick={(e) => upload(e)}>Upload the image</button>
+        {/*<button onClick={(e) => upload(e)}>Upload the image</button>*/}
+        <button onClick={handleImageSending}>
+          Send uploaded images
+        </button>
       </form>
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">
         {!isLoading ? (
