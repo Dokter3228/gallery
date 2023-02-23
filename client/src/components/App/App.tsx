@@ -91,12 +91,12 @@ const App = () => {
   }
 
   return (
-    <div className="bg-gray-900 text-white">
+    <div className="bg-gray-900 text-white px-6">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
       <h1 className="text-3xl text-center py-10 text-green-600" >Uploaded images</h1>
       <div className="mx-80 flex justify-center items-center gap-x-10">
         {blobState && blobState.map( blob => {
-          return <img className="w-56" src={blob} alt="asdfas"/>
+          return <img className="rounded-2xl w-60 h-22" src={blob} alt="asdfas"/>
         } )}
       </div>
       <form className="text-center my-6 mb-10 flex items-center justify-center gap-20">
@@ -127,7 +127,7 @@ const App = () => {
           }}
         />
         {/*<button onClick={(e) => upload(e)}>Upload the image</button>*/}
-        <button onClick={handleImageSending}>
+        <button className="bg-green-500 text-black rounded-md p-1.5 font-semibold" onClick={handleImageSending}>
           Save Changes
         </button>
       </form>

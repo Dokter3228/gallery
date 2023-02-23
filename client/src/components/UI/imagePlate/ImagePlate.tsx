@@ -38,8 +38,7 @@ const ImagePlate: React.FC<ImagePlateProps> = (props) => {
   };
   return (
     <div>
-      <h1>{comment}</h1>
-      <img className="rounded-2xl w-60 h-22" src={props.img.src} />
+      <img className="rounded-2xl w-full h-52 h-22" src={props.img.src} />
       <h3 className="text-center">
         Author: <span className="font-bold ">{props.img.author}</span>
       </h3>
@@ -47,22 +46,24 @@ const ImagePlate: React.FC<ImagePlateProps> = (props) => {
         Creation Date:{" "}
         <span className="font-bold ">{props.img.creationDate}</span>
       </h3>
-      <input
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        name="myInput"
-        className="text-black"
-        type="text"
-        placeholder="leave a comment"
-      />
-      <button
-        onClick={handleCommentSending}
-        type="submit"
-        className="text-black rounded-sm bg-green-400"
-      >
-        Send
-      </button>
-      <div className="bg-gray-50">
+        <div className="flex justify-between items-center ">
+             <input
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                name="myInput"
+                className="text-black p-1 rounded-md"
+                type="text"
+                placeholder="leave a comment"
+            />
+              <button
+                onClick={handleCommentSending}
+                type="submit"
+                className="bg-green-500 text-black rounded-md p-1 m-2 font-semibold"
+              >
+                Send
+              </button>
+        </div>
+      <div className="bg-gray-50 rounded-md p-4">
         <h1 className="text-black">Comments: </h1>
         {props.img &&
           props.img?.comments?.length > 0 &&

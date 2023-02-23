@@ -59,10 +59,6 @@ export default imagesSlice.reducer;
 //   selectId: (image) => image.uuid,
 // });
 //
-// const initialState: ImagesState = {
-//   imagesArray: ["124141"
-//   ],
-// };
 //
 // export const imagesSlice = createSlice({
 //   name: "images",

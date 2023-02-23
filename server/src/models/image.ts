@@ -26,14 +26,6 @@ const imageSchema = new mongoose.Schema({
   },
 });
 
-export type Author = {
-  login: string;
-  name?: string;
-  avatar?: string;
-  images: [string];
-  comments: [string];
-};
-
 export default mongoose.model("Image", imageSchema);
 
 // {
