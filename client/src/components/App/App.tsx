@@ -1,150 +1,120 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { useCheckUserMutation } from "../../features/api/usersApi";
+import { useCheckAuthQuery } from "../../features/api/usersApi";
 import {
   useAddImageMutation,
+  useDeleteCommentsMutation,
+  useDeleteImageMutation,
   useGetImagesQuery,
-  useSetImageCommentMutation,
+  usePatchImageCommentsMutation,
 } from "../../features/api/imagesApi";
-import {
-  useCheckCookieMutation,
-  useCurrentUserQuery,
-} from "../../features/api/usersApi";
 import Logout from "../Logout/Logout";
-import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
 import { useAppSelector } from "../../App/store";
 import { useAppDispatch } from "../../hooks";
+import { addImage, Image } from "../../features/slices/imagesSlice";
+import { nanoid } from "@reduxjs/toolkit";
+import { Comment } from "../../features/slices/commentsSlice";
 
 const App = (): JSX.Element => {
-  // @ts-ignore
-  const imageSelector = useAppSelector((state) => state.images.entities);
-  const navigate = useNavigate();
-  const [checkCookie] = useCheckCookieMutation();
-  // FIXME
-  const { data: { author } = {} } = useCurrentUserQuery("");
-  const [blobState, setBlobState] = useState<string[]>([]);
+  useCheckAuthQuery();
+  useGetImagesQuery();
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    const redirectIfNoCookie = async () => {
-      const res = await checkCookie("");
-      // @ts-ignore
-      if (res?.error) {
-        navigate("/login");
-      }
-    };
-    redirectIfNoCookie();
-  }, []);
-
-  const [selectedFile, setSelectedFile] = useState<File | string | Blob>("");
-  const { data: imagesH, isLoading } = useGetImagesQuery();
-  const [addImageHere] = useAddImageMutation();
-  const [checkIfUserExists] = useCheckUserMutation();
-  const [setImageComment] = useSetImageCommentMutation();
-  const upload = async (e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
+  const imageSelector = useAppSelector((state) =>
+    Object.values(state.images.entities)
+  );
+  const commentsSelector = useAppSelector(
     // @ts-ignore
-    const { data } = await checkIfUserExists();
-    let formData = new FormData();
-    formData.append("image", selectedFile);
-    formData.append("login", data.login);
-    // @ts-ignore
-    // const href = URL.createObjectURL(selectedFile)
-    // setBlobState(href)
-    addImageHere(formData);
-  };
+    (state): Comment[] => Object.values(state.comments.entities)
+  );
+  const currentUser = useAppSelector((state) => state.user.login);
+  const [blobState, setBlobState] = useState<string[]>([]);
 
-  if (isLoading) {
-    return <h1>Wait pls!</h1>;
-  }
-
-  const handleImageSending = async (
+  const [addImageToServer] = useAddImageMutation();
+  const [deleteImageFromTheServer] = useDeleteImageMutation();
+  const [deleteCommentsFromImage] = useDeleteCommentsMutation();
+  const [patchComments] = usePatchImageCommentsMutation();
+  const handleSavingChanges = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    for (let myBlob of blobState) {
-      let blob = await fetch(myBlob).then((r) => r.blob());
-      const myFile = new File([blob], "image.jpeg", {
-        type: "image/file",
-      });
-      // @ts-ignore
-      const { data } = await checkIfUserExists();
-      let formData = new FormData();
-      // @ts-ignore
-      formData.append("image", myFile);
-      formData.append("login", data.login);
-      addImageHere(formData);
-    }
-    //
-    // for(let entity of Object.values(imageSelector)) {
-    //   if(!entity) return
-    //     for(let comment of entity.comments) {
-    //         if(!comment) return
-    //         setImageComment({
-    //                 comment: comment.text,
-    //                 author: comment.author,
-    //                 uuid: entity.uuid
-    //         })
-    //     }
-    // }
+    e.preventDefault();
+    if (imageSelector.length <= 0) return;
+    for (let image of imageSelector) {
+      if (!image) continue;
+      if (image.deleted) {
+        deleteImageFromTheServer(image._id);
+      }
+      if (image.new) {
+        let blob = await fetch(image.src).then((r) => r.blob());
+        const myFile = new File([blob], "image.jpeg", {
+          type: "image/file",
+        });
+        let formData = new FormData();
+        formData.append("image", myFile);
+        if (currentUser) formData.append("author", currentUser);
+        addImageToServer(formData);
+      } else {
+        for (let comment of commentsSelector) {
+          const res = [];
+          if (comment.uuid === image._id) {
+            res.push(comment);
+          }
+          patchComments({
+            id: image._id,
+            author: currentUser,
+            comments: res,
+          });
+        }
+      }
 
-    setBlobState([]);
+      setBlobState([]);
+    }
   };
 
   return (
     <div className="bg-gray-900 text-white px-6">
       <h1 className="text-3xl text-center py-10 ">Gallery main page</h1>
-      <h1 className="text-3xl text-center py-10 text-green-600">
-        Uploaded images
-      </h1>
-      <div className="mx-80 flex justify-center items-center gap-x-10">
-        {blobState &&
-          blobState.map((url) => {
-            return (
-              <img className="rounded-2xl w-60 h-22" src={url} alt="asdfas" />
-            );
-          })}
-      </div>
       <form className="text-center my-6 mb-10 flex items-center justify-center gap-20">
         <input
           type="file"
           name="screenshot"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+          onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
             if (!e.target.files) return;
-            setSelectedFile(e.target.files[0]);
             const href = URL.createObjectURL(e.target.files[0]);
-            // @ts-ignore
             setBlobState((prev) => [...prev, href]);
-            // @ts-ignore
-            // dispatch(
-            //     addImage( {
-            //         author: "dfasdfa",
-            //         comments: [
-            //           {
-            //             author: "asdfasdfa",
-            //             text: "uploaded"
-            //           }
-            //         ],
-            //         creationDate: "fasdfas",
-            //         src: href,
-            //         uuid: "dfasoudfhliawuehflaiw",
-            //     })
-            //   );
+            dispatch(
+              addImage({
+                _id: nanoid(),
+                author: currentUser || "unknown",
+                comments: [],
+                src: href,
+                creationDate: "not created yet",
+                new: true,
+              })
+            );
           }}
         />
-        {/*<button onClick={(e) => upload(e)}>Upload the image</button>*/}
         <button
           className="bg-green-500 text-black rounded-md p-1.5 font-semibold"
-          onClick={handleImageSending}
+          onClick={handleSavingChanges}
         >
           Save Changes
         </button>
       </form>
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">
-        {!isLoading ? (
-          Object.values(imageSelector).map((img) => {
+        {imageSelector ? (
+          imageSelector.map((img) => {
+            if (!img) return;
+            if (img.deleted) return;
             return (
-              // @ts-ignore
-              <ImagePlate key={img.uuid} img={img} currentUser={author} />
+              <ImagePlate
+                key={img._id}
+                img={img}
+                currentUser={currentUser || "unknown"}
+                newComments={commentsSelector.filter(
+                  (comment) => comment.uuid === img._id
+                )}
+              />
             );
           })
         ) : (

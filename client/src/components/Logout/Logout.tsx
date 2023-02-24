@@ -3,11 +3,11 @@ import { useLogoutMutation } from "../../features/api/usersApi";
 
 export default function Logout() {
   let navigate = useNavigate();
-  const [logoutUser2] = useLogoutMutation();
+  const [logoutUser] = useLogoutMutation();
   // @ts-ignore
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await logoutUser2("");
+    await logoutUser();
     navigate("/login");
   };
   return (

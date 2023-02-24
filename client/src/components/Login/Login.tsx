@@ -1,28 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { useLoginMutation } from "../../features/api/usersApi";
+import {
+  useCheckAuthQuery,
+  useLoginMutation,
+} from "../../features/api/usersApi";
 import { Link, useNavigate } from "react-router-dom";
-import { useCheckCookieMutation } from "../../features/api/usersApi";
+import { useAppDispatch } from "../../hooks";
+import { useAppSelector } from "../../App/store";
 export default function Login() {
   const [credentials, setCredentials] = useState({ login: "", password: "" });
   const [authError, setAuthError] = useState(false);
   const navigate = useNavigate();
-  const [loginUser2] = useLoginMutation();
-  const [checkCookie] = useCheckCookieMutation();
-  useEffect(() => {
-    const redirectIfHasCookie = async () => {
-      const res = await checkCookie("");
-      // @ts-ignore
-      if (res?.error) {
-        return;
-      }
-      navigate("/");
-    };
-    redirectIfHasCookie();
-  }, []);
+  const dispatch = useAppDispatch();
+  const [loginUser] = useLoginMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await loginUser2({
+    const res = await loginUser({
       login: credentials.login,
       password: credentials.password,
     });

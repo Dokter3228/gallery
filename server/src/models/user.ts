@@ -1,15 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 import { Comment, CommentType } from "./comments";
-import Image from "./image";
 
 export type UserType = {
   login: string;
   password: string;
   name?: string;
   avatar?: string;
+  isAdmin?: boolean;
   images: [string];
   comments: CommentType[];
-  // isAdmin: boolean;
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -27,22 +26,18 @@ const userSchema = new mongoose.Schema<UserType>({
   avatar: {
     type: String,
   },
-  // isAdmin: {
-  //   type: Boolean,
-  //   required: true,
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  comments: [String],
+  // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
+  // {
+  //   type: Schema.Types.ObjectId,
+  //       ref: "Comment",
   // },
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
-    },
-  ],
-  images: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Image",
-    },
-  ],
+  // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
+  images: [String],
 });
 
-export default mongoose.model("User", userSchema);
+export default mongoose.model<UserType>("User", userSchema);

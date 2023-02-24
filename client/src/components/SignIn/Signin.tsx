@@ -1,52 +1,35 @@
 import React, { useState, useEffect } from "react";
 
-import {
-  useLoginMutation,
-  useSignupMutation,
-  useCheckCookieMutation,
-} from "../../features/api/usersApi";
+import { useSignupMutation } from "../../features/api/usersApi";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks";
 
 export default function Signin() {
   const [credentials, setCredentials] = useState({ login: "", password: "" });
   const [userAlreadyExistsError, setUserAlreadyExistsError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
-  const [checkIfUserAlreadySignedIn] = useLoginMutation();
   const [signInTheUser] = useSignupMutation();
-  const [checkCookie] = useCheckCookieMutation();
-  useEffect(() => {
-    const redirectIfHasCookie = async () => {
-      const res = await checkCookie("");
-      // @ts-ignore
-      if (res?.error) {
-        return;
-      }
-      navigate("/");
-    };
-    redirectIfHasCookie();
-  }, []);
 
-  // @ts-ignore
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const check = await checkIfUserAlreadySignedIn({
+    const check = await signInTheUser({
       login: credentials.login,
       password: credentials.password,
     });
     // @ts-ignore
-    if (check?.data?.login) {
+    if (check?.data) {
+      navigate("/");
+    }
+    // @ts-ignore
+    if (check?.error?.data?.message === "this user already exists") {
       setUserAlreadyExistsError(true);
       setTimeout(() => {
         setUserAlreadyExistsError(false);
       }, 2000);
       return;
     }
-    await signInTheUser({
-      login: credentials.login,
-      password: credentials.password,
-    });
-    navigate("/");
     setCredentials({ login: "", password: "" });
   };
   return (

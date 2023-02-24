@@ -1,9 +1,19 @@
-version: "3.3"
+# vi docker-compose.yml
+version: '3.3'
 services:
   mongo:
     ports:
-      - "27020:27020"
+      - '27017:27017'
     container_name: dkrcomp-mongo
+    restart: always
+    logging:
+      options:
+        max-size: 1g
+    image: mongo
+  mongo2:
+    ports:
+      - '27017:27020'
+    container_name: test-mongo
     restart: always
     logging:
       options:

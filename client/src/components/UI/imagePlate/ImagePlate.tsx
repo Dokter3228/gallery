@@ -1,44 +1,72 @@
 import React, { useState } from "react";
-import { useSetImageCommentMutation } from "../../../features/api/imagesApi";
 import {
-  Comment,
+  changeImage,
+  deleteImage,
   Image,
-  addComment,
-} from "../../../features/images/imagesSlice";
-import { Simulate } from "react-dom/test-utils";
+} from "../../../features/slices/imagesSlice";
 import { useAppDispatch } from "../../../hooks";
+import {
+  addComment,
+  deleteComment,
+} from "../../../features/slices/commentsSlice";
+import { Comment } from "../../../features/slices/commentsSlice";
+import { useDeleteImageMutation } from "../../../features/api/imagesApi";
+import { useAppSelector } from "../../../App/store";
+import CommentPlate from "./Comment";
+import { Simulate } from "react-dom/test-utils";
+import change = Simulate.change;
+import { EntityId, nanoid } from "@reduxjs/toolkit";
 
 type ImagePlateProps = {
   img: Image;
   currentUser: string;
+  newComments: Comment[];
 };
+
 const ImagePlate = (props: ImagePlateProps): JSX.Element => {
   const [comment, setComment] = useState("");
-  const [setImageComment] = useSetImageCommentMutation();
-
+  const [deleteImageFromTheServer] = useDeleteImageMutation();
   const dispatch = useAppDispatch();
+  const images = useAppSelector((state) =>
+    Object.values(state.images.entities)
+  );
+  const allComments = useAppSelector((state) => Object.values(state.comments));
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
-    setImageComment({
-      comment,
-      author: props.currentUser,
-      uuid: props.img.uuid,
-    });
-    //   dispatch(
-    //   addComment({
-    //     uuid: props.img.uuid,
-    //   // @ts-ignore
-    //     comments: [
-    //       ...props.img.comments,
-    //       {
-    //         author: props.currentUser,
-    //         text: comment,
-    //       },
-    //     ],
-    //   })
-    // );
+    dispatch(
+      addComment({
+        _id: nanoid(),
+        text: comment,
+        author: props.currentUser,
+        uuid: props.img._id,
+        new: true,
+      })
+    );
     setComment("");
   };
+
+  function handleImageDeleting() {
+    if (props.img.new) {
+      images.forEach((image) => {
+        if (image == undefined) return;
+        if (image._id === props.img._id) dispatch(deleteImage(props.img._id));
+      });
+      // allComments.forEach((comment) => {
+      //   if (comment.uuid === props.img._id) {
+      //     dispatch(deleteComment(comment._id));
+      //   }
+      // });
+    } else {
+      images.forEach((image) => {
+        if (image == undefined) return;
+        if (image._id === props.img._id)
+          dispatch(
+            changeImage({ id: props.img._id, changes: { deleted: true } })
+          );
+      });
+    }
+  }
+
   return (
     <div>
       <img className="rounded-2xl w-full h-52 h-22" src={props.img.src} />
@@ -65,6 +93,13 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
         >
           Send
         </button>
+        <button
+          onClick={handleImageDeleting}
+          type="submit"
+          className="bg-red-500 text-black rounded-md p-1 m-2 font-semibold"
+        >
+          Delete
+        </button>
       </div>
       <div className="bg-gray-50 rounded-md p-4">
         <h1 className="text-black">Comments: </h1>
@@ -72,12 +107,25 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
           props.img?.comments?.length > 0 &&
           props.img.comments.map((comment, index) => {
             return (
-              <div
-                key={index}
-                className="text-black flex justify-between mx-2 "
-              >
+              <div key={index} className="text-black flex justify-between m-2 ">
+                <CommentPlate key={index} comment={comment} img={props.img} />
+              </div>
+            );
+          })}
+        {props.newComments &&
+          props.newComments.map((comment, index) => {
+            return (
+              <div key={index} className="text-black flex justify-between m-2 ">
                 <h1 className="text-2xl">{comment.author}</h1>
                 <p>{comment.text}</p>
+                <button
+                  onClick={() => {
+                    dispatch(deleteComment(comment._id));
+                  }}
+                  className="bg-red-500 text-black rounded-md w-8 h-8 font-semibold"
+                >
+                  X
+                </button>
               </div>
             );
           })}

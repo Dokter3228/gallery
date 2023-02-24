@@ -1,54 +1,42 @@
 import { api } from "./emptySplitApi";
+import { User } from "../slices/userSlice";
+type Login = {
+  login: string;
+  password: string;
+};
 
 export const extendedUsersApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    login: builder.mutation<void, Login>({
       query: (body) => ({
         url: "/users/login",
         method: "POST",
         body,
       }),
     }),
-    checkUser: builder.mutation({
-      query: (body) => ({
-        url: "/users/checkAuth",
-        method: "POST",
-        body,
-      }),
-    }),
-    logout: builder.mutation({
-      query: (body) => ({
+    logout: builder.mutation<void, void>({
+      query: () => ({
         url: "/users/logout",
         method: "POST",
-        body,
       }),
     }),
-    signup: builder.mutation({
+    signup: builder.mutation<Login, any>({
       query: (body) => ({
-        url: "/users/registration",
+        url: "/users/register",
         method: "POST",
         body,
       }),
     }),
-    checkCookie: builder.mutation({
-      query: (body) => ({
-        url: "/users/checkCookie",
+    checkAuth: builder.query<Login, void>({
+      query: () => ({
+        url: "/users/checkAuth",
         method: "POST",
-        body,
-      }),
-    }),
-    currentUser: builder.query({
-      query: (body) => ({
-        url: "/users/current-user",
-        method: "POST",
-        body,
       }),
     }),
   }),
   overrideExisting: false,
 });
 
-// TODO add types
 export const config = api.injectEndpoints({
   endpoints: (builder) => ({
     getConfig: builder.query({
@@ -62,7 +50,5 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useLogoutMutation,
-  useCheckUserMutation,
-  useCheckCookieMutation,
-  useCurrentUserQuery,
+  useCheckAuthQuery,
 } = extendedUsersApi;

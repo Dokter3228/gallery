@@ -1,51 +1,70 @@
-import {api} from "./emptySplitApi";
-import { setAllImages } from "../images/imagesSlice";
-import {Image} from "../images/imagesSlice";
+import { api } from "./emptySplitApi";
+import { setAllImages } from "../slices/imagesSlice";
+import { Image } from "../slices/imagesSlice";
+import { Comment } from "../slices/commentsSlice";
+import { EntityId } from "@reduxjs/toolkit";
+
+type Comments = {
+  comments: Comment[];
+};
 export const extendedImagesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query<Image[], void>({
       keepUnusedDataFor: 0,
       query: () => "/images/",
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAllImages(data));
-        } catch (err) {
-          dispatch(setAllImages([]));
-        }
-      },
-      providesTags: (result, error, arg) => result
+      providesTags: (result) =>
+        result
           ? [
-              ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })),
+              ...result.map(({ _id }) => ({ type: "Images" as const, _id })),
               "Images",
             ]
-          : ["Images"]
+          : ["Images"],
     }),
-    addImage: builder.mutation({
+    addImage: builder.mutation<Image[], FormData>({
       query: (body) => ({
-        url: "/images/image/1",
+        url: "/images/",
         method: "POST",
         body,
-        credentials: "include",
       }),
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAllImages(data));
-        } catch (err) {
-          dispatch(setAllImages([]));
-        }
-      },
       invalidatesTags: ["Images"],
     }),
-    setImageComment: builder.mutation({
+    deleteImage: builder.mutation<{ _id: EntityId }, EntityId>({
+      query: (id) => ({
+        url: `/images/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Images", "Users"],
+    }),
+    deleteComments: builder.mutation<
+      void,
+      { id: EntityId; comments: object[] }
+    >({
       query: (body) => ({
-        url: "/images/image/1",
-        method: "PUT",
+        url: `/images/${body.id}/comments`,
+        method: "DELETE",
         body,
-        credentials: "include",
+      }),
+      invalidatesTags: ["Images", "Users"],
+    }),
+    postImagesComments: builder.mutation<void, Comments>({
+      query: (body) => ({
+        url: "/images/comments/",
+        // FXIME refactor to Patch
+        method: "POST",
+        body,
       }),
       invalidatesTags: ["Images"],
+    }),
+    patchImageComments: builder.mutation<
+      void,
+      { id: EntityId; author: string | null; comments: Comment[] }
+    >({
+      query: (body) => ({
+        url: `/images/${body.id}/comments`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["Images", "Comments"],
     }),
   }),
   overrideExisting: false,
@@ -54,7 +73,9 @@ export const extendedImagesApi = api.injectEndpoints({
 export const {
   useGetImagesQuery,
   useAddImageMutation,
-  useSetImageCommentMutation,
+  useDeleteCommentsMutation,
+  useDeleteImageMutation,
+  usePatchImageCommentsMutation,
 } = extendedImagesApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
@@ -66,7 +87,7 @@ export const {
 //     tagTypes: ['Images'],
 //     endpoints: (builder) => ({
 //         getImages: builder.query({
-//             query: () => '/images/allImages',
+//             query: () => '/slices/allImages',
 //             providesTags: (result, error, arg) =>
 //                 result
 //                     // @ts-ignore
@@ -75,7 +96,7 @@ export const {
 //         }),
 //         addImage: builder.mutation({
 //             query: (body) => ({
-//                 url: "/images/image/1",
+//                 url: "/slices/image/1",
 //                 method: "POST",
 //                 body,
 //             }),

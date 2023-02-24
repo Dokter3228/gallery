@@ -4,11 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="merge into main">
+    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add tests and basic server functionality">
+      <change afterPath="$PROJECT_DIR$/server/public/images/8dcfa4a3-7c95-42c4-96f1-1fb795429d73.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/981215f8-48e6-45fa-919c-df9aae6ecc56.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/99ec6406-dc4e-42a3-8fed-a5569fa6e7d5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/a976adb3-6914-4480-aa87-cd4836b34dd8.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/df4c4ba2-70f4-48ff-8c56-78cb02f5337c.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/App/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/Comment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/slices/commentsSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/commentsSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/slices/deletedImagesSlice.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/slices/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/imagesSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/slices/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/userSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/28B927tq8Sp4mvg7gf0-f.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/880d8ef4-afa6-4786-b506-178fe14a2866.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/3jPEqNCJO5-5TeH2kzr6k.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/9341be78-3085-4cf5-b07f-9f51616f204c.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/JavI-uw5rLMgFufdb0nAn.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/LEvbdnEjm5Xccmghek-vH.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/NUFLbzU3JfrdVMMsDBvRX.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/dlxc3tNu2NIHrMuPpwBkX.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/gfkjJ2ka-NsltUpCUkj4Q.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/q-scqMrpoO_ORiRbSk1QX.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,22 +49,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="76fee8448268c634078baa5bb9e07383b1384607" />
+        <entry key="$PROJECT_DIR$" value="feature/cleaningshit" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="152546c2-06e6-437a-b144-2aca5310809c" />
-        <option name="url" value="git@github.com:Dokter3228/gallery.git" />
-      </UrlAndAccount>
-    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -48,57 +67,64 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/gallery&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/gallery/server/mocks/images&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;/home/rootisalie/WebstormProjects/gallery/node_modules/jest&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/home/linux/Desktop/gallery/server/node_modules/jest&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/rootisalie/WebstormProjects/gallery/client/node_modules/prettier&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/linux/Desktop/gallery/client/node_modules/typescript/lib&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/linux/Desktop/gallery/server/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/linux/Desktop/gallery/server/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/client" />
-      <recent name="$PROJECT_DIR$/client/src" />
-      <recent name="$PROJECT_DIR$/client/public" />
+      <recent name="$PROJECT_DIR$/server/mocks/images" />
       <recent name="$PROJECT_DIR$/server" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/server/src" />
-      <recent name="$PROJECT_DIR$/client" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/client/src" />
       <recent name="$PROJECT_DIR$/client/src/components/App" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/server" />
+      <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (2)">
-    <configuration name="prettier (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="prettier" />
-      </scripts>
+  <component name="RunManager" selected="npm.start (1)">
+    <configuration name="main tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/server" />
       <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/server/src/test.test.ts" />
+      <test-names>
+        <test-name value="main tests" />
+      </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="prettier" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="prettier" />
-      </scripts>
+    <configuration name="main tests./images/.images.GET / (all images)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/server" />
       <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/server/src/test.test.ts" />
+      <test-names>
+        <test-name value="main tests" />
+        <test-name value="/images/" />
+        <test-name value="images" />
+        <test-name value="GET / (all images)" />
+      </test-names>
       <method v="2" />
     </configuration>
     <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -111,7 +137,7 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start (2)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
       <scripts>
@@ -121,30 +147,30 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="trystart" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
       <scripts>
-        <script value="trystart" />
+        <script value="test" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="npm.prettier" />
-      <item itemvalue="npm.prettier (1)" />
-      <item itemvalue="npm.trystart" />
+      <item itemvalue="Jest.main tests" />
+      <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
       <item itemvalue="npm.start (1)" />
-      <item itemvalue="npm.start (2)" />
+      <item itemvalue="npm.start" />
+      <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (2)" />
         <item itemvalue="npm.start (1)" />
-        <item itemvalue="npm.trystart" />
-        <item itemvalue="npm.prettier (1)" />
-        <item itemvalue="npm.prettier" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.test" />
+        <item itemvalue="Jest.main tests" />
+        <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
       </list>
     </recent_temporary>
   </component>
@@ -154,7 +180,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="almost completely recreated initial functionality and added inject endpoints feature" />
+      <changelist id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="" />
       <created>1674405077078</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -201,17 +227,15 @@
       <workItem from="1676709733769" duration="11485000" />
       <workItem from="1676722253349" duration="880000" />
       <workItem from="1676725446466" duration="8895000" />
-      <workItem from="1676803865640" duration="16160000" />
-      <workItem from="1676822483180" duration="2022000" />
-      <workItem from="1676973788969" duration="21357000" />
-      <workItem from="1677005163813" duration="1187000" />
-      <workItem from="1677052769725" duration="13926000" />
-      <workItem from="1677087966179" duration="5148000" />
-      <workItem from="1677097218836" duration="3119000" />
-      <workItem from="1677141378561" duration="13743000" />
-      <workItem from="1677242354998" duration="1983000" />
-      <workItem from="1677271318206" duration="988000" />
-      <workItem from="1677272618015" duration="621000" />
+      <workItem from="1677274738444" duration="5072000" />
+      <workItem from="1677321363941" duration="14256000" />
+      <workItem from="1677339054300" duration="14429000" />
+      <workItem from="1677361777770" duration="28000" />
+      <workItem from="1677408629110" duration="26831000" />
+      <workItem from="1677444722843" duration="4044000" />
+      <workItem from="1677508072643" duration="1596000" />
+      <workItem from="1677622399317" duration="3912000" />
+      <workItem from="1677655742161" duration="16083000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -234,189 +258,77 @@
       <option name="project" value="LOCAL" />
       <updated>1676733141380</updated>
     </task>
-    <task id="LOCAL-00004" summary="refactor props, credentials state, unnecessary code">
-      <created>1676805932069</created>
+    <task id="LOCAL-00004" summary="working main version">
+      <created>1677274843711</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1676805932069</updated>
+      <updated>1677274843711</updated>
     </task>
-    <task id="LOCAL-00005" summary="backup">
-      <created>1676806199952</created>
+    <task id="LOCAL-00005" summary="initial commit">
+      <created>1677275633317</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1676806199952</updated>
+      <updated>1677275633317</updated>
     </task>
-    <task id="LOCAL-00006" summary="refactor everything into typescript">
-      <created>1676808340508</created>
+    <task id="LOCAL-00006" summary="make it work as previously expected">
+      <created>1677276266625</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1676808340509</updated>
+      <updated>1677276266625</updated>
     </task>
-    <task id="LOCAL-00007" summary="add basic Redux Toolkit setup">
-      <created>1676810094681</created>
+    <task id="LOCAL-00007" summary="add auth middleware and make cookie httpOnly">
+      <created>1677277453339</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1676810094681</updated>
+      <updated>1677277453339</updated>
     </task>
-    <task id="LOCAL-00008" summary="add RTK Query fetching and auto-mutation">
-      <created>1676817435228</created>
+    <task id="LOCAL-00008" summary="add comment and image saving on save changes btn">
+      <created>1677336414889</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1676817435228</updated>
+      <updated>1677336414889</updated>
     </task>
-    <task id="LOCAL-00009" summary="add replace all the fetch and axios with RTK query">
-      <created>1676821570274</created>
+    <task id="LOCAL-00009" summary="fix routing, refactor, delete not needed routes">
+      <created>1677347199116</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1676821570274</updated>
+      <updated>1677347199116</updated>
     </task>
-    <task id="LOCAL-00010" summary="test commit">
-      <created>1676905736716</created>
+    <task id="LOCAL-00010" summary="add types fix small bugs">
+      <created>1677355836001</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1676905736716</updated>
+      <updated>1677355836001</updated>
     </task>
-    <task id="LOCAL-00011" summary="test commit">
-      <created>1676908707435</created>
+    <task id="LOCAL-00011" summary="add direct image deleting from the server">
+      <created>1677417853343</created>
       <option name="number" value="00011" />
       <option name="presentableId" value="LOCAL-00011" />
       <option name="project" value="LOCAL" />
-      <updated>1676908707435</updated>
+      <updated>1677417853343</updated>
     </task>
-    <task id="LOCAL-00012" summary="fixed initial functionality">
-      <created>1676915339230</created>
+    <task id="LOCAL-00012" summary="finish with main functionality">
+      <created>1677421618819</created>
       <option name="number" value="00012" />
       <option name="presentableId" value="LOCAL-00012" />
       <option name="project" value="LOCAL" />
-      <updated>1676915339230</updated>
+      <updated>1677421618819</updated>
     </task>
-    <task id="LOCAL-00013" summary="almost completely recreated initial functionality and added inject endpoints feature">
-      <created>1676918951763</created>
+    <task id="LOCAL-00013" summary="add tests and basic server functionality">
+      <created>1677616475703</created>
       <option name="number" value="00013" />
       <option name="presentableId" value="LOCAL-00013" />
       <option name="project" value="LOCAL" />
-      <updated>1676918951763</updated>
+      <updated>1677616475703</updated>
     </task>
-    <task id="LOCAL-00014" summary="add react router">
-      <created>1676977621941</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1676977621941</updated>
-    </task>
-    <task id="LOCAL-00015" summary="add server-side cookie handling">
-      <created>1676978569935</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1676978569935</updated>
-    </task>
-    <task id="LOCAL-00016" summary="add scss and max 1mb file upload">
-      <created>1676979343784</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1676979343784</updated>
-    </task>
-    <task id="LOCAL-00017" summary="add cookie redirect server handling fix">
-      <created>1676987312305</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1676987312305</updated>
-    </task>
-    <task id="LOCAL-00018" summary="create cookie controller">
-      <created>1676987604826</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1676987604826</updated>
-    </task>
-    <task id="LOCAL-00019" summary="refactor">
-      <created>1676995522310</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1676995522310</updated>
-    </task>
-    <task id="LOCAL-00020" summary="add comments and authoring">
-      <created>1677004312259</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1677004312259</updated>
-    </task>
-    <task id="LOCAL-00021" summary="add comments mongodb model and connect it to images">
-      <created>1677056135212</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1677056135212</updated>
-    </task>
-    <task id="LOCAL-00022" summary="add entityAdapter and image slice">
-      <created>1677088308356</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1677088308356</updated>
-    </task>
-    <task id="LOCAL-00023" summary="add redux comment state">
-      <created>1677092294722</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1677092294722</updated>
-    </task>
-    <task id="LOCAL-00024" summary="add types(typescript)">
-      <created>1677100302495</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1677100302495</updated>
-    </task>
-    <task id="LOCAL-00025" summary="add local upload without server participation">
-      <created>1677147468214</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1677147468214</updated>
-    </task>
-    <task id="LOCAL-00026" summary="add local upload without server participation">
-      <created>1677153170715</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1677153170715</updated>
-    </task>
-    <task id="LOCAL-00027" summary="add collections linking and partial upload with live comments sending">
-      <created>1677153205834</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1677153205834</updated>
-    </task>
-    <task id="LOCAL-00028" summary="save my shitty version here">
-      <created>1677173903566</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1677173903566</updated>
-    </task>
-    <task id="LOCAL-00029" summary="merge into main">
-      <created>1677174097173</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1677174097173</updated>
-    </task>
-    <option name="localTasksCounter" value="30" />
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -434,42 +346,20 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="fasdfas" />
+    <MESSAGE value="basic login signin image fetching functionality" />
     <MESSAGE value="basic image adding and fetching functionality" />
-    <MESSAGE value="refactor props, credentials state, unnecessary code" />
-    <MESSAGE value="backup" />
-    <MESSAGE value="refactor everything into typescript" />
-    <MESSAGE value="add basic Redux Toolkit setup" />
-    <MESSAGE value="add RTK Query fetching and auto-mutation" />
-    <MESSAGE value="add replace all the fetch and axios with RTK query" />
-    <MESSAGE value="test commit" />
-    <MESSAGE value="fixed initial functionality" />
-    <MESSAGE value="almost completely recreated initial functionality and added inject endpoints feature" />
-    <MESSAGE value="add react router" />
-    <MESSAGE value="add server-side cookie handling" />
-    <MESSAGE value="add scss and max 1mb file upload" />
-    <MESSAGE value="add cookie redirect server handling fix" />
-    <MESSAGE value="create cookie controller" />
-    <MESSAGE value="refactor" />
-    <MESSAGE value="add comments and authoring" />
-    <MESSAGE value="add comments mongodb model and connect it to images" />
-    <MESSAGE value="add entityAdapter and image slice" />
-    <MESSAGE value="add redux comment state" />
-    <MESSAGE value="add types(typescript)" />
-    <MESSAGE value="add local upload without server participation" />
-    <MESSAGE value="add collections linking and partial upload with live comments sending" />
-    <MESSAGE value="save my shitty version here" />
-    <MESSAGE value="merge into main" />
-    <option name="LAST_COMMIT_MESSAGE" value="merge into main" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/client/src/test.test.ts</url>
-          <line>116</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="working main version" />
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="make it work as previously expected" />
+    <MESSAGE value="add auth middleware and make cookie httpOnly" />
+    <MESSAGE value="add comment and image saving on save changes btn" />
+    <MESSAGE value="fix routing, refactor, delete not needed routes" />
+    <MESSAGE value="add types fix small bugs" />
+    <MESSAGE value="add direct image deleting from the server" />
+    <MESSAGE value="finish with main functionality" />
+    <MESSAGE value="add tests and basic server functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests and basic server functionality" />
   </component>
 </project>

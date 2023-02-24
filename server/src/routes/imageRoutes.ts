@@ -13,15 +13,13 @@ imageRouter.use(
   })
 );
 
-// Rest api
-imageRouter.post("/image/:id", imageController.setImage);
-imageRouter.get("/image/:id", imageController.getImageMeta);
-// FIXME why this looks wired in rest api and what is the correct endpoint path
-// FIXME  /image/:id patch -> add/remove/comments.
-// add comment -> new uuid
-// patch comment -> new uuid
-// remove comment of image -> UUID[]
-imageRouter.get("/", imageController.getAllImages);
-imageRouter.put("/image/:id", imageController.changeImageMeta);
+imageRouter.get("/", imageController.getImages); // get all images
+imageRouter.post("/", imageController.postImage); // post one image
+imageRouter.get("/comments/", imageController.getCommentsByEntityIds); // get comments by EntityId[]
+imageRouter.get("/:id", imageController.getImage); // get one image by id
+imageRouter.delete("/:id", imageController.deleteImage); // delete one image by id
+imageRouter.get("/:id/comments/", imageController.getImageComments); // get image comments by ImageId
+imageRouter.post("/:id/comments/", imageController.postImageComments); // change comments by image id  when string[]
+imageRouter.patch("/:id/comments/", imageController.updateImageComments); // delete comments by image id  when in
 
 export { imageRouter };

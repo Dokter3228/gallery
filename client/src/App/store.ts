@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import {api} from "../features/api/emptySplitApi";
+import { api } from "../features/api/emptySplitApi";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
-import imagesReducer from "../features/images/imagesSlice";
-
+import imagesReducer from "../features/slices/imagesSlice";
+import commentsReducer from "../features/slices/commentsSlice";
+import userReducer from "../features/slices/userSlice";
 export const store = configureStore({
   reducer: {
     images: imagesReducer,
+    comments: commentsReducer,
+    user: userReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>
