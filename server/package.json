@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "test": "../node_modules/.bin/jest --watchAll",
     "start": "node_modules/.bin/nodemon --exec babel-node src/server.ts --extensions .ts",
+    "test": "../node_modules/.bin/jest --watchAll",
     "prettier": "npx prettier --write ."
   },
   "keywords": [],

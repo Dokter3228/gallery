@@ -9,7 +9,7 @@ export type UserType = {
   avatar?: string;
   images: [string];
   comments: CommentType[];
-  isAdmin: boolean;
+  // isAdmin: boolean;
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -27,10 +27,10 @@ const userSchema = new mongoose.Schema<UserType>({
   avatar: {
     type: String,
   },
-  isAdmin: {
-    type: Boolean,
-    required: true,
-  },
+  // isAdmin: {
+  //   type: Boolean,
+  //   required: true,
+  // },
   comments: [
     {
       type: Schema.Types.ObjectId,

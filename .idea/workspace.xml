@@ -4,28 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="add collections linking and partial upload with live comments sending">
-      <change afterPath="$PROJECT_DIR$/client/src/components/App/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/client/src/components/App/types.ts" afterDir="false" />
+    <list default="true" id="fecee879-ff70-41f2-b2bb-1844124e515e" name="Changes" comment="merge into main">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/client/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App/Main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/Main.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Logout/Logout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/images/imagesSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/App/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,24 +46,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/linux/Desktop/fireoffer-monorepo",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "/home/rootisalie/WebstormProjects/gallery/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/home/rootisalie/WebstormProjects/gallery/client/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/home/rootisalie/WebstormProjects/gallery/client/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/gallery&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/home/rootisalie/WebstormProjects/gallery/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/rootisalie/WebstormProjects/gallery/client/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/linux/Desktop/gallery/client/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/client" />
@@ -96,7 +80,7 @@
       <recent name="$PROJECT_DIR$/client/src/components/App" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="npm.start (2)">
     <configuration name="prettier (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -156,8 +140,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.start (2)" />
+        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.trystart" />
         <item itemvalue="npm.prettier (1)" />
         <item itemvalue="npm.prettier" />
@@ -225,6 +209,9 @@
       <workItem from="1677087966179" duration="5148000" />
       <workItem from="1677097218836" duration="3119000" />
       <workItem from="1677141378561" duration="13743000" />
+      <workItem from="1677242354998" duration="1983000" />
+      <workItem from="1677271318206" duration="988000" />
+      <workItem from="1677272618015" duration="621000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -415,7 +402,21 @@
       <option name="project" value="LOCAL" />
       <updated>1677153205834</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="save my shitty version here">
+      <created>1677173903566</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1677173903566</updated>
+    </task>
+    <task id="LOCAL-00029" summary="merge into main">
+      <created>1677174097173</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1677174097173</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,8 +434,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fasdfas" />
-    <MESSAGE value="basic login signin image fetching functionality" />
     <MESSAGE value="basic image adding and fetching functionality" />
     <MESSAGE value="refactor props, credentials state, unnecessary code" />
     <MESSAGE value="backup" />
@@ -458,7 +457,9 @@
     <MESSAGE value="add types(typescript)" />
     <MESSAGE value="add local upload without server participation" />
     <MESSAGE value="add collections linking and partial upload with live comments sending" />
-    <option name="LAST_COMMIT_MESSAGE" value="add collections linking and partial upload with live comments sending" />
+    <MESSAGE value="save my shitty version here" />
+    <MESSAGE value="merge into main" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge into main" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
