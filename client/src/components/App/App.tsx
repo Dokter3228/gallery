@@ -61,6 +61,7 @@ const App = (): JSX.Element => {
   const handleImageSending = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
+    e.preventDefault()
     for (let myBlob of blobState) {
       let blob = await fetch(myBlob).then((r) => r.blob());
       const myFile = new File([blob], "image.jpeg", {
@@ -74,19 +75,6 @@ const App = (): JSX.Element => {
       formData.append("login", data.login);
       addImageHere(formData);
     }
-    //
-    // for(let entity of Object.values(imageSelector)) {
-    //   if(!entity) return
-    //     for(let comment of entity.comments) {
-    //         if(!comment) return
-    //         setImageComment({
-    //                 comment: comment.text,
-    //                 author: comment.author,
-    //                 uuid: entity.uuid
-    //         })
-    //     }
-    // }
-
     setBlobState([]);
   };
 

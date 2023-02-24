@@ -26,7 +26,6 @@ export const extendedImagesApi = api.injectEndpoints({
         url: "/images/image/1",
         method: "POST",
         body,
-        credentials: "include",
       }),
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
         try {
