@@ -38,7 +38,9 @@ class userController {
           process.env.JWT_SECRET_KEY,
           { expiresIn: "15m" }
         );
-        res.cookie("set-cookie", token);
+        res.cookie("set-cookie", token, {
+          httpOnly: true
+        });
         res.status(200).json(userToSave);
       } catch (error) {
         res.status(400).json({ message: error.message });
@@ -61,7 +63,9 @@ class userController {
           process.env.JWT_SECRET_KEY,
           { expiresIn: "15m" }
         );
-        res.cookie("set-cookie", token);
+        res.cookie("set-cookie", token, {
+          httpOnly: true
+        });
         res.status(200).send({
           login,
           password,

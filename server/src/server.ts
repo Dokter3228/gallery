@@ -6,6 +6,7 @@ config();
 
 import { userRouter } from "./routes/userRoutes";
 import { imageRouter } from "./routes/imageRoutes";
+import {authMiddleware} from "./middleware/auth";
 
 // FIXME add proxy to cra => how does cors changes
 const whitelist = ["http://localhost:3000"];
@@ -49,7 +50,9 @@ type Config = {
   domain: string; // localhost:PORT/
 };
 
+
+
 app.use("/users", userRouter);
-app.use("/images", imageRouter);
+app.use("/images", authMiddleware, imageRouter);
 
 export { app };

@@ -1,6 +1,7 @@
 import express from "express";
 const fileUpload = require("express-fileupload");
 import imageController from "../controllers/imageController";
+import {authMiddleware} from "../middleware/auth";
 const imageRouter = express.Router();
 
 imageRouter.use(
@@ -12,7 +13,6 @@ imageRouter.use(
     abortOnLimit: true,
   })
 );
-
 // Rest api
 imageRouter.post("/image/:id", imageController.setImage);
 imageRouter.get("/image/:id", imageController.getImageMeta);
