@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import { Comment, CommentType } from "../models/comments";
 import User from "../models/user";
+import * as process from "process";
 class imageController {
   async setImage(req, res) {
     try {
@@ -33,7 +34,7 @@ class imageController {
         creationDate: date,
         comments: [],
         src:
-          "http://localhost" +
+          "http://localhost:" +
           process.env.PORT +
           "/images/" +
           uuid +
@@ -51,9 +52,9 @@ class imageController {
       });
     } catch (e) {
       if (e.name === "TokenExpiredError") {
-        res.status(400).send("Your jwt expired, login again");
+        res.status(401).send("Your jwt expired, login again");
       } else {
-        res.status(400).send(e);
+        res.status(402).send(e);
       }
     }
   }

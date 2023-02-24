@@ -73,6 +73,7 @@ const App = (): JSX.Element => {
       // @ts-ignore
       formData.append("image", myFile);
       formData.append("login", data.login);
+      console.log(formData, blobState)
       addImageHere(formData);
     }
     setBlobState([]);
