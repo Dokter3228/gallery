@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import express from "express";
-
+import morgan from 'morgan'
 import { config } from "dotenv";
 config();
 
@@ -36,7 +36,7 @@ database.once("connected", () => {
 });
 
 const app = express();
-
+app.use(morgan('combined'))
 app.use(express.json());
 app.use(express.static("public"));
 app.use(cors(corsOptions));

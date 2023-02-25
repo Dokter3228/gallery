@@ -3,14 +3,20 @@ import { useSetImageCommentMutation } from "../../../features/api/imagesApi";
 import {
   Comment,
   Image,
-  addComment,
 } from "../../../features/images/imagesSlice";
 import { Simulate } from "react-dom/test-utils";
 import { useAppDispatch } from "../../../hooks";
 
+import {addComment} from "../../../features/images/commentsSlice";
+
 type ImagePlateProps = {
   img: Image;
   currentUser: string;
+  newComments: [{
+      author:string,
+      uuid: string,
+      comment: string
+  }]
 };
 const ImagePlate = (props: ImagePlateProps): JSX.Element => {
   const [comment, setComment] = useState("");
@@ -19,24 +25,15 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
   const dispatch = useAppDispatch();
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
-    setImageComment({
-      comment,
+    // setImageComment({
+    //   comment,
+    //   author: props.currentUser,
+    //   uuid: props.img.uuid,
+    // });
+      // @ts-ignore
+      dispatch(addComment({comment,
       author: props.currentUser,
-      uuid: props.img.uuid,
-    });
-    //   dispatch(
-    //   addComment({
-    //     uuid: props.img.uuid,
-    //   // @ts-ignore
-    //     comments: [
-    //       ...props.img.comments,
-    //       {
-    //         author: props.currentUser,
-    //         text: comment,
-    //       },
-    //     ],
-    //   })
-    // );
+      uuid: props.img.uuid}))
     setComment("");
   };
   return (
@@ -80,6 +77,17 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
                 <p>{comment.text}</p>
               </div>
             );
+          })}
+          {props.newComments && props.newComments.map((comment, index) => {
+              return (
+                  <div
+                key={index}
+                className="text-black flex justify-between mx-2 "
+              >
+                <h1 className="text-2xl">{comment.author}</h1>
+                <p>{comment.comment}</p>
+              </div>
+              )
           })}
       </div>
     </div>

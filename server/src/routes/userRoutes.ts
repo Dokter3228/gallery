@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter.use(cookieParser("secret key"));
 
 // FIXME why this looks wired in rest api and what is the correct endpoint path
-userRouter.post("/registration", userController.createNewUser);
+userRouter.post("/register", userController.createNewUser);
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
 userRouter.post("/current-user", userController.currentUser);
@@ -15,5 +15,4 @@ userRouter.post("/current-user", userController.currentUser);
 // FIXME why this looks wired in rest api and what is the correct endpoint path
 userRouter.post("/checkAuth", cookieController.checkAuth);
 userRouter.post("/checkCookie", cookieController.authCheckCookie);
-// FIXME add prettier
 export { userRouter };

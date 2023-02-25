@@ -7,12 +7,7 @@ import * as process from "process";
 class imageController {
   async setImage(req, res) {
     try {
-      // const token = req.headers?.cookie.split('set-cookie=').join('');
-      // const {login = "somebody"} = jwt.verify(token, process.env.JWT_SECRET_KEY);
-      // FIXME looks wierd
-      const login = req.body.login;
-      const comment = req.body.comment;
-      const uuid = uuidv4();
+      const {login, uuid} = req.body
       let image;
       let uploadPath;
       if (!req.files || Object.keys(req.files).length === 0) {
@@ -20,13 +15,7 @@ class imageController {
       }
       image = req.files.image;
       const fileExtension = image.name.split(".")[1];
-      // FIXME looks wierd
-      uploadPath =
-        path.resolve(__dirname, "..", "..", "public/images") +
-        "/" +
-        uuid +
-        "." +
-        fileExtension;
+      uploadPath = path.resolve(__dirname, "..", "../public/images") + `/${uuid}.${fileExtension}`
       const date = new Date().toLocaleDateString();
       const imageDb = new Image({
         author: login,
@@ -34,12 +23,7 @@ class imageController {
         creationDate: date,
         comments: [],
         src:
-          "http://localhost:" +
-          process.env.PORT +
-          "/images/" +
-          uuid +
-          "." +
-          fileExtension,
+          `http://localhost:${process.env.PORT}/images/${uuid}.${fileExtension}`
       });
       const user = await User.findOne({ login });
       // @ts-ignore
@@ -51,11 +35,7 @@ class imageController {
         res.status(200).send(imageToSave);
       });
     } catch (e) {
-      if (e.name === "TokenExpiredError") {
-        res.status(401).send("Your jwt expired, login again");
-      } else {
         res.status(402).send(e);
-      }
     }
   }
 
@@ -66,7 +46,7 @@ class imageController {
     res.status(200).json(image);
   }
 
-  async changeImageMeta(req, res) {
+  async setImageComment(req, res) {
     const { uuid, comment, author } = req.body;
     const image = await Image.findOne({ uuid: uuid });
     const user = await User.findOne({ login: author });
@@ -81,6 +61,26 @@ class imageController {
     image.comments.push(commentDb);
     await image.save();
     res.status(200).json(image);
+  }
+
+  async setImageComments(req, res) {
+    const { comments } = req.body;
+
+    for(let comment of comments) {
+      const image = await Image.findOne({ uuid: comment.uuid });
+    const user = await User.findOne({ login: comment.author });
+      const commentDb = new Comment({
+      author: comment.author,
+      text: comment.comment,
+      });
+    await commentDb.save();
+    user.comments.push(commentDb);
+    // @ts-ignore
+      image.comments.push(commentDb)
+    await image.save();
+    await user.save();
+    }
+    res.status(200).json({mes: "cool"});
   }
 
   async getAllImages(req, res) {

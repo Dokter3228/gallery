@@ -1,6 +1,7 @@
 import {api} from "./emptySplitApi";
 import { setAllImages } from "../images/imagesSlice";
 import {Image} from "../images/imagesSlice";
+import {reset} from "../images/commentsSlice";
 export const extendedImagesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query<Image[], void>({
@@ -23,7 +24,7 @@ export const extendedImagesApi = api.injectEndpoints({
     }),
     addImage: builder.mutation({
       query: (body) => ({
-        url: "/images/image/1",
+        url: "/images/1",
         method: "POST",
         body,
       }),
@@ -39,11 +40,26 @@ export const extendedImagesApi = api.injectEndpoints({
     }),
     setImageComment: builder.mutation({
       query: (body) => ({
-        url: "/images/image/1",
+        url: "/images/1",
         method: "PUT",
         body,
-        credentials: "include",
       }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+          const { data } = await queryFulfilled;
+          dispatch(reset())
+      },
+      invalidatesTags: ["Images"],
+    }),
+    setImageComments: builder.mutation({
+      query: (body) => ({
+        url: "/images/comments/",
+        method: "POST",
+        body,
+      }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+          const { data } = await queryFulfilled;
+          dispatch(reset())
+      },
       invalidatesTags: ["Images"],
     }),
   }),
@@ -54,6 +70,7 @@ export const {
   useGetImagesQuery,
   useAddImageMutation,
   useSetImageCommentMutation,
+    useSetImageCommentsMutation
 } = extendedImagesApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'

@@ -4,11 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="make it work as previously expected">
-      <change afterPath="$PROJECT_DIR$/server/src/middleware/auth.ts" afterDir="false" />
+    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add morgan, fix routes according to REST API">
+      <change afterPath="$PROJECT_DIR$/client/src/features/images/commentsSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/Q2CO-P41-a1QrwTracCg9.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/userController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/12101aca-5bf3-4d80-9a0d-624af78f3a79.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/E5dHVi_8xiYj9pIFT5HBc.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/1f246945-1629-49fd-8807-8cea8a91d3a1.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/44d0a12a-f115-4a08-815e-3197a0a182cb.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/83a964c4-aeee-43cc-88be-4736b037be24.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/b38bd8fb-ba3e-4654-a408-7fd903c3ef46.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/sqgGoQaAU0W1-P-phaCAV.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,7 +56,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/linux/Desktop/gallery",
+    "last_opened_file_path": "/home/linux/Desktop/fireoffer-monorepo",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -196,7 +211,8 @@
       <workItem from="1676709733769" duration="11485000" />
       <workItem from="1676722253349" duration="880000" />
       <workItem from="1676725446466" duration="8895000" />
-      <workItem from="1677274738444" duration="2671000" />
+      <workItem from="1677274738444" duration="5072000" />
+      <workItem from="1677321363941" duration="13685000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -240,7 +256,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677276266625</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add auth middleware and make cookie httpOnly">
+      <created>1677277453339</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1677277453339</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +288,8 @@
     <MESSAGE value="working main version" />
     <MESSAGE value="initial commit" />
     <MESSAGE value="make it work as previously expected" />
-    <option name="LAST_COMMIT_MESSAGE" value="make it work as previously expected" />
+    <MESSAGE value="add auth middleware and make cookie httpOnly" />
+    <option name="LAST_COMMIT_MESSAGE" value="add auth middleware and make cookie httpOnly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,17 +1,11 @@
 import { api } from "./emptySplitApi";
 
+
 export const extendedUsersApi = api.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
       query: (body) => ({
         url: "/users/login",
-        method: "POST",
-        body,
-      }),
-    }),
-    checkUser: builder.mutation({
-      query: (body) => ({
-        url: "/users/checkAuth",
         method: "POST",
         body,
       }),
@@ -25,7 +19,7 @@ export const extendedUsersApi = api.injectEndpoints({
     }),
     signup: builder.mutation({
       query: (body) => ({
-        url: "/users/registration",
+        url: "/users/register",
         method: "POST",
         body,
       }),
@@ -40,6 +34,13 @@ export const extendedUsersApi = api.injectEndpoints({
     currentUser: builder.query({
       query: (body) => ({
         url: "/users/current-user",
+        method: "POST",
+        body,
+      }),
+    }),
+    checkUser: builder.mutation({
+      query: (body) => ({
+        url: "/users/checkAuth",
         method: "POST",
         body,
       }),
