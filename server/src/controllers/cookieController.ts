@@ -10,7 +10,6 @@ class cookieController {
         const { login } = userAuthorized;
         res.status(200).json({
           login,
-
         });
       } else {
         res.status(400).json({ message: "user is not authorized" });

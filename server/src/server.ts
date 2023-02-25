@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 import express from "express";
-import morgan from 'morgan'
+import morgan from "morgan";
 import { config } from "dotenv";
 config();
-
 import { userRouter } from "./routes/userRoutes";
 import { imageRouter } from "./routes/imageRoutes";
-import {authMiddleware} from "./middleware/auth";
+import { authMiddleware } from "./middleware/auth";
 
 // FIXME add proxy to cra => how does cors changes
 const whitelist = ["http://localhost:3000"];
@@ -35,7 +34,7 @@ database.once("connected", () => {
 });
 
 const app = express();
-app.use(morgan('combined'))
+app.use(morgan("combined"));
 app.use(express.json());
 app.use(express.static("public"));
 app.use(cors(corsOptions));
@@ -48,8 +47,6 @@ app.listen(port, () => {
 type Config = {
   domain: string; // localhost:PORT/
 };
-
-
 
 app.use("/users", userRouter);
 app.use("/images", authMiddleware, imageRouter);

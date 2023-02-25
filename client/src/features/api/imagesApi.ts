@@ -1,7 +1,11 @@
-import {api} from "./emptySplitApi";
-import { setAllImages } from "../images/imagesSlice";
-import {Image} from "../images/imagesSlice";
-import {reset} from "../images/commentsSlice";
+import { api } from "./emptySplitApi";
+import { Comment, setAllImages } from "../slices/imagesSlice";
+import { Image } from "../slices/imagesSlice";
+import { reset, StoreComment } from "../slices/commentsSlice";
+
+type Comments = {
+  comments: StoreComment[];
+};
 export const extendedImagesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query<Image[], void>({
@@ -15,14 +19,15 @@ export const extendedImagesApi = api.injectEndpoints({
           dispatch(setAllImages([]));
         }
       },
-      providesTags: (result, error, arg) => result
+      providesTags: (result, error, arg) =>
+        result
           ? [
               ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })),
               "Images",
             ]
-          : ["Images"]
+          : ["Images"],
     }),
-    addImage: builder.mutation({
+    addImage: builder.mutation<Image[], FormData>({
       query: (body) => ({
         url: "/images/1",
         method: "POST",
@@ -38,15 +43,15 @@ export const extendedImagesApi = api.injectEndpoints({
       },
       invalidatesTags: ["Images"],
     }),
-    setImageComments: builder.mutation({
+    setImageComments: builder.mutation<void, Comments>({
       query: (body) => ({
         url: "/images/comments/",
         method: "POST",
         body,
       }),
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
-          const { data } = await queryFulfilled;
-          dispatch(reset())
+        const { data } = await queryFulfilled;
+        dispatch(reset());
       },
       invalidatesTags: ["Images"],
     }),
@@ -57,7 +62,7 @@ export const extendedImagesApi = api.injectEndpoints({
 export const {
   useGetImagesQuery,
   useAddImageMutation,
-    useSetImageCommentsMutation
+  useSetImageCommentsMutation,
 } = extendedImagesApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
@@ -69,7 +74,7 @@ export const {
 //     tagTypes: ['Images'],
 //     endpoints: (builder) => ({
 //         getImages: builder.query({
-//             query: () => '/images/allImages',
+//             query: () => '/slices/allImages',
 //             providesTags: (result, error, arg) =>
 //                 result
 //                     // @ts-ignore
@@ -78,7 +83,7 @@ export const {
 //         }),
 //         addImage: builder.mutation({
 //             query: (body) => ({
-//                 url: "/images/image/1",
+//                 url: "/slices/image/1",
 //                 method: "POST",
 //                 body,
 //             }),

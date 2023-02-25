@@ -39,7 +39,7 @@ class userController {
           { expiresIn: "15m" }
         );
         res.cookie("set-cookie", token, {
-          httpOnly: true
+          httpOnly: true,
         });
         res.status(200).json(userToSave);
       } catch (error) {
@@ -64,7 +64,7 @@ class userController {
           { expiresIn: "15m" }
         );
         res.cookie("set-cookie", token, {
-          httpOnly: true
+          httpOnly: true,
         });
         res.status(200).send({
           login,

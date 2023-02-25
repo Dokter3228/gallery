@@ -7,7 +7,7 @@ export default function Logout() {
   // @ts-ignore
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await logoutUser("");
+    await logoutUser();
     navigate("/login");
   };
   return (

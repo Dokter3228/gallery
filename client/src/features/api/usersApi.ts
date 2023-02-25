@@ -1,46 +1,47 @@
 import { api } from "./emptySplitApi";
-import {currentUserLogin} from "../images/userSlice";
+import { currentUserLogin, UserState } from "../slices/userSlice";
 
+type Login = {
+  login: string;
+  password: string;
+};
 
 export const extendedUsersApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation({
+    login: builder.mutation<Login, object>({
       query: (body) => ({
         url: "/users/login",
         method: "POST",
         body,
       }),
     }),
-    logout: builder.mutation({
-      query: (body) => ({
+    logout: builder.mutation<void, void>({
+      query: () => ({
         url: "/users/logout",
         method: "POST",
-        body,
       }),
     }),
-    signup: builder.mutation({
+    signup: builder.mutation<Login, object>({
       query: (body) => ({
         url: "/users/register",
         method: "POST",
         body,
       }),
     }),
-    checkAuth: builder.mutation({
-      query: (body) => ({
+    checkAuth: builder.mutation<void, void>({
+      query: () => ({
         url: "/users/checkAuth",
         method: "POST",
-        body,
       }),
     }),
-    currentUser: builder.query({
-      query: (body) => ({
+    currentUser: builder.query<UserState, void>({
+      query: () => ({
         url: "/users/checkAuth",
         method: "POST",
-        body,
       }),
       async onQueryStarted(id, { dispatch, queryFulfilled }) {
-          const { data } = await queryFulfilled;
-          dispatch(currentUserLogin(data.login))
+        const { data } = await queryFulfilled;
+        dispatch(currentUserLogin(data.login));
       },
     }),
   }),
@@ -62,5 +63,5 @@ export const {
   useSignupMutation,
   useLogoutMutation,
   useCheckAuthMutation,
-  useCurrentUserQuery
+  useCurrentUserQuery,
 } = extendedUsersApi;

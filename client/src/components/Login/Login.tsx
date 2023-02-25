@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import {useCheckAuthMutation, useLoginMutation} from "../../features/api/usersApi";
-import {Link, useNavigate} from "react-router-dom";
-import {useAppDispatch} from "../../hooks";
+import {
+  useCheckAuthMutation,
+  useLoginMutation,
+} from "../../features/api/usersApi";
+import { Link, useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../hooks";
 export default function Login() {
   const [credentials, setCredentials] = useState({ login: "", password: "" });
   const [authError, setAuthError] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
-  const [loginUser2] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const [loginUser] = useLoginMutation();
 
-
-  const [checkIfUserAuthorized, isLoading] = useCheckAuthMutation()
+  const [checkIfUserAuthorized] = useCheckAuthMutation();
   useEffect(() => {
     const redirectIfNoCookie = async () => {
-      const res = await checkIfUserAuthorized("");
+      const res = await checkIfUserAuthorized();
       // @ts-ignore
-      console.log(res)
+      console.log(res);
       // @ts-ignore
       if (res.data.login) {
         navigate("/");
@@ -24,10 +26,9 @@ export default function Login() {
     redirectIfNoCookie();
   }, []);
 
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const res = await loginUser2({
+    const res = await loginUser({
       login: credentials.login,
       password: credentials.password,
     });

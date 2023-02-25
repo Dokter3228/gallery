@@ -85,7 +85,7 @@ describe("/users", () => {
   // });
 });
 
-describe("/images", () => {
+describe("/slices", () => {
   beforeAll(async () => {
     mongoose.connect(process.env.MONGO_URL, {});
     const res = await request(app)
@@ -102,7 +102,6 @@ describe("/images", () => {
       const req = await request(app)
         .post("/images/image/1")
         .set("set-cookie", "your-cookie-name=your-cookie-value")
-        // FIXME
         .attach("image", `${__dirname}/car.jpg`);
       console.log(req.header);
       expect(req.header["set-cookie"]).toBeDefined();

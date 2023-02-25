@@ -5,30 +5,30 @@ import {
   useCheckAuthMutation,
 } from "../../features/api/usersApi";
 import { Link, useNavigate } from "react-router-dom";
-import {useAppDispatch} from "../../hooks";
+import { useAppDispatch } from "../../hooks";
 
 export default function Signin() {
   const [credentials, setCredentials] = useState({ login: "", password: "" });
   const [userAlreadyExistsError, setUserAlreadyExistsError] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const [signInTheUser] = useSignupMutation();
 
-    // @ts-ignore
-    const [checkIfUserAuthorized, isLoading] = useCheckAuthMutation()
+  // @ts-ignore
+  const [checkIfUserAuthorized] = useCheckAuthMutation();
 
-    useEffect(() => {
-        const redirectIfHasCookie = async () => {
-          const res = await checkIfUserAuthorized("");
-          console.log(res)
-          // @ts-ignore
-          if (res.data.login) {
-            navigate("/");
-          }
-        };
-        redirectIfHasCookie();
-      }, []);
+  useEffect(() => {
+    const redirectIfHasCookie = async () => {
+      const res = await checkIfUserAuthorized();
+      console.log(res);
+      // @ts-ignore
+      if (res.data.login) {
+        navigate("/");
+      }
+    };
+    redirectIfHasCookie();
+  }, []);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -37,7 +37,7 @@ export default function Signin() {
       password: credentials.password,
     });
     // @ts-ignore
-    if(check?.data) {
+    if (check?.data) {
       navigate("/");
     }
     // @ts-ignore

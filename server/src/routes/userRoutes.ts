@@ -6,11 +6,9 @@ const userRouter = express.Router();
 
 userRouter.use(cookieParser("secret key"));
 
-// FIXME why this looks wired in rest api and what is the correct endpoint path
 userRouter.post("/register", userController.createNewUser);
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);
 userRouter.post("/checkAuth", cookieController.checkAuth);
 // FIXME patch user-meta/:id name/avatar -> user
-// FIXME why this looks wired in rest api and what is the correct endpoint path
 export { userRouter };
