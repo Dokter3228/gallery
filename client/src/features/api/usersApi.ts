@@ -1,4 +1,5 @@
 import { api } from "./emptySplitApi";
+import {currentUserLogin} from "../images/userSlice";
 
 
 export const extendedUsersApi = api.injectEndpoints({
@@ -24,26 +25,23 @@ export const extendedUsersApi = api.injectEndpoints({
         body,
       }),
     }),
-    checkCookie: builder.mutation({
+    checkAuth: builder.mutation({
       query: (body) => ({
-        url: "/users/checkCookie",
+        url: "/users/checkAuth",
         method: "POST",
         body,
       }),
     }),
     currentUser: builder.query({
       query: (body) => ({
-        url: "/users/current-user",
-        method: "POST",
-        body,
-      }),
-    }),
-    checkUser: builder.mutation({
-      query: (body) => ({
         url: "/users/checkAuth",
         method: "POST",
         body,
       }),
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+          const { data } = await queryFulfilled;
+          dispatch(currentUserLogin(data.login))
+      },
     }),
   }),
   overrideExisting: false,
@@ -63,7 +61,6 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useLogoutMutation,
-  useCheckUserMutation,
-  useCheckCookieMutation,
-  useCurrentUserQuery,
+  useCheckAuthMutation,
+  useCurrentUserQuery
 } = extendedUsersApi;

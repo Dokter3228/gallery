@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSetImageCommentMutation } from "../../../features/api/imagesApi";
 import {
   Comment,
   Image,
@@ -20,16 +19,10 @@ type ImagePlateProps = {
 };
 const ImagePlate = (props: ImagePlateProps): JSX.Element => {
   const [comment, setComment] = useState("");
-  const [setImageComment] = useSetImageCommentMutation();
 
   const dispatch = useAppDispatch();
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
-    // setImageComment({
-    //   comment,
-    //   author: props.currentUser,
-    //   uuid: props.img.uuid,
-    // });
       // @ts-ignore
       dispatch(addComment({comment,
       author: props.currentUser,

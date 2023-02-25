@@ -79,25 +79,6 @@ class userController {
     }
   }
 
-  async currentUser(req, res) {
-    try {
-      const token = req.cookies["set-cookie"];
-      let userAuthorized =
-        token && jwt.verify(token, process.env.JWT_SECRET_KEY);
-      if (userAuthorized) {
-        // @ts-ignore
-        const { login } = userAuthorized;
-        res.status(200).json({
-          author: login,
-        });
-      } else {
-        res.status(400).json({ message: "user is not authorized" });
-      }
-    } catch (e) {
-      res.status(400).json({ message: e.message });
-    }
-  }
-
   async logout(req, res) {
     res.clearCookie("set-cookie");
     res.status(200).json({

@@ -1,7 +1,6 @@
 import express from "express";
 const fileUpload = require("express-fileupload");
 import imageController from "../controllers/imageController";
-import {authMiddleware} from "../middleware/auth";
 const imageRouter = express.Router();
 
 imageRouter.use(
@@ -15,10 +14,8 @@ imageRouter.use(
 );
 // Rest api
 imageRouter.get("/", imageController.getAllImages);
-imageRouter.get("/:id", imageController.getImageMeta);
 imageRouter.post("/comments/", imageController.setImageComments)
 imageRouter.post("/:id", imageController.setImage);
-imageRouter.put("/:id", imageController.setImageComment);
 imageRouter.delete("/:id");
 // FIXME why this looks wired in rest api and what is the correct endpoint path
 // FIXME  /image/:id patch -> add/remove/comments.

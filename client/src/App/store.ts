@@ -3,11 +3,13 @@ import {api} from "../features/api/emptySplitApi";
 import { TypedUseSelectorHook, useSelector } from "react-redux";
 import imagesReducer from "../features/images/imagesSlice";
 import commentsReducer from "../features/images/commentsSlice";
+import userReducer from "../features/images/userSlice";
 
 export const store = configureStore({
   reducer: {
     images: imagesReducer,
     comments: commentsReducer,
+    user: userReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

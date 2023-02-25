@@ -38,18 +38,6 @@ export const extendedImagesApi = api.injectEndpoints({
       },
       invalidatesTags: ["Images"],
     }),
-    setImageComment: builder.mutation({
-      query: (body) => ({
-        url: "/images/1",
-        method: "PUT",
-        body,
-      }),
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-          const { data } = await queryFulfilled;
-          dispatch(reset())
-      },
-      invalidatesTags: ["Images"],
-    }),
     setImageComments: builder.mutation({
       query: (body) => ({
         url: "/images/comments/",
@@ -69,7 +57,6 @@ export const extendedImagesApi = api.injectEndpoints({
 export const {
   useGetImagesQuery,
   useAddImageMutation,
-  useSetImageCommentMutation,
     useSetImageCommentsMutation
 } = extendedImagesApi;
 

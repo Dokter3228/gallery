@@ -1,5 +1,4 @@
 import Image from "../models/image";
-import { v4 as uuidv4 } from "uuid";
 import path from "path";
 import { Comment, CommentType } from "../models/comments";
 import User from "../models/user";
@@ -39,46 +38,21 @@ class imageController {
     }
   }
 
-  // FIXME resolve author, comments, dates
-  async getImageMeta(req, res) {
-    const uuid = req.params.id;
-    const image = await Image.findOne({ uuid: uuid });
-    res.status(200).json(image);
-  }
-
-  async setImageComment(req, res) {
-    const { uuid, comment, author } = req.body;
-    const image = await Image.findOne({ uuid: uuid });
-    const user = await User.findOne({ login: author });
-    const commentDb = new Comment({
-      author,
-      text: comment,
-    });
-    await commentDb.save();
-    user.comments.push(commentDb);
-    await user.save();
-    // @ts-ignore
-    image.comments.push(commentDb);
-    await image.save();
-    res.status(200).json(image);
-  }
-
   async setImageComments(req, res) {
     const { comments } = req.body;
-
     for(let comment of comments) {
       const image = await Image.findOne({ uuid: comment.uuid });
-    const user = await User.findOne({ login: comment.author });
+      const user = await User.findOne({ login: comment.author });
       const commentDb = new Comment({
       author: comment.author,
       text: comment.comment,
       });
-    await commentDb.save();
-    user.comments.push(commentDb);
-    // @ts-ignore
+      await commentDb.save();
+      user.comments.push(commentDb);
+      // @ts-ignore
       image.comments.push(commentDb)
-    await image.save();
-    await user.save();
+      await image.save();
+      await user.save();
     }
     res.status(200).json({mes: "cool"});
   }
