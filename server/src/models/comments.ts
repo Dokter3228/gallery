@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { ObjectId } from "mongoose";
 
 const imageCommentSchema = new mongoose.Schema<CommentType>({
   author: String,
@@ -10,7 +10,6 @@ const Comment = mongoose.model<CommentType>("Comment", imageCommentSchema);
 export type CommentType = {
   author: string;
   text: string;
-  // id: EntityId;
 };
 
 export { Comment };

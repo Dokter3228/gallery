@@ -41,7 +41,7 @@ export default function Signin() {
       navigate("/");
     }
     // @ts-ignore
-    if (check?.error.data.message === "this user already exists") {
+    if (check?.error?.data?.message === "this user already exists") {
       setUserAlreadyExistsError(true);
       setTimeout(() => {
         setUserAlreadyExistsError(false);

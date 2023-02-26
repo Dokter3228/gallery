@@ -16,7 +16,7 @@ imageRouter.use(
 imageRouter.get("/", imageController.getAllImages);
 imageRouter.post("/comments/", imageController.setImageComments);
 imageRouter.post("/:id", imageController.setImage);
-imageRouter.delete("/:id");
+imageRouter.delete("/:id", imageController.deleteImage);
 // FIXME  /image/:id patch -> add/remove/comments.
 
 // add comment -> new uuid

@@ -39,6 +39,34 @@ class imageController {
     }
   }
 
+  async deleteImage(req, res) {
+    try {
+      const uuid = req.params.id;
+      const image = await Image.findOne({ uuid: uuid });
+      const user = await User.findOne({ login: image.author });
+      for (let comment of image.comments) {
+        const commentDb = await Comment.deleteOne({ _id: comment });
+        // @ts-ignore
+        const index = user.comments.indexOf(comment._id);
+        if (index != -1) {
+          user.comments.splice(index, 1);
+        }
+      }
+      // @ts-ignore
+      const imageIndex = user.images.indexOf(image._id);
+      if (imageIndex != -1) {
+        user.images.splice(imageIndex, 1);
+      }
+      user.save();
+      const deletedImage = await Image.deleteOne({ uuid: uuid });
+      res.status(200).json({ message: "Success" });
+    } catch (e) {
+      res
+        .status(400)
+        .json({ error: "Something went wrong when deleting the image" });
+    }
+  }
+
   async setImageComments(req, res) {
     const { comments } = req.body;
     for (let comment of comments) {

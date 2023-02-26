@@ -2,6 +2,7 @@ import { api } from "./emptySplitApi";
 import { Comment, setAllImages } from "../slices/imagesSlice";
 import { Image } from "../slices/imagesSlice";
 import { reset, StoreComment } from "../slices/commentsSlice";
+import { EntityId } from "@reduxjs/toolkit";
 
 type Comments = {
   comments: StoreComment[];
@@ -43,6 +44,13 @@ export const extendedImagesApi = api.injectEndpoints({
       },
       invalidatesTags: ["Images"],
     }),
+    deleteImage: builder.mutation<void, EntityId>({
+      query: (id) => ({
+        url: `/images/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Images", "Users"],
+    }),
     setImageComments: builder.mutation<void, Comments>({
       query: (body) => ({
         url: "/images/comments/",
@@ -63,6 +71,7 @@ export const {
   useGetImagesQuery,
   useAddImageMutation,
   useSetImageCommentsMutation,
+  useDeleteImageMutation,
 } = extendedImagesApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'

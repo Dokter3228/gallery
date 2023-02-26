@@ -4,6 +4,7 @@ import { Simulate } from "react-dom/test-utils";
 import { useAppDispatch } from "../../../hooks";
 
 import { addComment } from "../../../features/slices/commentsSlice";
+import { useDeleteImageMutation } from "../../../features/api/imagesApi";
 
 type ImagePlateProps = {
   img: Image;
@@ -16,9 +17,11 @@ type ImagePlateProps = {
     }
   ];
 };
+
 const ImagePlate = (props: ImagePlateProps): JSX.Element => {
   const [comment, setComment] = useState("");
 
+  const [deleteImageFromTheServer] = useDeleteImageMutation();
   const dispatch = useAppDispatch();
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +35,15 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
     );
     setComment("");
   };
+
+  function handleImageDeleting() {
+    if (props.img.creationDate === "not created yet") {
+      console.log("remove from the state");
+    } else {
+      deleteImageFromTheServer(props.img.uuid);
+    }
+  }
+
   return (
     <div>
       <img className="rounded-2xl w-full h-52 h-22" src={props.img.src} />
@@ -57,6 +69,13 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
           className="bg-green-500 text-black rounded-md p-1 m-2 font-semibold"
         >
           Send
+        </button>
+        <button
+          onClick={handleImageDeleting}
+          type="submit"
+          className="bg-red-500 text-black rounded-md p-1 m-2 font-semibold"
+        >
+          Delete
         </button>
       </div>
       <div className="bg-gray-50 rounded-md p-4">
