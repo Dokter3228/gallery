@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import { Comment, Image } from "../../../features/slices/imagesSlice";
+import {
+  Comment,
+  deleteImage,
+  Image,
+} from "../../../features/slices/imagesSlice";
 import { Simulate } from "react-dom/test-utils";
 import { useAppDispatch } from "../../../hooks";
 
-import { addComment } from "../../../features/slices/commentsSlice";
+import {
+  addComment,
+  deleteComment,
+} from "../../../features/slices/commentsSlice";
 import { useDeleteImageMutation } from "../../../features/api/imagesApi";
+import { useSelector } from "react-redux";
+import { useAppSelector } from "../../../App/store";
+import { addDeletedImage } from "../../../features/slices/deletedImagesSlice";
 
 type ImagePlateProps = {
   img: Image;
@@ -23,6 +33,10 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
 
   const [deleteImageFromTheServer] = useDeleteImageMutation();
   const dispatch = useAppDispatch();
+
+  const allImages = useAppSelector((state) => state.images.entities);
+  const allComments = useAppSelector((state) => state.comments.comments);
+
   const handleCommentSending = (e: React.FormEvent) => {
     e.preventDefault();
     // @ts-ignore
@@ -38,9 +52,20 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
 
   function handleImageDeleting() {
     if (props.img.creationDate === "not created yet") {
-      console.log("remove from the state");
+      // @ts-ignore
+      Object.values(allImages).forEach((image) => {
+        if (image == undefined) return;
+        if (image.uuid === props.img.uuid)
+          dispatch(deleteImage(props.img.uuid));
+      });
+      allComments.forEach((comment) => {
+        if (comment.uuid === props.img.uuid) {
+          dispatch(deleteComment(props.img.uuid));
+        }
+      });
     } else {
-      deleteImageFromTheServer(props.img.uuid);
+      dispatch(addDeletedImage(props.img.uuid));
+      dispatch(deleteImage(props.img.uuid));
     }
   }
 

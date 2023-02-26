@@ -77,7 +77,7 @@ class imageController {
         text: comment.text,
       });
       await commentDb.save();
-      user.comments.push(commentDb);
+      if (user?.comments) user.comments.push(commentDb);
       // @ts-ignore
       image.comments.push(commentDb);
       await image.save();

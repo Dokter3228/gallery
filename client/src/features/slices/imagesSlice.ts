@@ -23,9 +23,11 @@ const imagesSlice = createSlice({
   reducers: {
     setAllImages: imagesAdapter.setAll,
     addImage: imagesAdapter.addOne,
+    deleteImage: imagesAdapter.removeOne,
     addComment: imagesAdapter.upsertOne,
   },
 });
 
-export const { setAllImages, addImage, addComment } = imagesSlice.actions;
+export const { setAllImages, addImage, addComment, deleteImage } =
+  imagesSlice.actions;
 export default imagesSlice.reducer;

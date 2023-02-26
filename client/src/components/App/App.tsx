@@ -6,6 +6,7 @@ import {
 } from "../../features/api/usersApi";
 import {
   useAddImageMutation,
+  useDeleteImageMutation,
   useGetImagesQuery,
   useSetImageCommentsMutation,
 } from "../../features/api/imagesApi";
@@ -26,6 +27,7 @@ const App = (): JSX.Element => {
   const commentsSelector = useAppSelector(
     (state: any): StoreComment[] => state.comments.comments
   );
+  const deletedImagesSelector = useAppSelector((state) => state.deletedImages);
   // @ts-ignore
   const { data } = useCurrentUserQuery();
   const [checkIfUserAuthorized] = useCheckAuthMutation();
@@ -46,12 +48,13 @@ const App = (): JSX.Element => {
   const { isLoading } = useGetImagesQuery();
   const [addImageToServer] = useAddImageMutation();
   const [setImageComments] = useSetImageCommentsMutation();
+  const [deleteImageFromTheServer] = useDeleteImageMutation();
 
   if (isLoading) {
     return <h1>Wait pls!</h1>;
   }
 
-  const handleImageSending = async (
+  const handleSavingChanges = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
@@ -77,6 +80,9 @@ const App = (): JSX.Element => {
     setTimeout(() => {
       setImageComments({ comments: commentsSelector });
     }, 1000);
+    for (let deletedImageUuid of deletedImagesSelector) {
+      deleteImageFromTheServer(deletedImageUuid);
+    }
   };
 
   return (
@@ -106,7 +112,7 @@ const App = (): JSX.Element => {
         />
         <button
           className="bg-green-500 text-black rounded-md p-1.5 font-semibold"
-          onClick={handleImageSending}
+          onClick={handleSavingChanges}
         >
           Save Changes
         </button>
