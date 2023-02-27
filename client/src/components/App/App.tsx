@@ -37,8 +37,9 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     const redirectIfNoCookie = async () => {
+      const res = await checkIfUserAuthorized();
       // @ts-ignore
-      if (isError) {
+      if (res?.error) {
         navigate("/login");
       }
     };
@@ -132,7 +133,7 @@ const App = (): JSX.Element => {
         </button>
       </form>
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">
-        {!isImagesLoading ? (
+        {!isLoading ? (
           Object.values(imageSelector).map((img) => {
             const newComments: any = [];
             commentsSelector.forEach((comment) => {
