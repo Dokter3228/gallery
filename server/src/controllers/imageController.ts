@@ -67,6 +67,41 @@ class imageController {
     }
   }
 
+  async deleteComments(req, res) {
+    try {
+      const imageUuid = req.params.id;
+      const { comments } = req.body;
+      const image = await Image.findOne({ uuid: imageUuid });
+      const user = await User.findOne({ login: image.author });
+
+      for await (let [i, imageH] of image.comments.entries()) {
+        const commentInImageDb = await image.comments.includes(
+          comments[i]?.uuid
+        );
+        if (!commentInImageDb) {
+          await Comment.deleteOne({
+            _id: image.comments[i]._id,
+          });
+          // const index = await user.comments.indexOf(image.comments[i]._id);
+          // if (index != -1) {
+          //   await user.comments.splice(index, 1);
+          // }
+          // const indexImage = await image.comments.indexOf(
+          //   image.comments[i]._id
+          // );
+          // await image.comments.splice(indexImage, 1);
+        }
+      }
+      await image.save();
+      await user.save();
+      res.status(200).json({ message: "Success" });
+    } catch (e) {
+      res
+        .status(400)
+        .json({ error: "Something went wrong when deleting the image" });
+    }
+  }
+
   async setImageComments(req, res) {
     const { comments } = req.body;
     for (let comment of comments) {
@@ -93,10 +128,13 @@ class imageController {
       const comments: CommentType[] = [];
       for (const imgCom of img.comments) {
         const com = await Comment.findById(imgCom);
-        comments.push({
-          author: com.author,
-          text: com.text,
-        });
+        if (com)
+          comments.push({
+            author: com.author,
+            text: com.text,
+            // @ts-ignore
+            uuid: com._id,
+          });
       }
       const imgData = {
         uuid: img.uuid,

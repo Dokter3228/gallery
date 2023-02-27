@@ -1,6 +1,5 @@
 import { api } from "./emptySplitApi";
 import { currentUserLogin, UserState } from "../slices/userSlice";
-
 type Login = {
   login: string;
   password: string;

@@ -10,6 +10,7 @@ const Comment = mongoose.model<CommentType>("Comment", imageCommentSchema);
 export type CommentType = {
   author: string;
   text: string;
+  uuid: ObjectId;
 };
 
 export { Comment };

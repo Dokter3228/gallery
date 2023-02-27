@@ -6,15 +6,13 @@ import {
 } from "../../../features/slices/imagesSlice";
 import { Simulate } from "react-dom/test-utils";
 import { useAppDispatch } from "../../../hooks";
-
-import {
-  addComment,
-  deleteComment,
-} from "../../../features/slices/commentsSlice";
+import { deleteComment } from "../../../features/slices/commentsSlice";
+import { addComment } from "../../../features/slices/commentsSlice";
 import { useDeleteImageMutation } from "../../../features/api/imagesApi";
 import { useSelector } from "react-redux";
 import { useAppSelector } from "../../../App/store";
 import { addDeletedImage } from "../../../features/slices/deletedImagesSlice";
+import CommentPlate from "./Comment";
 
 type ImagePlateProps = {
   img: Image;
@@ -60,6 +58,7 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
       });
       allComments.forEach((comment) => {
         if (comment.uuid === props.img.uuid) {
+          // @ts-ignore
           dispatch(deleteComment(props.img.uuid));
         }
       });
@@ -108,25 +107,35 @@ const ImagePlate = (props: ImagePlateProps): JSX.Element => {
         {props.img &&
           props.img?.comments?.length > 0 &&
           props.img.comments.map((comment, index) => {
+            // @ts-ignore
             return (
-              <div
-                key={index}
-                className="text-black flex justify-between mx-2 "
-              >
-                <h1 className="text-2xl">{comment.author}</h1>
-                <p>{comment.text}</p>
+              <div key={index} className="text-black flex justify-between m-2 ">
+                <CommentPlate
+                  key={index}
+                  // @ts-ignore
+                  author={comment.author}
+                  text={comment.text}
+                  // @ts-ignore
+                  uuid={comment.uuid}
+                  img={props.img}
+                />
               </div>
             );
           })}
         {props.newComments &&
           props.newComments.map((comment, index) => {
             return (
-              <div
-                key={index}
-                className="text-black flex justify-between mx-2 "
-              >
+              <div key={index} className="text-black flex justify-between m-2 ">
                 <h1 className="text-2xl">{comment.author}</h1>
                 <p>{comment.text}</p>
+                <button
+                  onClick={() => {
+                    dispatch(deleteComment(comment.uuid));
+                  }}
+                  className="bg-red-500 text-black rounded-md w-8 h-8 font-semibold"
+                >
+                  X
+                </button>
               </div>
             );
           })}

@@ -51,6 +51,17 @@ export const extendedImagesApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Images", "Users"],
     }),
+    deleteComments: builder.mutation<
+      void,
+      { id: EntityId; comments: object[] }
+    >({
+      query: (body) => ({
+        url: `/images/${body.id}/comments`,
+        method: "DELETE",
+        body,
+      }),
+      invalidatesTags: ["Images", "Users"],
+    }),
     setImageComments: builder.mutation<void, Comments>({
       query: (body) => ({
         url: "/images/comments/",
@@ -71,6 +82,7 @@ export const {
   useGetImagesQuery,
   useAddImageMutation,
   useSetImageCommentsMutation,
+  useDeleteCommentsMutation,
   useDeleteImageMutation,
 } = extendedImagesApi;
 

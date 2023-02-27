@@ -12,7 +12,8 @@ export default function Login() {
   const dispatch = useAppDispatch();
   const [loginUser] = useLoginMutation();
 
-  const [checkIfUserAuthorized] = useCheckAuthMutation();
+  const [checkIfUserAuthorized, { isLoading, isSuccess, error, isError }] =
+    useCheckAuthMutation();
   useEffect(() => {
     const redirectIfNoCookie = async () => {
       const res = await checkIfUserAuthorized();

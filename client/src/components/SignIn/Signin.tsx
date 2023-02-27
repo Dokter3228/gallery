@@ -21,7 +21,6 @@ export default function Signin() {
   useEffect(() => {
     const redirectIfHasCookie = async () => {
       const res = await checkIfUserAuthorized();
-      console.log(res);
       // @ts-ignore
       if (res.data.login) {
         navigate("/");

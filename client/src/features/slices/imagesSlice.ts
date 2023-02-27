@@ -2,13 +2,14 @@ import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";
 
 export type Image = {
   author: string;
-  comments: [Comment];
+  comments: Comment[];
   creationDate: string;
   src: string;
   uuid: EntityId;
 };
 
 export type Comment = {
+  uuid: any;
   author: string;
   text: string;
 };
@@ -24,10 +25,10 @@ const imagesSlice = createSlice({
     setAllImages: imagesAdapter.setAll,
     addImage: imagesAdapter.addOne,
     deleteImage: imagesAdapter.removeOne,
-    addComment: imagesAdapter.upsertOne,
+    deleteComment: imagesAdapter.updateOne,
   },
 });
 
-export const { setAllImages, addImage, addComment, deleteImage } =
+export const { setAllImages, addImage, deleteImage, deleteComment } =
   imagesSlice.actions;
 export default imagesSlice.reducer;

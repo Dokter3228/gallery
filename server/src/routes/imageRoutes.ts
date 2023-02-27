@@ -15,6 +15,7 @@ imageRouter.use(
 // Rest api
 imageRouter.get("/", imageController.getAllImages);
 imageRouter.post("/comments/", imageController.setImageComments);
+imageRouter.delete("/:id/comments/", imageController.deleteComments);
 imageRouter.post("/:id", imageController.setImage);
 imageRouter.delete("/:id", imageController.deleteImage);
 // FIXME  /image/:id patch -> add/remove/comments.
