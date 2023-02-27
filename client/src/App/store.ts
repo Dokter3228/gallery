@@ -10,7 +10,6 @@ export const store = configureStore({
     images: imagesReducer,
     comments: commentsReducer,
     user: userReducer,
-    deletedImages: deletedImagesReducer,
     [api.reducerPath]: api.reducer,
   },
   middleware: (getDefaultMiddleware) =>

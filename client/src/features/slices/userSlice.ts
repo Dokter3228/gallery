@@ -1,22 +1,26 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { extendedUsersApi } from "../api/usersApi";
 
-export interface UserState {
+export interface User {
   login: string;
 }
 
-const initialState: UserState = {
+const initialState: User = {
   login: "nobody",
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    currentUserLogin(state, action: PayloadAction<string>) {
-      state.login = action.payload;
-    },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      extendedUsersApi.endpoints.currentUser.matchFulfilled,
+      (state, action: PayloadAction<User>) => {
+        state.login = action.payload.login;
+      }
+    );
   },
 });
 
-export const { currentUserLogin } = userSlice.actions;
 export default userSlice.reducer;

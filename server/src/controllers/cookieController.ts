@@ -1,12 +1,12 @@
 import jwt from "jsonwebtoken";
+import {Request, Response} from "express";
 class cookieController {
-  checkAuth = (req, res) => {
+  checkAuth = (req:Request, res:Response) => {
     try {
       const token = req.cookies["set-cookie"];
       let userAuthorized =
         token && jwt.verify(token, process.env.JWT_SECRET_KEY);
-      if (userAuthorized) {
-        // @ts-ignore
+      if (typeof userAuthorized !== "string") {
         const { login } = userAuthorized;
         res.status(200).json({
           login,

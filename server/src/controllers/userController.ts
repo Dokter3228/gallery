@@ -1,8 +1,9 @@
 import User from "../models/user";
 import jwt from "jsonwebtoken";
+import { Request, Response } from "express";
 
 const doesUserExistCheck = async function (login, password) {
-  const doesUserExist = await User.findOne(
+  return await User.findOne(
     { $and: [{ login: login }, { password: password }] },
     (err, res) => {
       if (err) {
@@ -16,11 +17,10 @@ const doesUserExistCheck = async function (login, password) {
     .catch(function (err) {
       console.log(err);
     });
-  return doesUserExist;
 };
 
 class userController {
-  async createNewUser(req, res) {
+  async createNewUser(req: Request, res: Response) {
     const { login, password } = req.body;
     const doesUserExist = await doesUserExistCheck(login, password);
     if (!doesUserExist) {
@@ -50,7 +50,7 @@ class userController {
     }
   }
 
-  async login(req, res) {
+  async login(req: Request, res: Response) {
     const { login, password } = req.body;
     const doesUserExist = await doesUserExistCheck(login, password);
     if (doesUserExist) {
@@ -79,7 +79,7 @@ class userController {
     }
   }
 
-  async logout(req, res) {
+  async logout(req: Request, res: Response) {
     res.clearCookie("set-cookie");
     res.status(200).json({
       message: "you logged out",

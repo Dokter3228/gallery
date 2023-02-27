@@ -1,23 +1,32 @@
 import { createSlice, EntityId, PayloadAction, Slice } from "@reduxjs/toolkit";
+import { extendedImagesApi } from "../api/imagesApi";
 
-export type StoreComment = {
+// TODO add relative import this types to server
+
+export type Comment = {
   text: string;
   author: string;
-  uuid: EntityId;
+  uuid: EntityId; // uuid of comment
+  image_id: EntityId; // uuid of comment
+  new?: boolean;
+  updated?: boolean;
 };
+
 interface CommentsState {
-  comments: StoreComment[];
+  comments: Comment[];
 }
 
 const initialState: CommentsState = {
   comments: [],
 };
 
+// TODO refactor to EntityProvider
+
 const commentsSlice = createSlice({
   name: "comments",
   initialState,
   reducers: {
-    addComment(state, action: PayloadAction<StoreComment>) {
+    addComment(state, action: PayloadAction<Comment>) {
       state.comments.push(action.payload);
     },
     deleteComment(state, action: PayloadAction<EntityId>) {
@@ -29,9 +38,14 @@ const commentsSlice = createSlice({
         }
       }
     },
-    reset: (state) => {
-      state.comments = [];
-    },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      extendedImagesApi.endpoints.postImagesComments.matchFulfilled,
+      (state, action) => {
+        state.comments = [];
+      }
+    );
   },
 });
 

@@ -18,7 +18,7 @@ import { useAppSelector } from "../../App/store";
 import { useAppDispatch } from "../../hooks";
 import { addImage } from "../../features/slices/imagesSlice";
 import { nanoid } from "@reduxjs/toolkit";
-import { StoreComment } from "../../features/slices/commentsSlice";
+import { Comment } from "../../features/slices/commentsSlice";
 import comment from "../UI/imagePlate/Comment";
 
 const App = (): JSX.Element => {
@@ -27,24 +27,10 @@ const App = (): JSX.Element => {
   // @ts-ignore
   const imageSelector = useAppSelector((state) => state.images.entities);
   const commentsSelector = useAppSelector(
-    (state: any): StoreComment[] => state.comments.comments
+    (state: any): Comment[] => state.comments.comments
   );
-  const deletedImagesSelector = useAppSelector((state) => state.deletedImages);
-  // @ts-ignore
   const { data } = useCurrentUserQuery();
-  const [checkIfUserAuthorized, { isLoading, isSuccess, error, isError }] =
-    useCheckAuthMutation();
-
-  useEffect(() => {
-    const redirectIfNoCookie = async () => {
-      const res = await checkIfUserAuthorized();
-      // @ts-ignore
-      if (res?.error) {
-        navigate("/login");
-      }
-    };
-    redirectIfNoCookie();
-  }, []);
+  const [checkIfUserAuthorized, { isLoading }] = useCheckAuthMutation();
 
   const [blobState, setBlobState] = useState<string[]>([]);
 

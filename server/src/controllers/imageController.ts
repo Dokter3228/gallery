@@ -3,8 +3,10 @@ import path from "path";
 import { Comment, CommentType } from "../models/comments";
 import User from "../models/user";
 import * as process from "process";
+import { Request, Response } from "express";
+
 class imageController {
-  async setImage(req, res) {
+  async setImage(req: Request, res: Response) {
     try {
       const { login, uuid } = req.body;
       let image;
@@ -14,9 +16,11 @@ class imageController {
       }
       image = req.files.image;
       const fileExtension = image.name.split(".")[1];
+      // FIXME refactor this to path.dirname(path)
       uploadPath =
         path.resolve(__dirname, "..", "../public/images") +
         `/${uuid}.${fileExtension}`;
+
       const date = new Date().toLocaleDateString();
       const imageDb = new Image({
         author: login,
@@ -39,7 +43,7 @@ class imageController {
     }
   }
 
-  async deleteImage(req, res) {
+  async deleteImage(req: Request, res: Response) {
     try {
       const uuid = req.params.id;
       const image = await Image.findOne({ uuid: uuid });
@@ -67,7 +71,7 @@ class imageController {
     }
   }
 
-  async deleteComments(req, res) {
+  async deleteComments(req: Request, res: Response) {
     try {
       const imageUuid = req.params.id;
       const { comments } = req.body;
@@ -102,15 +106,15 @@ class imageController {
     }
   }
 
-  async setImageComments(req, res) {
+  async setImageComments(req: Request, res: Response) {
     const { comments } = req.body;
     for (let comment of comments) {
-      const image = await Image.findOne({ uuid: comment.uuid });
-      const user = await User.findOne({ login: comment.author });
       const commentDb = new Comment({
         author: comment.author,
         text: comment.text,
       });
+      const image = await Image.findOne({ uuid: comment.uuid });
+      const user = await User.findOne({ login: comment.author });
       await commentDb.save();
       if (user?.comments) user.comments.push(commentDb);
       // @ts-ignore
@@ -121,7 +125,7 @@ class imageController {
     res.status(200).json({ mes: "cool" });
   }
 
-  async getAllImages(req, res) {
+  async getAllImages(req: Request, res: Response) {
     const imagesData = [];
     const imagesDb = await Image.find();
     for (const img of imagesDb) {

@@ -1,5 +1,5 @@
 import { api } from "./emptySplitApi";
-import { currentUserLogin, UserState } from "../slices/userSlice";
+import { User } from "../slices/userSlice";
 type Login = {
   login: string;
   password: string;
@@ -7,7 +7,7 @@ type Login = {
 
 export const extendedUsersApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<Login, object>({
+    login: builder.mutation<Login, void>({
       query: (body) => ({
         url: "/users/login",
         method: "POST",
@@ -20,7 +20,7 @@ export const extendedUsersApi = api.injectEndpoints({
         method: "POST",
       }),
     }),
-    signup: builder.mutation<Login, object>({
+    signup: builder.mutation<Login, any>({
       query: (body) => ({
         url: "/users/register",
         method: "POST",
@@ -33,15 +33,11 @@ export const extendedUsersApi = api.injectEndpoints({
         method: "POST",
       }),
     }),
-    currentUser: builder.query<UserState, void>({
+    currentUser: builder.query<User, void>({
       query: () => ({
         url: "/users/checkAuth",
         method: "POST",
       }),
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        dispatch(currentUserLogin(data.login));
-      },
     }),
   }),
   overrideExisting: false,

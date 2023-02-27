@@ -1,26 +1,18 @@
 import { api } from "./emptySplitApi";
 import { Comment, setAllImages } from "../slices/imagesSlice";
 import { Image } from "../slices/imagesSlice";
-import { reset, StoreComment } from "../slices/commentsSlice";
+import { reset, Comment } from "../slices/commentsSlice";
 import { EntityId } from "@reduxjs/toolkit";
 
 type Comments = {
-  comments: StoreComment[];
+  comments: Comment[];
 };
 export const extendedImagesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getImages: builder.query<Image[], void>({
       keepUnusedDataFor: 0,
       query: () => "/images/",
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAllImages(data));
-        } catch (err) {
-          dispatch(setAllImages([]));
-        }
-      },
-      providesTags: (result, error, arg) =>
+      providesTags: (result) =>
         result
           ? [
               ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })),
@@ -34,14 +26,6 @@ export const extendedImagesApi = api.injectEndpoints({
         method: "POST",
         body,
       }),
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAllImages(data));
-        } catch (err) {
-          dispatch(setAllImages([]));
-        }
-      },
       invalidatesTags: ["Images"],
     }),
     deleteImage: builder.mutation<void, EntityId>({
@@ -62,16 +46,15 @@ export const extendedImagesApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Images", "Users"],
     }),
-    setImageComments: builder.mutation<void, Comments>({
+    // FiXME refactor to convention
+    // CONVENTION VERB/URL setImageComments -> postImagesComments
+    postImagesComments: builder.mutation<void, Comments>({
       query: (body) => ({
         url: "/images/comments/",
+        // FXIME refactor to Patch
         method: "POST",
         body,
       }),
-      async onQueryStarted(id, { dispatch, queryFulfilled }) {
-        const { data } = await queryFulfilled;
-        dispatch(reset());
-      },
       invalidatesTags: ["Images"],
     }),
   }),

@@ -4,6 +4,7 @@ import morgan from "morgan";
 import { config } from "dotenv";
 const cors = require("cors");
 config();
+
 import { userRouter } from "./routes/userRoutes";
 import { imageRouter } from "./routes/imageRoutes";
 import { authMiddleware } from "./middleware/auth";
@@ -27,7 +28,7 @@ const app = express();
 const whitelist = ["http://localhost:3000"];
 const corsOptions = {
   origin: function (origin, callback) {
-    if (!origin || whitelist.indexOf(origin) !== -1) {
+    if (!origin || whitelist.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -43,10 +44,10 @@ app.use(express.static("public"));
 app.listen(port, () => {
   console.log(`Server Started at port: ${port}`);
 });
-// TODO add /config
 
-type Config = {
-  domain: string; // localhost:PORT/
+type ConfigResponse = {
+  token: string; // bcrypt token
+  domain: string; // localhost:PORT
 };
 
 app.use("/users", userRouter);

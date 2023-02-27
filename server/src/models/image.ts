@@ -1,6 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { Comment } from "./comments";
 
+// TODO add types
 const imageSchema = new mongoose.Schema({
   author: {
     required: true,
@@ -14,18 +15,16 @@ const imageSchema = new mongoose.Schema({
     require: true,
     type: String,
   },
-  comments: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Comment",
-    },
-  ],
+  comments: [String], // Entity ID
   src: {
     type: String,
     require: true,
   },
 });
 
+// TODO add type
+
+//
 export default mongoose.model("Image", imageSchema);
 
 // {
