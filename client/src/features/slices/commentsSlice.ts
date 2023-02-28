@@ -7,7 +7,7 @@ export type Comment = {
   text: string;
   author: string;
   uuid: EntityId; // uuid of comment
-  image_id: EntityId; // uuid of comment
+  image_id?: EntityId; // uuid of comment
   new?: boolean;
   updated?: boolean;
 };
@@ -49,5 +49,5 @@ const commentsSlice = createSlice({
   },
 });
 
-export const { addComment, reset, deleteComment } = commentsSlice.actions;
+export const { addComment, deleteComment } = commentsSlice.actions;
 export default commentsSlice.reducer;

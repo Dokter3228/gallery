@@ -7,7 +7,7 @@ type Login = {
 
 export const extendedUsersApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<Login, void>({
+    login: builder.mutation<void, Login>({
       query: (body) => ({
         url: "/users/login",
         method: "POST",

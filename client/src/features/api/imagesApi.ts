@@ -1,7 +1,7 @@
 import { api } from "./emptySplitApi";
-import { Comment, setAllImages } from "../slices/imagesSlice";
+import {  setAllImages } from "../slices/imagesSlice";
 import { Image } from "../slices/imagesSlice";
-import { reset, Comment } from "../slices/commentsSlice";
+import { Comment } from "../slices/commentsSlice";
 import { EntityId } from "@reduxjs/toolkit";
 
 type Comments = {
@@ -64,7 +64,6 @@ export const extendedImagesApi = api.injectEndpoints({
 export const {
   useGetImagesQuery,
   useAddImageMutation,
-  useSetImageCommentsMutation,
   useDeleteCommentsMutation,
   useDeleteImageMutation,
 } = extendedImagesApi;

@@ -24,11 +24,11 @@ class userController {
     const { login, password } = req.body;
     const doesUserExist = await doesUserExistCheck(login, password);
     if (!doesUserExist) {
-      const user = new User({
-        login: req.body.login,
-        password: req.body.password,
-      });
       try {
+        const user = new User({
+          login,
+          password,
+        });
         const userToSave = await user.save();
         const token = jwt.sign(
           {
@@ -46,7 +46,7 @@ class userController {
         res.status(400).json({ message: error.message });
       }
     } else {
-      res.status(301).json({ message: "this user already exists" });
+      res.status(409).json({ message: "this user already exists" });
     }
   }
 
@@ -66,12 +66,8 @@ class userController {
         res.cookie("set-cookie", token, {
           httpOnly: true,
         });
-        res.status(200).send({
-          login,
-          password,
-        });
+        res.status(200).send(doesUserExist);
       } catch (e) {
-        console.log(e);
         res.status(400).json({ message: e.message });
       }
     } else {
@@ -79,11 +75,25 @@ class userController {
     }
   }
 
+  async getUser(req: Request, res: Response) {
+    try {
+      const id = req.params.id;
+      const user = await User.findById(id);
+      res.status(200).json(user);
+    } catch (e) {
+      res.status(400).json({ message: e.message });
+    }
+  }
+
   async logout(req: Request, res: Response) {
-    res.clearCookie("set-cookie");
-    res.status(200).json({
-      message: "you logged out",
-    });
+    try {
+      res.clearCookie("set-cookie");
+      res.status(200).json({
+        message: "you logged out",
+      });
+    } catch (e) {
+      res.status(400).json({ message: e.message });
+    }
   }
 }
 

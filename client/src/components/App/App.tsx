@@ -9,7 +9,6 @@ import {
   useDeleteCommentsMutation,
   useDeleteImageMutation,
   useGetImagesQuery,
-  useSetImageCommentsMutation,
 } from "../../features/api/imagesApi";
 import Logout from "../Logout/Logout";
 import { useNavigate } from "react-router-dom";
@@ -36,7 +35,6 @@ const App = (): JSX.Element => {
 
   const { isLoading: isImagesLoading } = useGetImagesQuery();
   const [addImageToServer] = useAddImageMutation();
-  const [setImageComments] = useSetImageCommentsMutation();
   const [deleteImageFromTheServer] = useDeleteImageMutation();
   const [deleteCommentsFromImage] = useDeleteCommentsMutation();
 
@@ -81,9 +79,6 @@ const App = (): JSX.Element => {
       // @ts-ignore
       setImageComments({ comments: commentsSelector });
     }, 1000);
-    for (let deletedImageUuid of deletedImagesSelector) {
-      deleteImageFromTheServer(deletedImageUuid);
-    }
   };
 
   return (

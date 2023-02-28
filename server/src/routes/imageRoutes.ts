@@ -1,6 +1,7 @@
 import express from "express";
 const fileUpload = require("express-fileupload");
 import imageController from "../controllers/imageController";
+import image from "../models/image";
 const imageRouter = express.Router();
 
 imageRouter.use(
@@ -13,12 +14,16 @@ imageRouter.use(
   })
 );
 
-imageRouter.get("/", imageController.getAllImages);
-// TODO get image by id
-imageRouter.post("/comments/", imageController.setImageComments);
-imageRouter.delete("/:id/comments/", imageController.deleteComments); // delete comments by image id  when in body : string[]
-imageRouter.patch("/:id/comments/", imageController.deleteComments); // delete comments by image id  when in body []
-// FIXME  /image/:id patch -> add/remove/comments.
+imageRouter.get("/", imageController.getImages); // get all images
+imageRouter.post("/", imageController.postImage); // post one image
+imageRouter.get("/comments/", imageController.getCommentsByEntityIds); // get comments by EntityId[]
+imageRouter.get("/:id", imageController.getImage); // get one image by id
+imageRouter.delete("/:id", imageController.deleteImage); // delete one image by id
+imageRouter.get("/:id/comments/", imageController.getImageComments); // get image comments by Image Id
+imageRouter.post("/:id/comments/", imageController.postImageComments); // change comments by image id  when string[]
+imageRouter.patch("/:id/comments/", imageController.updateImageComments); // delete comments by image id  when in
+// body []
+// FIXME  /images/:id patch -> add/remove/comments.
 // example OF PATCH
 
 // COME TO FRONT PART OF getImageById
@@ -44,8 +49,20 @@ imageRouter.patch("/:id/comments/", imageController.deleteComments); // delete c
 // [
 // {author: "2", text: "ASDASDASD", id: 'asdasd'}
 // ] this remains only one comment on the image cause verb was POST
-
-imageRouter.post("/:id", imageController.setImage);
-imageRouter.delete("/:id", imageController.deleteImage);
-
 export { imageRouter };
+
+// [
+// "63fe5358f5a2fff2d4297986",
+// "63fe5358f5a2fff2d4297989"
+// ];
+
+// {
+//     "author": "somebody",
+//     "text": "some testing text",
+//     "_id": "63fe5358f5a2fff2d4297986"
+// },
+// {
+//     "author": "somebody",
+//     "text": "some other testing text",
+//     "_id": "63fe5358f5a2fff2d4297989"
+// }

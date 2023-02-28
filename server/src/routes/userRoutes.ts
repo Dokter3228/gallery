@@ -6,6 +6,7 @@ const userRouter = express.Router();
 
 userRouter.use(cookieParser("secret key"));
 
+userRouter.get("/:id", userController.getUser);
 userRouter.post("/register", userController.createNewUser);
 userRouter.post("/login", userController.login);
 userRouter.post("/logout", userController.logout);

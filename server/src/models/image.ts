@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema, Types } from "mongoose";
 import { Comment } from "./comments";
 
 // TODO add types
@@ -7,15 +7,14 @@ const imageSchema = new mongoose.Schema({
     required: true,
     type: String,
   },
-  uuid: {
-    required: true,
-    type: String,
-  },
   creationDate: {
     require: true,
     type: String,
   },
-  comments: [String], // Entity ID
+  comments: {
+    type: [Schema.Types.ObjectId],
+    ref: "Comment",
+  },
   src: {
     type: String,
     require: true,
