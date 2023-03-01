@@ -4,10 +4,9 @@ class cookieController {
   checkAuth = (req: Request, res: Response) => {
     try {
       const token = req.cookies["set-cookie"];
-      console.log(req.cookies);
       let userAuthorized =
         token && jwt.verify(token, process.env.JWT_SECRET_KEY);
-      if (typeof userAuthorized !== "string") {
+      if (typeof userAuthorized !== "string" && userAuthorized !== undefined) {
         const { login } = userAuthorized;
         res.status(200).json({
           login,

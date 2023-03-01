@@ -6,7 +6,7 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 
-const baseQueryEnchanted: BaseQueryFn<
+const baseQueryWithAuth: BaseQueryFn<
   string | FetchArgs,
   unknown,
   FetchBaseQueryError,
@@ -18,7 +18,6 @@ const baseQueryEnchanted: BaseQueryFn<
     baseUrl,
     credentials: "include",
   });
-
   const result = await rawBaseQuery(args, WebApi, extraOptions);
 
   if (result.error?.status === 401) {
@@ -30,7 +29,7 @@ const baseQueryEnchanted: BaseQueryFn<
 };
 
 export const api = createApi({
-  baseQuery: baseQueryEnchanted,
+  baseQuery: baseQueryWithAuth,
   endpoints: () => ({}),
-  tagTypes: ["Images", "Users"],
+  tagTypes: ["Images", "Users", "Comments"],
 });

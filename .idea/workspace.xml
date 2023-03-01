@@ -4,89 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="finish with main functionality">
-      <change afterPath="$PROJECT_DIR$/server/mocks/images/thomas-shelby.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/06f45a61-7007-4a97-a8a2-6ea105c1f859.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/166a9609-a5d6-47fc-833e-5c275b9ac11f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/1c982622-9d35-4b66-9e04-6627876b9bc2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/1d72027c-8794-4e06-abf8-bda0bb68dd73.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/22a937f1-a2e0-4406-a9a9-9e00a49eabf0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/2380166d-2784-4bc9-8803-68eb1518299c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/27807c87-6a17-4a6a-9a6c-55deaf4b402f.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/289ba63c-acd2-41cf-81b5-71beafd1919b.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3207a80e-edd5-46ea-b185-50bba55e6574.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3233e29d-fd24-49eb-9621-eb4f9783290a.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/328decf4-2644-404c-b8de-0f34af0f969f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/337c2298-6cb7-4699-962e-39c160a13bc0.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/34bb406c-59a7-45e1-8258-b5dca3209287.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3bb6b3a2-a3e6-449c-9172-feb3d398d6c7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3d41043d-055b-4bf6-a7f4-ec61a53327ab.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/429d741b-2a6d-4d58-986a-3ae94d3eb079.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/44644ffa-a60b-44d6-a374-da9ae97ec08b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/457b4736-324f-4002-8343-3b09eb79ce3a.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/547b3844-e217-40be-8c4d-8f382a4c0b45.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/584ab8d9-5202-4111-90ca-d8ea96f05468.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/5d4655dd-00fc-458c-bf67-7d58eb114bc2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/5f8dad93-2823-4dfe-9fe2-9c4be232ab76.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/607c8aa1-ad31-4305-811c-c95f0c715251.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/62fee657-a003-4842-b377-1d543b025b25.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/672c4bfe-8695-45c6-8ba2-42a7c322b155.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/6bdafaf1-6265-4215-992c-901043ced81b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/6de134c6-0b95-4bce-b505-17f3007d674f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/78b645eb-6e40-4673-a108-2877d76e3843.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/82b05e31-6f93-4b8e-b33b-5e4fe49f1200.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8536d9b3-9595-41ea-ae63-fe03b12a112f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8822ef30-51b8-4637-abec-18ee0f9de78b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8a6938a7-5c77-4be4-9f8e-88befed2dbc3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8e79eeca-d5a5-48b0-94e4-cc16dc1e921a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/9c7621b3-0201-4755-a6e2-0f7c1e104df6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a20915f3-b708-4434-8f6c-ccbd057d5430.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a3e103ab-35b6-49b9-b26d-e1c4c1dcd550.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/acd38d91-f185-4c8c-ae2b-11f9266e846f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b039aa94-ab95-4d49-9d42-3db775654f9c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b22da664-bab7-4d33-9920-88fad5b20be7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b7c5d5c6-5933-44f9-852b-1ef29cbe9878.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c25cba0d-7c64-44ad-94fb-6d8d3b0cd46b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c267c2a1-a6f0-47b7-8559-a70fca81ad3c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c302e94b-e252-4bfe-be66-d37bd27e47ca.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c5121cb2-5634-4193-8680-f0045f088f82.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c654efd7-fa37-45b0-b862-211977a70562.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ca830d3c-0e97-42f8-86be-c3c088faabef.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/cab3da9a-10ba-4a86-8539-b3a67f6ba50a.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ce11b60e-aa2d-4148-be31-eec719685323.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/cee8008d-9514-4f1d-be2e-e2342eae38d6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d73812d3-84bb-476d-bd20-c05a9fe82b8e.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d9e8cffe-f97c-46a5-89a5-df662f1eef49.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/da1bcd3a-83d9-4a00-9594-2c502dd05109.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/dab512b5-679e-42bc-8b7c-afc387139c22.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/dd4b5388-26b7-44c7-9ac6-6180381f1145.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/df7a497a-ef7d-4ee4-b628-0d9514e617d1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e26e1318-4364-4d41-af14-c61ac0c53368.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e66bd7a1-6a24-4bd2-b2ec-1ff2bb7de3b5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ec6e6082-e7e5-4fa2-8ec8-41bdef7362fc.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/edd74ecc-a70a-4c82-843a-b1eafee1774a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f033531a-8f1c-431d-bc6f-18f840765a47.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f2c7a989-6370-4ab8-879d-094132ca1724.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f557b91d-ed14-4845-a2c1-b035766b6508.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f89eac94-0b1c-41b6-8b21-208c3446fa46.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f8f2a0ef-0f77-4177-91a6-f3944b852a9b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ff02c5c1-72ad-4fda-8e9f-05d7508dc774.jpg" afterDir="false" />
+    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add tests and basic server functionality">
+      <change afterPath="$PROJECT_DIR$/server/public/images/8dcfa4a3-7c95-42c4-96f1-1fb795429d73.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/981215f8-48e6-45fa-919c-df9aae6ecc56.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/99ec6406-dc4e-42a3-8fed-a5569fa6e7d5.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/a976adb3-6914-4480-aa87-cd4836b34dd8.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/public/images/df4c4ba2-70f4-48ff-8c56-78cb02f5337c.jpeg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/Comment.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/slices/commentsSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/commentsSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/slices/deletedImagesSlice.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/features/slices/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/imagesSlice.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/features/slices/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/userSlice.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/28B927tq8Sp4mvg7gf0-f.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/880d8ef4-afa6-4786-b506-178fe14a2866.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/3jPEqNCJO5-5TeH2kzr6k.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/9341be78-3085-4cf5-b07f-9f51616f204c.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/JavI-uw5rLMgFufdb0nAn.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/LEvbdnEjm5Xccmghek-vH.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/NUFLbzU3JfrdVMMsDBvRX.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/dlxc3tNu2NIHrMuPpwBkX.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/gfkjJ2ka-NsltUpCUkj4Q.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/q-scqMrpoO_ORiRbSk1QX.jpeg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/userController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/middleware/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/middleware/auth.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/test.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,25 +65,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/linux/Desktop/gallery/server/mocks/images",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "/home/linux/Desktop/gallery/server/node_modules/jest",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "/home/linux/Desktop/gallery/server/node_modules/prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "/home/linux/Desktop/gallery/server/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/gallery/server/mocks/images&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;/home/linux/Desktop/gallery/server/node_modules/jest&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/home/linux/Desktop/gallery/server/node_modules/prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/linux/Desktop/gallery/server/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/mocks/images" />
@@ -144,20 +97,7 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
-  <component name="RunManager" selected="Jest.main tests">
-    <configuration name="/images/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <node-options value="" />
-      <jest-package value="$PROJECT_DIR$/server/node_modules/jest" />
-      <working-dir value="$PROJECT_DIR$/server" />
-      <envs />
-      <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/server/src/test.test.ts" />
-      <test-names>
-        <test-name value="/images/" />
-      </test-names>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="npm.start (1)">
     <configuration name="main tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -187,6 +127,16 @@
       </test-names>
       <method v="2" />
     </configuration>
+    <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/client/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/server/package.json" />
       <command value="run" />
@@ -208,19 +158,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Jest./images/" />
       <item itemvalue="Jest.main tests" />
       <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
+      <item itemvalue="npm.start (1)" />
       <item itemvalue="npm.start" />
       <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.main tests" />
+        <item itemvalue="npm.start (1)" />
         <item itemvalue="npm.start" />
-        <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
         <item itemvalue="npm.test" />
-        <item itemvalue="Jest./images/" />
+        <item itemvalue="Jest.main tests" />
+        <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
       </list>
     </recent_temporary>
   </component>
@@ -284,6 +234,8 @@
       <workItem from="1677408629110" duration="26831000" />
       <workItem from="1677444722843" duration="4044000" />
       <workItem from="1677508072643" duration="1596000" />
+      <workItem from="1677622399317" duration="3912000" />
+      <workItem from="1677655742161" duration="16083000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -369,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677421618819</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add tests and basic server functionality">
+      <created>1677616475703</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1677616475703</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,6 +359,7 @@
     <MESSAGE value="add types fix small bugs" />
     <MESSAGE value="add direct image deleting from the server" />
     <MESSAGE value="finish with main functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish with main functionality" />
+    <MESSAGE value="add tests and basic server functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tests and basic server functionality" />
   </component>
 </project>

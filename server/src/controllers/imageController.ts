@@ -8,31 +8,10 @@ import { v4 as uuid } from "uuid";
 
 class imageController {
   async getImages(req: Request, res: Response) {
-    const imagesData = [];
     const imagesDb = await Image.find();
-    for (const img of imagesDb) {
-      const comments: CommentType[] = [];
-      for (const imgCom of img.comments) {
-        const com = await Comment.findById(imgCom);
-        if (com)
-          comments.push({
-            author: com.author,
-            text: com.text,
-            // @ts-ignore
-            uuid: com._id,
-          });
-      }
-      const imgData = {
-        uuid: img.uuid,
-        author: img.author,
-        comments: comments,
-        src: img.src,
-        creationDate: img.creationDate,
-      };
-      imagesData.push(imgData);
-    }
-    res.status(200).json(imagesData);
+    res.status(200).json(imagesDb);
   }
+
   async postImage(req: Request, res: Response) {
     try {
       const { author } = req.body;
@@ -123,6 +102,7 @@ class imageController {
           result.push(commentDb._id);
         }
       }
+      console.log("sadfasdfasdfasdfasfasdfads", result);
       const image = await Image.findByIdAndUpdate(
         id,
         { comments: result },
@@ -140,7 +120,6 @@ class imageController {
           console.log(err);
         });
       console.log(image);
-      await image.save();
       res.status(200).json(image);
     } catch (e) {
       res.status(400).json({ message: e.message });

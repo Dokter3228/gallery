@@ -27,13 +27,7 @@ export const extendedUsersApi = api.injectEndpoints({
         body,
       }),
     }),
-    checkAuth: builder.mutation<void, void>({
-      query: () => ({
-        url: "/users/checkAuth",
-        method: "POST",
-      }),
-    }),
-    currentUser: builder.query<User, void>({
+    checkAuth: builder.query<Login, void>({
       query: () => ({
         url: "/users/checkAuth",
         method: "POST",
@@ -43,7 +37,6 @@ export const extendedUsersApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-// TODO add types
 export const config = api.injectEndpoints({
   endpoints: (builder) => ({
     getConfig: builder.query({
@@ -57,6 +50,5 @@ export const {
   useLoginMutation,
   useSignupMutation,
   useLogoutMutation,
-  useCheckAuthMutation,
-  useCurrentUserQuery,
+  useCheckAuthQuery,
 } = extendedUsersApi;

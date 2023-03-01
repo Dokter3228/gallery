@@ -1,23 +1,19 @@
 import { createEntityAdapter, createSlice, EntityId } from "@reduxjs/toolkit";
 import { api } from "../api/emptySplitApi";
 import { extendedImagesApi } from "../api/imagesApi";
+import { Comment } from "./commentsSlice";
 export type Image = {
   author: string;
   comments: Comment[];
   creationDate: string;
   src: string;
-  uuid: EntityId;
+  _id: EntityId;
   new?: boolean;
-};
-
-export type Comment = {
-  uuid: any;
-  author: string;
-  text: string;
+  deleted?: boolean;
 };
 
 const imagesAdapter = createEntityAdapter<Image>({
-  selectId: (image) => image.uuid,
+  selectId: (image) => image._id,
 });
 
 const imagesSlice = createSlice({
@@ -26,6 +22,7 @@ const imagesSlice = createSlice({
   reducers: {
     setAllImages: imagesAdapter.setAll,
     addImage: imagesAdapter.addOne,
+    changeImage: imagesAdapter.updateOne,
     deleteImage: imagesAdapter.removeOne,
     deleteComment: imagesAdapter.updateOne,
   },
@@ -33,27 +30,27 @@ const imagesSlice = createSlice({
     builder.addMatcher(
       extendedImagesApi.endpoints.getImages.matchFulfilled,
       (state, action) => {
-        // @ts-ignore
-        imagesAdapter.setAll(state, action.payload.data);
+        imagesAdapter.setAll(state, action.payload);
       }
     );
     builder.addMatcher(
       extendedImagesApi.endpoints.deleteImage.matchFulfilled,
       (state, action) => {
-        // @ts-ignore
-        imagesAdapter.removeOne(state, action.payload.id);
+        imagesAdapter.removeOne(state, action.payload._id);
       }
     );
     builder.addMatcher(
       extendedImagesApi.endpoints.postImagesComments.matchFulfilled,
-      (state, action) => {
-        // @ts-ignore
-        imagesAdapter.removeOne(state, action.payload.id);
-      }
+      (state, action) => {}
     );
   },
 });
 
-export const { setAllImages, addImage, deleteImage, deleteComment } =
-  imagesSlice.actions;
+export const {
+  setAllImages,
+  addImage,
+  deleteImage,
+  deleteComment,
+  changeImage,
+} = imagesSlice.actions;
 export default imagesSlice.reducer;

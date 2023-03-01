@@ -4,7 +4,6 @@ import { TypedUseSelectorHook, useSelector } from "react-redux";
 import imagesReducer from "../features/slices/imagesSlice";
 import commentsReducer from "../features/slices/commentsSlice";
 import userReducer from "../features/slices/userSlice";
-import deletedImagesReducer from "../features/slices/deletedImagesSlice";
 export const store = configureStore({
   reducer: {
     images: imagesReducer,

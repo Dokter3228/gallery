@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { extendedUsersApi } from "../api/usersApi";
 
 export interface User {
-  login: string;
+  login: string | null;
 }
 
 const initialState: User = {
-  login: "nobody",
+  login: null,
 };
 
 const userSlice = createSlice({
@@ -15,7 +15,7 @@ const userSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addMatcher(
-      extendedUsersApi.endpoints.currentUser.matchFulfilled,
+      extendedUsersApi.endpoints.checkAuth.matchFulfilled,
       (state, action: PayloadAction<User>) => {
         state.login = action.payload.login;
       }

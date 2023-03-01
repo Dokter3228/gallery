@@ -6,9 +6,9 @@ export type UserType = {
   password: string;
   name?: string;
   avatar?: string;
+  isAdmin?: boolean;
   images: [string];
   comments: CommentType[];
-  // isAdmin: boolean;
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -26,10 +26,10 @@ const userSchema = new mongoose.Schema<UserType>({
   avatar: {
     type: String,
   },
-  // isAdmin: {
-  //   type: Boolean,
-  //   required: true,
-  // },
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
   comments: [String],
   // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
   // {

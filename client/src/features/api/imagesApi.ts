@@ -1,5 +1,5 @@
 import { api } from "./emptySplitApi";
-import {  setAllImages } from "../slices/imagesSlice";
+import { setAllImages } from "../slices/imagesSlice";
 import { Image } from "../slices/imagesSlice";
 import { Comment } from "../slices/commentsSlice";
 import { EntityId } from "@reduxjs/toolkit";
@@ -15,20 +15,20 @@ export const extendedImagesApi = api.injectEndpoints({
       providesTags: (result) =>
         result
           ? [
-              ...result.map(({ uuid }) => ({ type: "Images" as const, uuid })),
+              ...result.map(({ _id }) => ({ type: "Images" as const, _id })),
               "Images",
             ]
           : ["Images"],
     }),
     addImage: builder.mutation<Image[], FormData>({
       query: (body) => ({
-        url: "/images/1",
+        url: "/images/",
         method: "POST",
         body,
       }),
       invalidatesTags: ["Images"],
     }),
-    deleteImage: builder.mutation<void, EntityId>({
+    deleteImage: builder.mutation<{ _id: EntityId }, EntityId>({
       query: (id) => ({
         url: `/images/${id}`,
         method: "DELETE",
@@ -46,8 +46,6 @@ export const extendedImagesApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Images", "Users"],
     }),
-    // FiXME refactor to convention
-    // CONVENTION VERB/URL setImageComments -> postImagesComments
     postImagesComments: builder.mutation<void, Comments>({
       query: (body) => ({
         url: "/images/comments/",
@@ -56,6 +54,17 @@ export const extendedImagesApi = api.injectEndpoints({
         body,
       }),
       invalidatesTags: ["Images"],
+    }),
+    patchImageComments: builder.mutation<
+      void,
+      { id: EntityId; author: string | null; comments: Comment[] }
+    >({
+      query: (body) => ({
+        url: `/images/${body.id}/comments`,
+        method: "PATCH",
+        body,
+      }),
+      invalidatesTags: ["Images", "Comments"],
     }),
   }),
   overrideExisting: false,
@@ -66,6 +75,7 @@ export const {
   useAddImageMutation,
   useDeleteCommentsMutation,
   useDeleteImageMutation,
+  usePatchImageCommentsMutation,
 } = extendedImagesApi;
 
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'

@@ -1,84 +1,74 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import {
-  useCheckAuthMutation,
-  useCurrentUserQuery,
-} from "../../features/api/usersApi";
+import { useCheckAuthQuery } from "../../features/api/usersApi";
 import {
   useAddImageMutation,
   useDeleteCommentsMutation,
   useDeleteImageMutation,
   useGetImagesQuery,
+  usePatchImageCommentsMutation,
 } from "../../features/api/imagesApi";
 import Logout from "../Logout/Logout";
-import { useNavigate } from "react-router-dom";
 import ImagePlate from "../UI/imagePlate/ImagePlate";
 import { useAppSelector } from "../../App/store";
 import { useAppDispatch } from "../../hooks";
-import { addImage } from "../../features/slices/imagesSlice";
+import { addImage, Image } from "../../features/slices/imagesSlice";
 import { nanoid } from "@reduxjs/toolkit";
 import { Comment } from "../../features/slices/commentsSlice";
-import comment from "../UI/imagePlate/Comment";
 
 const App = (): JSX.Element => {
-  const navigate = useNavigate();
+  useCheckAuthQuery();
+  useGetImagesQuery();
   const dispatch = useAppDispatch();
-  // @ts-ignore
-  const imageSelector = useAppSelector((state) => state.images.entities);
-  const commentsSelector = useAppSelector(
-    (state: any): Comment[] => state.comments.comments
+  const imageSelector = useAppSelector((state) =>
+    Object.values(state.images.entities)
   );
-  const { data } = useCurrentUserQuery();
-  const [checkIfUserAuthorized, { isLoading }] = useCheckAuthMutation();
-
+  const commentsSelector = useAppSelector(
+    // @ts-ignore
+    (state): Comment[] => Object.values(state.comments.entities)
+  );
+  const currentUser = useAppSelector((state) => state.user.login);
   const [blobState, setBlobState] = useState<string[]>([]);
 
-  const { isLoading: isImagesLoading } = useGetImagesQuery();
   const [addImageToServer] = useAddImageMutation();
   const [deleteImageFromTheServer] = useDeleteImageMutation();
   const [deleteCommentsFromImage] = useDeleteCommentsMutation();
-
-  if (isImagesLoading) {
-    return <h1>Wait pls!</h1>;
-  }
-
+  const [patchComments] = usePatchImageCommentsMutation();
   const handleSavingChanges = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.preventDefault();
-    let newComments: any = [];
-    for (let image of Object.values(imageSelector)) {
-      // @ts-ignore
-      if (image.creationDate === "not created yet") {
-        // @ts-ignore
+    if (imageSelector.length <= 0) return;
+    for (let image of imageSelector) {
+      if (!image) continue;
+      if (image.deleted) {
+        deleteImageFromTheServer(image._id);
+      }
+      if (image.new) {
         let blob = await fetch(image.src).then((r) => r.blob());
         const myFile = new File([blob], "image.jpeg", {
           type: "image/file",
         });
         let formData = new FormData();
         formData.append("image", myFile);
-        if (data !== undefined) formData.append("login", data.login);
-        // @ts-ignore
-        formData.append("uuid", image.uuid);
+        if (currentUser) formData.append("author", currentUser);
         addImageToServer(formData);
       } else {
-        // @ts-ignore
-        // @ts-ignore
-        // newComments = newComments.concat(image.comments);
-        // console.log("new comments --- ", newComments);
-        // await deleteCommentsFromImage({
-        //   // @ts-ignore
-        //   id: image.uuid,
-        //   // @ts-ignore
-        //   comments: image.comments,
-        // });
+        for (let comment of commentsSelector) {
+          const res = [];
+          if (comment.uuid === image._id) {
+            res.push(comment);
+          }
+          patchComments({
+            id: image._id,
+            author: currentUser,
+            comments: res,
+          });
+        }
       }
+
       setBlobState([]);
     }
-    setTimeout(() => {
-      // @ts-ignore
-      setImageComments({ comments: commentsSelector });
-    }, 1000);
   };
 
   return (
@@ -91,17 +81,15 @@ const App = (): JSX.Element => {
           onChange={async (e: React.ChangeEvent<HTMLInputElement>) => {
             if (!e.target.files) return;
             const href = URL.createObjectURL(e.target.files[0]);
-            // @ts-ignore
             setBlobState((prev) => [...prev, href]);
-            // @ts-ignore
             dispatch(
               addImage({
-                uuid: nanoid(),
-                author: data !== undefined ? data.login : "unknown author",
-                // @ts-ignore
+                _id: nanoid(),
+                author: currentUser || "unknown",
                 comments: [],
                 src: href,
                 creationDate: "not created yet",
+                new: true,
               })
             );
           }}
@@ -114,23 +102,18 @@ const App = (): JSX.Element => {
         </button>
       </form>
       <div className="flex flex-wrap gap-20 items-center justify-center my-20">
-        {!isLoading ? (
-          Object.values(imageSelector).map((img) => {
-            const newComments: any = [];
-            commentsSelector.forEach((comment) => {
-              // @ts-ignore
-              if (comment.uuid === img.uuid) {
-                newComments.push(comment);
-              }
-            });
+        {imageSelector ? (
+          imageSelector.map((img) => {
+            if (!img) return;
+            if (img.deleted) return;
             return (
               <ImagePlate
-                // @ts-ignore
-                key={img.uuid}
-                // @ts-ignore
+                key={img._id}
                 img={img}
-                currentUser={data !== undefined ? data.login : "unknown author"}
-                newComments={newComments.length > 0 && newComments}
+                currentUser={currentUser || "unknown"}
+                newComments={commentsSelector.filter(
+                  (comment) => comment.uuid === img._id
+                )}
               />
             );
           })

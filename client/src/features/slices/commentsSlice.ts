@@ -1,4 +1,10 @@
-import { createSlice, EntityId, PayloadAction, Slice } from "@reduxjs/toolkit";
+import {
+  createEntityAdapter,
+  createSlice,
+  EntityId,
+  PayloadAction,
+  Slice,
+} from "@reduxjs/toolkit";
 import { extendedImagesApi } from "../api/imagesApi";
 
 // TODO add relative import this types to server
@@ -6,44 +12,29 @@ import { extendedImagesApi } from "../api/imagesApi";
 export type Comment = {
   text: string;
   author: string;
-  uuid: EntityId; // uuid of comment
-  image_id?: EntityId; // uuid of comment
+  uuid: EntityId; // uuid of image
+  _id: EntityId; // uuid of comment
   new?: boolean;
   updated?: boolean;
 };
 
-interface CommentsState {
-  comments: Comment[];
-}
-
-const initialState: CommentsState = {
-  comments: [],
-};
-
-// TODO refactor to EntityProvider
+const commentsAdapter = createEntityAdapter<Comment>({
+  selectId: (comment) => comment._id,
+});
 
 const commentsSlice = createSlice({
-  name: "comments",
-  initialState,
+  name: "Comments",
+  initialState: commentsAdapter.getInitialState(),
   reducers: {
-    addComment(state, action: PayloadAction<Comment>) {
-      state.comments.push(action.payload);
-    },
-    deleteComment(state, action: PayloadAction<EntityId>) {
-      for (let comment of state.comments) {
-        if (comment.uuid === action.payload) {
-          // @ts-ignore
-          const index = state.comments.indexOf(comment);
-          state.comments.splice(index, 1);
-        }
-      }
-    },
+    addComment: commentsAdapter.addOne,
+    deleteComment: commentsAdapter.removeOne,
+    reset: commentsAdapter.removeAll,
   },
   extraReducers: (builder) => {
     builder.addMatcher(
       extendedImagesApi.endpoints.postImagesComments.matchFulfilled,
       (state, action) => {
-        state.comments = [];
+        commentsAdapter.removeAll(state);
       }
     );
   },

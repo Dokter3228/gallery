@@ -1,8 +1,15 @@
-import mongoose, { Schema, Types } from "mongoose";
-import { Comment } from "./comments";
+import mongoose, { ObjectId, Schema, Types } from "mongoose";
+import { Comment, CommentType } from "./comments";
 
-// TODO add types
-const imageSchema = new mongoose.Schema({
+export type Image = {
+  author: string;
+  creationDate: string;
+  src: string;
+
+  comments: [string | { author: string; text: string }];
+};
+
+const imageSchema = new mongoose.Schema<Image>({
   author: {
     required: true,
     type: String,
@@ -21,16 +28,4 @@ const imageSchema = new mongoose.Schema({
   },
 });
 
-// TODO add type
-
-//
-export default mongoose.model("Image", imageSchema);
-
-// {
-//     href: "http://localhost:17214/image3434l;jkl"
-//     author: "Vasia",
-//     uuid: "123123asd",
-//     creationDate: Date.now(),
-//     updatedDate: Date.now(),
-//     comments: ['sadfasdas',"SADASDSA"]
-// }
+export default mongoose.model<Image>("Image", imageSchema);
