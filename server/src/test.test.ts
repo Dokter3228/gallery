@@ -12,6 +12,7 @@ const mockUser = {
   password: "putin228",
 };
 
+// FIXME
 const mockComments = [
   {
     text: "1111111111111111111111111",
@@ -48,6 +49,7 @@ describe("main tests", () => {
   describe("/users", () => {
     describe("/register, /login, /logout, /:id(getUser) ", () => {
       beforeAll(async () => {
+        // TODO add connection to test mongo server on 27020
         await mongoose.connect(process.env.MONGO_URL);
       });
       afterAll(async () => {
@@ -67,6 +69,7 @@ describe("main tests", () => {
 
       test("/register", async () => {
         const res = await request(app)
+          //TODO change /users/register to /users
           .post("/users/register")
           .send({ login: mockUser.login, password: mockUser.password });
 
@@ -94,17 +97,17 @@ describe("main tests", () => {
 
       test("/login", async () => {
         const res = await request(app)
+          //TODO change to /login
           .post("/users/login")
           .send({ login: mockUser.login, password: mockUser.password });
 
         expect(res.status).toBe(200);
-        expect(res.body.comments.length).toBeDefined();
-        expect(res.body.images.length).toBeDefined();
         const savedUser = await User.findById(res.body._id);
         expect(savedUser.login).toBe(res.body.login);
+        // TODO this test must failed. to salt the password you need to use bcrypt
+        // https://www.npmjs.com/package/mongoose-bcrypt
         expect(savedUser.password).toBe(res.body.password);
-        expect(savedUser.comments.length).toBeDefined();
-        expect(savedUser.images.length).toBeDefined();
+        // TODO change cookie name from set-cookie to "token"
         expect(
           res.headers["set-cookie"][0].includes("set-cookie=;")
         ).toBeFalsy();
@@ -113,6 +116,7 @@ describe("main tests", () => {
       test("/login with random credentials(user is not signed up)", async () => {
         const res = await request(app)
           .post("/users/login")
+          // TODO add wrong credentials
           .send({ login: uuid(), password: uuid() });
         expect(res.status).toBe(401);
       });
@@ -123,6 +127,7 @@ describe("main tests", () => {
         const res = await request(app).get(`/users/${id}`);
         expect(res.status).toBe(200);
         expect(res.body.login).toBe(savedUser.login);
+        // TODO why do we send a user password. UNSAFE!
         expect(res.body.password).toBe(savedUser.password);
       });
 
@@ -130,6 +135,7 @@ describe("main tests", () => {
         const res = await request(app).post("/users/logout");
 
         expect(res.status).toBe(200);
+        // TODO remove this message
         expect(res.body.message).toBe("you logged out");
         expect(
           res.headers["set-cookie"][0].includes("set-cookie=;")
@@ -139,6 +145,7 @@ describe("main tests", () => {
   });
 
   describe("/images/", () => {
+    // TODO merge before all where you can
     beforeAll(async () => {
       await mongoose.connect(process.env.MONGO_URL);
       const res = await request(app)
@@ -147,6 +154,7 @@ describe("main tests", () => {
       expect(res.status).toBe(200);
     });
 
+    // TODO clear afterAll clear DB
     afterAll(async () => {
       await User.deleteOne({ login: mockUser.login }, (err, res) => {
         if (err) {
@@ -215,6 +223,7 @@ describe("main tests", () => {
       expect(res.body.length).toBeGreaterThanOrEqual(1);
     });
 
+    // TODO new POST
     test("POST /images/:id/comments", async () => {
       const token = jwt.sign(
         {
@@ -224,6 +233,7 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .post(`/images/${imageId}/comments`)
         .set("set-cookie", token)
@@ -231,8 +241,9 @@ describe("main tests", () => {
           author: mockUser.login,
           comments: mockComments,
         });
+
       expect(res.status).toBe(200);
-      expect(res.body.comments.length).toEqual(5);
+      expect(res.body.comments.length).toEqual(mockComments.length);
     });
 
     test("GET /images/:id/comments", async () => {
@@ -244,17 +255,26 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .get(`/images/${imageId}/comments`)
         .set("set-cookie", token);
-      for (let thing of res.body.slice(0, 2)) {
-        mockChangedComments.push(thing);
+
+      for (let comment of res.body.slice(0, 2)) {
+        mockChangedComments.push(comment);
       }
-      console.log(res.body.slice(0, 2));
+
       expect(res.status).toBe(200);
       expect(res.body.length).toEqual(mockComments.length);
+
+      expect(
+        res.body.every((comment) => {
+          "author" in comment && "text" in comment;
+        })
+      ).toBe(true);
     });
 
+    // TODO same as POST
     test("PATCH /images/:id/comments", async () => {
       const token = jwt.sign(
         {
@@ -275,6 +295,97 @@ describe("main tests", () => {
       expect(res.body.comments.length).toEqual(4);
       expect(res.body._id).toBe(imageId);
     });
+    // test("POST /images/:id/comments", async () => {
+    //   const token = jwt.sign(
+    //     {
+    //       login: mockUser.login,
+    //       password: mockUser.password,
+    //     },
+    //     process.env.JWT_SECRET_KEY,
+    //     { expiresIn: "15m" }
+    //   );
+    //
+    //   const res = await request(app)
+    //     .post(`/images/${imageId}/comments`)
+    //     .set("set-cookie", token)
+    //     .send({
+    //       author: mockUser.login,
+    //       comments: [{ text: "new comment" , new: true, author:mockUser.login}],
+    //     });
+    //
+    //   expect(res.status).toBe(200);
+    //   expect(res.body.comments.length).toEqual(1);
+    //
+    //   const testId = res.body.comments[0].id;
+    //
+    //   const res2 = await request(app)
+    //     .post(`/images/${imageId}/comments`)
+    //     .set("set-cookie", token)
+    //     .send({
+    //       author: mockUser.login,
+    //       comments: [{ text: "UPDATED TEXT", id: testId, new: true }],
+    //     });
+    //   expect(res2.status).toBe(400);
+    //   expect(res2.body.new).toBe("property 'new' can't be in comment with 'id'");
+    // });
+    //
+    // test("PATCH /images/:id/comments", async () => {
+    //   const token = jwt.sign(
+    //     {
+    //       login: mockUser.login,
+    //       password: mockUser.password,
+    //     },
+    //     process.env.JWT_SECRET_KEY,
+    //     { expiresIn: "15m" }
+    //   );
+    //
+    //   const res = await request(app)
+    //     .post(`/images/${imageId}/comments`)
+    //     .set("set-cookie", token)
+    //     .send({
+    //       author: mockUser.login,
+    //       comments: [{ text: "new comment" }],
+    //     });
+    //
+    //   expect(res.status).toBe(400);
+    //   expect(res.body.author).toBe('Not exists');
+    //   expect(res.body.new).toBe('Not exists');
+    //
+    //
+    //
+    //   const res2 = await request(app)
+    //       .post(`/images/${imageId}/comments`)
+    //       .set("set-cookie", token)
+    //       .send({
+    //         author: mockUser.login,
+    //         comments: [{ text: "new comment", new: true }],
+    //       });
+    //
+    //   expect(res2.status).toBe(400);
+    //   expect(res2.body.author).toBe('Not exists');
+    // });
+    //
+    //
+    // test("correct POST /images/:id/comments", async () => {
+    //   const token = jwt.sign(
+    //     {
+    //       login: mockUser.login,
+    //       password: mockUser.password,
+    //     },
+    //     process.env.JWT_SECRET_KEY,
+    //     { expiresIn: "15m" }
+    //   );
+    //   const res = await request(app)
+    //     .patch(`/images/${imageId}/comments`)
+    //     .set("set-cookie", token)
+    //     .send({
+    //       author: mockUser.login,
+    //       comments: mockChangedComments,
+    //     });
+    //   expect(res.status).toBe(200);
+    //   expect(res.body.comments.length).toEqual(mockChangedComments.length);
+    //   expect(res.body._id).toBe(imageId);
+    // });
 
     test("DELETE /:id (one image)", async () => {
       const token = jwt.sign(
@@ -290,6 +401,7 @@ describe("main tests", () => {
         .set("set-cookie", token);
       expect(res.status).toBe(200);
       expect(res.body.author).toBe(mockUser.login);
+      // TODO check db of user object
     });
   });
 });

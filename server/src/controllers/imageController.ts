@@ -6,6 +6,7 @@ import * as process from "process";
 import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
 
+// Split to image and comment controller
 class imageController {
   async getImages(req: Request, res: Response) {
     const imagesDb = await Image.find();
@@ -59,9 +60,12 @@ class imageController {
       const id = req.params.id;
       const image = await Image.findById(id);
       const user = await User.findOne({ login: image.author });
+      // TODO add this realization
+
       // for (let comment of image.comments) {
       //   const commentDb = await Comment.deleteOne({ _id: comment });
       //   // @ts-ignore
+
       //   const index = user.comments.indexOf(comment._id);
       //   if (index != -1) {
       //     user.comments.splice(index, 1);
@@ -90,6 +94,7 @@ class imageController {
       // принимает и обьекты и Object Id, взависимости от типа либо оставляет как есть либо создает комментарий и
       // сохраняет его ObjectId
       for (let comment of comments) {
+        // FIXME comment can't be string at all
         if (typeof comment === "string") {
           const commentDb = await Comment.findById(comment);
           result.push(commentDb);
@@ -102,7 +107,7 @@ class imageController {
           result.push(commentDb._id);
         }
       }
-      console.log("sadfasdfasdfasdfasfasdfads", result);
+      console.log("sadfasdfczxczaasdfasdfasfasczxcz!!!asdfads", result);
       const image = await Image.findByIdAndUpdate(
         id,
         { comments: result },
@@ -136,6 +141,7 @@ class imageController {
           author,
           text: comment.text,
         });
+        // TODO add this realization
         // const user = await User.findOne({ login: comment.author });
         // if (user?.comments) user.comments.push(commentDb);
         // @ts-ignore

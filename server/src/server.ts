@@ -9,7 +9,7 @@ import { userRouter } from "./routes/userRoutes";
 import { imageRouter } from "./routes/imageRoutes";
 import { authMiddleware } from "./middleware/auth";
 
-// FIXME add proxy to cra => how does cors changes
+// TODO -> rootisalie add proxy to cra => how does cors changes
 
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGO_URL;

@@ -40,5 +40,4 @@ const userSchema = new mongoose.Schema<UserType>({
   images: [String],
 });
 
-// TODO add type
-export default mongoose.model("User", userSchema);
+export default mongoose.model<UserType>("User", userSchema);

@@ -9,7 +9,13 @@ services:
     logging:
       options:
         max-size: 1g
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
-      - MONGO_INITDB_ROOT_PASSWORD=bdung
+    image: mongo
+  mongo2:
+    ports:
+      - '27017:27020'
+    container_name: test-mongo
+    restart: always
+    logging:
+      options:
+        max-size: 1g
     image: mongo
