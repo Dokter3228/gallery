@@ -12,7 +12,7 @@ services:
     image: mongo
   mongo2:
     ports:
-      - '27017:27020'
+      - '27020:27017'
     container_name: test-mongo
     restart: always
     logging:

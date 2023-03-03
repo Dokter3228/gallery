@@ -1,12 +1,10 @@
 import Image from "../models/image";
 import path from "path";
-import { Comment, CommentType } from "../models/comments";
 import User from "../models/user";
 import * as process from "process";
 import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
 
-// Split to image and comment controller
 class imageController {
   async getImages(req: Request, res: Response) {
     const imagesDb = await Image.find();
@@ -24,7 +22,6 @@ class imageController {
       }
       image = req.files.image;
       const fileExtension = image.name.split(".")[1];
-      // FIXME refactor this to path.dirname(path)
       uploadPath =
         path.join(process.cwd(), "/public/images") + `/${id}.${fileExtension}`;
       const date = new Date().toLocaleDateString();
@@ -83,100 +80,6 @@ class imageController {
       res
         .status(400)
         .json({ error: "Something went wrong when deleting the image" });
-    }
-  }
-
-  async updateImageComments(req: Request, res: Response) {
-    try {
-      const id = req.params.id;
-      const { author, comments } = req.body;
-      const result = [];
-      // принимает и обьекты и Object Id, взависимости от типа либо оставляет как есть либо создает комментарий и
-      // сохраняет его ObjectId
-      for (let comment of comments) {
-        // FIXME comment can't be string at all
-        if (typeof comment === "string") {
-          const commentDb = await Comment.findById(comment);
-          result.push(commentDb);
-        } else {
-          const commentDb = new Comment({
-            author,
-            text: comment.text,
-          });
-          await commentDb.save();
-          result.push(commentDb._id);
-        }
-      }
-      console.log("sadfasdfczxczaasdfasdfasfasczxcz!!!asdfads", result);
-      const image = await Image.findByIdAndUpdate(
-        id,
-        { comments: result },
-        { new: true },
-        (e, docs) => {
-          if (e) {
-            console.log(e);
-          } else {
-            console.log("Updated User : ", docs);
-          }
-        }
-      )
-        .clone()
-        .catch(function (err) {
-          console.log(err);
-        });
-      console.log(image);
-      res.status(200).json(image);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
-    }
-  }
-
-  async postImageComments(req: Request, res: Response) {
-    try {
-      const id = req.params.id;
-      const { comments, author } = req.body;
-      let image = await Image.findById(id);
-      for (let comment of comments) {
-        const commentDb = new Comment({
-          author,
-          text: comment.text,
-        });
-        // TODO add this realization
-        // const user = await User.findOne({ login: comment.author });
-        // if (user?.comments) user.comments.push(commentDb);
-        // @ts-ignore
-        image.comments.push(commentDb);
-        await commentDb.save();
-        // await user.save();
-      }
-      await image.save();
-      res.status(200).json(image);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
-    }
-  }
-
-  async getImageComments(req: Request, res: Response) {
-    try {
-      const id = req.params.id;
-      const imageDb = await Image.findById(id);
-      res.status(200).json(imageDb.comments);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
-    }
-  }
-
-  async getCommentsByEntityIds(req: Request, res: Response) {
-    try {
-      const comments = req.body;
-      const result = [];
-      for (let commentId of comments) {
-        const commentDb = await Comment.findById(commentId);
-        result.push(commentDb);
-      }
-      res.status(200).json(result);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
     }
   }
 }

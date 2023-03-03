@@ -4,8 +4,8 @@
   "description": "",
   "main": "src/server.ts",
   "scripts": {
-    "start": "node_modules/.bin/nodemon --exec babel-node src/server.ts --extensions .ts",
-    "test": "./node_modules/.bin/jest --watchAll",
+    "start": "NODE_ENV=production node_modules/.bin/nodemon --exec babel-node src/server.ts --extensions .ts",
+    "test": "NODE_ENV=test ./node_modules/.bin/jest --watchAll",
     "prettier": "npx prettier --write ."
   },
   "keywords": [],
@@ -30,6 +30,7 @@
     "@types/jest": "^29.2.6",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/supertest": "^2.0.12",
+    "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -37,6 +38,7 @@
     "express-fileupload": "^1.4.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^6.8.4",
+    "mongoose-bcrypt": "^1.10.1",
     "morgan": "^1.10.0",
     "nanoid": "^4.0.1",
     "path": "^0.12.7",
