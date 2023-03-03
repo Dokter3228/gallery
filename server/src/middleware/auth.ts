@@ -10,7 +10,7 @@ export const authMiddleware = (
     const token =
       req.headers?.cookie?.split("token=").join("") || req.headers.token;
     const tokenString = Array.isArray(token) ? token.join("") : token;
-    jwt.verify(tokenString, process.env.JWT_SECRET_KEY);
+    req.body.user = jwt.verify(tokenString, process.env.JWT_SECRET_KEY).login;
     next();
   } catch (e) {
     res.status(401).json({ message: e.message });

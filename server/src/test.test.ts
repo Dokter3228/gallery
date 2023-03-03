@@ -13,6 +13,7 @@ import {
   mockCommentsWithNew,
   mockChangedComments,
   mockCommentsWithNewAndId,
+  mockUserAdmin,
 } from "../mocks/mockData";
 
 const mockImagePath = path.join(
@@ -31,9 +32,11 @@ describe("main tests", () => {
       });
 
       test("/users (registration) ", async () => {
-        const res = await request(app)
-          .post("/users")
-          .send({ login: mockUser.login, password: mockUser.password });
+        const res = await request(app).post("/users").send({
+          login: mockUser.login,
+          password: mockUser.password,
+          role: mockUser.role,
+        });
         User.findOne({ login: mockUser.login }, (err, user) => {
           user.comparePassword(mockUser.password, function (err, isMatch) {
             if (err) throw err;
@@ -44,6 +47,32 @@ describe("main tests", () => {
         expect(res.body.login).toBe(mockUser.login);
         expect(res.body.comments.length).toBe(0);
         expect(res.body.images.length).toBe(0);
+        expect(res.body.role).toBe("user");
+        const savedUser = await User.findById(res.body._id);
+        expect(savedUser.login).toBe(res.body.login);
+        expect(savedUser.password).toBe(res.body.password);
+        expect(savedUser.comments.length).toBe(0);
+        expect(savedUser.images.length).toBe(0);
+        expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
+      });
+
+      test("/users (registration) (ADMIN) ", async () => {
+        const res = await request(app).post("/users").send({
+          login: mockUserAdmin.login,
+          password: mockUserAdmin.password,
+          role: mockUserAdmin.role,
+        });
+        User.findOne({ login: mockUserAdmin.login }, (err, user) => {
+          user.comparePassword(mockUserAdmin.password, function (err, isMatch) {
+            if (err) throw err;
+            expect(isMatch).toBe(true);
+          });
+        });
+        expect(res.status).toBe(200);
+        expect(res.body.login).toBe(mockUserAdmin.login);
+        expect(res.body.comments.length).toBe(0);
+        expect(res.body.images.length).toBe(0);
+        expect(res.body.role).toBe("admin");
         const savedUser = await User.findById(res.body._id);
         expect(savedUser.login).toBe(res.body.login);
         expect(savedUser.password).toBe(res.body.password);
@@ -284,8 +313,12 @@ describe("main tests", () => {
         .delete(`/images/${imageId}`)
         .set("token", token);
       expect(res.status).toBe(200);
+      const user = await User.findOne({ login: mockUser.login });
       expect(res.body.author).toBe(mockUser.login);
-      // TODO check db of user object
+      expect(user.comments.length).toBe(
+        mockCommentsWithNew.length + mockChangedComments.length
+      );
+      expect(user.images.length).toBe(0);
     });
   });
 });

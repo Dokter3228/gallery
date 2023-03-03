@@ -4,6 +4,7 @@ import User from "../models/user";
 import * as process from "process";
 import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
+import { Comment } from "../models/comments";
 
 class imageController {
   async getImages(req: Request, res: Response) {
@@ -57,23 +58,15 @@ class imageController {
       const id = req.params.id;
       const image = await Image.findById(id);
       const user = await User.findOne({ login: image.author });
-      // TODO add this realization
 
-      // for (let comment of image.comments) {
-      //   const commentDb = await Comment.deleteOne({ _id: comment });
-      //   // @ts-ignore
-
-      //   const index = user.comments.indexOf(comment._id);
-      //   if (index != -1) {
-      //     user.comments.splice(index, 1);
-      //   }
-      // }
-      // @ts-ignore
-      // const imageIndex = user.images.indexOf(image._id);
-      // if (imageIndex != -1) {
-      //   user.images.splice(imageIndex, 1);
-      // }
-      // user.save();
+      for (let comment of image.comments) {
+        const commentDb = await Comment.deleteOne({ _id: comment });
+        const index = user.comments.indexOf(comment._id.toString());
+        if (index != -1) user.comments.splice(index, 1);
+      }
+      const imageIndex = user.images.indexOf(image._id.toString());
+      if (imageIndex != -1) user.images.splice(imageIndex, 1);
+      user.save();
       const deletedImage = await Image.findByIdAndDelete(id);
       res.status(200).json(deletedImage);
     } catch (e) {

@@ -6,66 +6,24 @@ import * as process from "process";
 import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
 
-// Split to image and comment controller
 class commentsController {
   async updateImageComments(req: Request, res: Response) {
     try {
       const id = req.params.id;
       const { comments } = req.body;
+      const user = User.findById({ login: req.body.user });
       for (let comment of comments) {
+        if (comment?.author !== user.login && user.role !== "admin") continue;
         if (!comment.author || !comment.new || !comment._id) {
-          const error: {
-            author?: string;
-            new?: boolean | string;
-            text?: string;
-            _id?: string;
-          } = {};
-          const error2 = {
+          const error = {
             author: comment.author || "Author isn't provided",
             new: comment.new || "New isn't provided",
             _id: comment._id || "Id isn't provided",
             text: comment.text,
           };
-          if (!comment.author) error.author = "Author isn't provided";
-          if (!comment.new) error.new = "New isn't provided";
-          if (!comment._id) error._id = "Id isn't provided";
-          throw error2;
+          throw error;
         }
       }
-      // const result = [];
-      // for (let comment of comments) {
-      //   // FIXME comment can't be string at all
-      //   if (typeof comment === "string") {
-      //     const commentDb = await Comment.findById(comment);
-      //     result.push(commentDb);
-      //   } else {
-      //     const commentDb = new Comment({
-      //       author,
-      //       text: comment.text,
-      //     });
-      //     await commentDb.save();
-      //     result.push(commentDb._id);
-      //   }
-      // }
-      // console.log("sadfasdfczxczaasdfasdfasfasczxcz!!!asdfads", result);
-      // const image = await Image.findByIdAndUpdate(
-      //   id,
-      //   { comments: result },
-      //   { new: true },
-      //   (e, docs) => {
-      //     if (e) {
-      //       console.log(e);
-      //     } else {
-      //       console.log("Updated User : ", docs);
-      //     }
-      //   }
-      // )
-      //   .clone()
-      //   .catch(function (err) {
-      //     console.log(err);
-      //   });
-      // console.log(image);
-      // res.status(200).json(image);
     } catch (e) {
       res.status(400).json(e);
     }

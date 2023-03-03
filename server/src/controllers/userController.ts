@@ -8,13 +8,14 @@ export const doesUserExistCheck = async function (login) {
 
 class userController {
   async createNewUser(req: Request, res: Response) {
-    const { login, password } = req.body;
+    const { login, password, role } = req.body;
     const doesUserExist = await doesUserExistCheck(login);
     if (!doesUserExist) {
       try {
         const user = new User({
           login,
           password,
+          role,
         });
         const userToSave = await user.save();
         const token = jwt.sign(

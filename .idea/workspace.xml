@@ -4,149 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add tests and basic server functionality">
-      <change afterPath="$PROJECT_DIR$/server/mocks/mockData.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/01034c48-9ea2-48c2-8da0-34dbe36e6d0d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/021ae15a-8d61-4b23-8b39-78ff9394ee6a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/062dfb25-aad9-4144-b559-c595c2378152.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/0c23b066-67fb-4e53-9ca1-09fbd2c44b52.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/0d14f42f-fb54-4121-9416-b6236501fe72.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/12c77370-a28c-436c-beb7-e07fa2fa0fd4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/130396c8-e132-4709-b60c-073dc40818db.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/16331ac0-a9b4-4454-8551-0c0fac04975b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/1703a175-bde7-4075-9213-9dd99a16b756.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/1fec8481-f193-4935-b241-7bb6b1d3042f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/23d234c8-6adc-4aa1-8ef7-93078e6549eb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/27258058-c1f2-480b-897c-e56ae2db0b82.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/27f9e182-c6c3-4c9b-9c88-faac76fa6d27.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/29051152-7d67-4a4f-b039-da067c9cd94d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/2aad7d9f-9e2e-437b-949d-734cf5a88129.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/2c676c04-9b4e-4ad9-8600-1b823d0e7322.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/2f773b66-e10b-4de8-9358-4df395620a4d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/300583ad-08ed-415d-93e3-1aebcbbec1ea.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3150621b-8291-4192-9174-57312e5043f4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/31de3787-ce7a-40aa-a167-a23b4a19939c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/34897ce5-e6c6-4341-af0b-0dc5be7d03fb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/34ea10dc-709d-46c6-a143-d25fc1332fd1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/359a7b72-943d-4783-bf38-cb6df8cb26f7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/38d15291-c1ec-4e7d-857d-0a9599047240.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3921c637-909b-435c-b7aa-ba65bdf85259.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/39447d66-2881-44da-9faa-d4452a6d4aec.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3a0c995a-e4c0-4d7b-ae16-2e376b91287f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/3ddb743b-79e3-428f-a0ab-e34f509845fb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/42ff095e-b764-44f5-928e-44395734209a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/450189a9-5951-4186-8319-6f152ef0b9b4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/46c0842b-367a-473a-a964-d6276d81515a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/48ceaf1e-376d-4c22-947a-4cbeedfd0907.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/4ad9fd0c-b7be-4d79-841f-fb977084552e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/4c624685-24e5-4a61-b1d3-5122a360c00f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/4ca091a5-38c2-4f2f-a913-74687a76bd77.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/505914e1-9ee2-41b5-b9fb-3eaabf195015.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/52603272-8469-4a85-864c-23ffb1d33f49.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/52d27045-409e-4c8d-8667-f00076cc7e3d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/55490234-9190-4635-8bda-ca157eab6062.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/56e0080d-2d5c-4b8f-9e75-7129d4cc3041.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/5b03e1a4-5b29-4d34-9fb4-13491d13066b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/5c3780ba-263e-4682-972b-11b4dd1dc752.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/5d0ba0cb-d4e7-4fad-b049-b5562f0cfff5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/66bc5304-5b87-4dc0-9430-10dcdd32ced3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/67281837-6d9e-436e-b4db-49d883b6e618.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/67ddcd43-1653-4c9b-b203-57acd0724f9f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/680257f0-624a-41b6-a0c2-b7265703d2d3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/690c3738-b31f-4771-a994-b54eea7c6a04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/69a80796-caea-48b4-a915-6bb926060455.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/6b3d0d9a-2ecd-4c2d-bf7d-807ed2b69bc3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/6bdbc625-6bf0-4aa2-bd65-e2d305dfa142.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/6c4db051-d0f8-4f72-8a80-00e0dfcf653d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/7134d4fe-a8c7-44b1-8913-c819688d6049.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/71c362fb-ff64-4397-adcc-8796039e1cda.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/7686c76e-7b44-451e-b87c-31b5f34dcd59.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/7d76d30f-0b90-49f5-ab2f-1d4ec62c20a9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/7eefc75f-3f08-43b3-b940-d82ba18621f4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/7fa8d029-d15e-4a3f-87a9-d4a877efb276.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8130a6cc-7893-4a27-988e-b05aa3d1b0c8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/81ff0962-7baa-4409-a06c-d0b40b83f3f0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/85266dff-e2a5-45a0-b248-f3c70e1dba2f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8829742d-9815-4510-a927-6e946eaaf1fc.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/8e7b90a6-c056-434b-a541-d49e39eedc32.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/94b8aab1-5811-4732-8cbf-0a85cdcb77ba.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/99d5090a-0d80-431c-9961-12908c97312e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/9f47495b-de73-458f-ae5e-a9fc54f81e0f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a05727f0-4291-42aa-b12e-353cf1813a70.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a17069b4-226c-4824-9e05-6f1b7de1be1b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a3d05019-5f70-495e-885f-5bacc2402d8a.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a482e0d3-4adb-4889-b4e2-f582ebbf7c22.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a4f22e47-b78c-4467-9327-afcf9af35e7f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a8151b6e-51e6-440d-b68d-d96b30a0ef4c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a8a0c17b-5854-4319-b695-0e0970c71d70.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a9cfe23a-3181-4a42-93f4-3efa39d61e62.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/acfd7d2b-f2e9-4f90-9e2d-9169267f41c7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ae0940a0-e150-4b08-b543-153dcf2b13aa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/aeea36ba-0ab4-4d54-9836-242255e96daa.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b03e03e9-a385-4640-a49e-6f94d8b784be.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b153a765-7e17-4222-b61d-dcb3107efe02.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b1764109-c431-4bbd-9e14-f7d9181cb99e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b1c2d1ad-8b02-4137-82e2-f14c0068a760.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b34478e0-3082-4421-849c-5c43f1fbf44e.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b41a23e5-8b37-4297-8e16-c02b1c96924f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/b98eb9f9-9d20-4eb6-a9fd-ef55866ad248.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/bb5f9b6b-bf39-4dd5-afec-46bb260ab76b.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/bb8f6b2f-2085-449c-b71a-a35dbd69d87f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/bc2c552a-15fc-4628-8411-8e090e91dae8.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/bd99c047-5812-4923-9ea9-b227cbd70a2c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c0575231-c692-4221-ac5d-1fdbf90e634f.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c0f86bb0-69dd-48af-a148-36b4debac423.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c1751434-35f9-43b4-8cd9-6e4027da2f04.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c61f9d79-04ff-42de-855e-44b7d62090d3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c649a7c6-319f-4aaf-b755-966828c31edb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/c6a51906-007c-423e-94e7-1e532a3a5894.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ca54adba-e71c-4f9c-b32f-2917cbb10c00.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/cc93ebfe-bb43-4d21-a498-015c047b2ba6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/cddc25e1-5206-4109-9204-39644e74b7bb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ce496df4-dfda-4e05-9547-e02056452c11.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/cf7a9b56-a692-4257-b21e-2933903666bd.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d036f71b-af8b-4eed-92d6-042d7be63fa9.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d0477417-9c2a-4502-b7b5-6fdf2df1faed.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d1cfa0e3-02b3-4602-8f59-496b431fa147.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d3678acb-4eb2-46a4-8d15-19a5cb1ef6b1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d513a176-f075-444f-8335-1cd88aed2315.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d711fabf-c798-41f8-8b34-207071cb6e90.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d7ddf324-74ce-4a2e-a62c-aabbd06287c0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d9ccce12-af3b-44df-928f-02733e2dbc6c.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/d9dae188-5123-4ba3-a881-9600dfd5ace0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/dc720468-a9ec-4188-8700-1a14e05ed955.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/dddc84ae-674a-4e5b-9f04-deaa65d6b4d0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e1723322-2541-4d26-b204-e5218a1cdb45.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e30fb4b3-c314-4dd1-b732-22aaa63aa3de.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e43e7f81-b8bc-40f0-8789-60d6f7e731f5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e55cccac-ff5d-4962-9cb8-d6d083a573cf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/e9e1fd2a-003d-4ad1-a3af-a0c1959d4aa1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ee0eae83-b6c4-40cb-8b6f-d4284e6ca96d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/eeeeac1e-98d2-42cd-b43d-2764da804fc3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/ef510019-559e-416d-a29e-d47c325e822d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/efbdba1a-661e-4520-b35a-41aab0b8e956.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f1fae15a-ed19-4fd8-9067-2b5be6e7e4eb.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f21d09c6-ec0f-472f-a440-476704441188.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f302890f-afc4-496f-abe2-eb951c36a838.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/f731052c-4811-4063-8903-cf348ba43b52.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/fb886492-123e-4be8-8733-32391d90a60d.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/fefa835e-dd24-415f-a349-b130c9ab55b4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/controllers/commentsController.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/routes/authRoutes.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/routes/commentsRoutes.ts" afterDir="false" />
+    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="fix post, add patch, add mockData, split and refactor code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/authController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/mocks/mockData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/mocks/mockData.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/commentsController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/commentsController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/userController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/userController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/middleware/auth.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/middleware/auth.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/userRoutes.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/test.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -300,10 +165,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Jest.main tests" />
+        <item itemvalue="npm.start" />
         <item itemvalue="Jest.main tests./images/" />
         <item itemvalue="Jest.main tests./users" />
         <item itemvalue="Jest.main tests./users./, /login, /logout, /:id(getUser) ./login" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -372,7 +237,9 @@
       <workItem from="1677712603306" duration="8881000" />
       <workItem from="1677768908075" duration="8328000" />
       <workItem from="1677793991478" duration="4160000" />
-      <workItem from="1677858990346" duration="2253000" />
+      <workItem from="1677858990346" duration="6247000" />
+      <workItem from="1677865962749" duration="806000" />
+      <workItem from="1677866777260" duration="402000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -465,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677616475703</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix post, add patch, add mockData, split and refactor code">
+      <created>1677861400061</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1677861400061</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,6 +386,7 @@
     <MESSAGE value="add direct image deleting from the server" />
     <MESSAGE value="finish with main functionality" />
     <MESSAGE value="add tests and basic server functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests and basic server functionality" />
+    <MESSAGE value="fix post, add patch, add mockData, split and refactor code" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix post, add patch, add mockData, split and refactor code" />
   </component>
 </project>

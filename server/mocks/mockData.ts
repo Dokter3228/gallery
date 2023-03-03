@@ -1,6 +1,13 @@
 export const mockUser = {
   login: "Vladimir",
   password: "putin228",
+  role: "user",
+};
+
+export const mockUserAdmin = {
+  login: "Admin",
+  password: "admin228",
+  role: "admin",
 };
 
 export const mockCommentsWithNew = [

@@ -9,9 +9,9 @@ export type UserType = {
   password: string;
   name?: string;
   avatar?: string;
-  isAdmin?: boolean;
+  role: "user" | "admin";
   images: [string];
-  comments: CommentType[];
+  comments: [String];
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -29,16 +29,15 @@ const userSchema = new mongoose.Schema<UserType>({
   avatar: {
     type: String,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
   },
   comments: [String],
   // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
   // {
-  //   type: Schema.Types.ObjectId,
+  //       type: Schema.Types.ObjectId,
   //       ref: "Comment",
-  // },
+  //     },
   // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
   images: [String],
 });
