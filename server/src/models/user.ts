@@ -1,14 +1,17 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { ObjectId, Schema } from "mongoose";
 import { Comment, CommentType } from "./comments";
+import bcrypt from "bcrypt";
+
+const SALT_WORK_FACTOR = 10;
 
 export type UserType = {
   login: string;
   password: string;
   name?: string;
   avatar?: string;
-  isAdmin?: boolean;
+  role: "user" | "admin";
   images: [string];
-  comments: CommentType[];
+  comments: [String | ObjectId];
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -26,18 +29,48 @@ const userSchema = new mongoose.Schema<UserType>({
   avatar: {
     type: String,
   },
-  isAdmin: {
-    type: Boolean,
-    default: false,
+  role: {
+    type: String,
   },
-  comments: [String],
-  // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
-  // {
-  //   type: Schema.Types.ObjectId,
-  //       ref: "Comment",
-  // },
-  // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
-  images: [String],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  images: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Image",
+    },
+  ],
 });
+
+userSchema.pre("save", function (next) {
+  const user = this;
+
+  // only hash the password if it has been modified (or is new)
+  if (!user.isModified("password")) return next();
+
+  // generate a salt
+  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+    if (err) return next(err);
+
+    // hash the password using our new salt
+    bcrypt.hash(user.password, salt, function (err, hash) {
+      if (err) return next(err);
+      // override the cleartext password with the hashed one
+      user.password = hash;
+      next();
+    });
+  });
+});
+
+userSchema.methods.comparePassword = function (candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
+};
 
 export default mongoose.model<UserType>("User", userSchema);

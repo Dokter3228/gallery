@@ -4,42 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add tests and basic server functionality">
-      <change afterPath="$PROJECT_DIR$/server/public/images/8dcfa4a3-7c95-42c4-96f1-1fb795429d73.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/981215f8-48e6-45fa-919c-df9aae6ecc56.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/99ec6406-dc4e-42a3-8fed-a5569fa6e7d5.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/a976adb3-6914-4480-aa87-cd4836b34dd8.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/public/images/df4c4ba2-70f4-48ff-8c56-78cb02f5337c.jpeg" afterDir="false" />
+    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add user roles, tests and patch refactoring">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/App/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/App/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/App/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/Login/Login.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/SignIn/Signin.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/Comment.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/Comment.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/components/UI/imagePlate/ImagePlate.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/emptySplitApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/imagesApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/api/usersApi.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/slices/commentsSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/commentsSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/slices/deletedImagesSlice.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/slices/imagesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/imagesSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/features/slices/userSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/features/slices/userSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/28B927tq8Sp4mvg7gf0-f.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/880d8ef4-afa6-4786-b506-178fe14a2866.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/3jPEqNCJO5-5TeH2kzr6k.jpeg" beforeDir="false" afterPath="$PROJECT_DIR$/server/public/images/9341be78-3085-4cf5-b07f-9f51616f204c.jpeg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/JavI-uw5rLMgFufdb0nAn.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/LEvbdnEjm5Xccmghek-vH.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/NUFLbzU3JfrdVMMsDBvRX.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/dlxc3tNu2NIHrMuPpwBkX.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/gfkjJ2ka-NsltUpCUkj4Q.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/public/images/q-scqMrpoO_ORiRbSk1QX.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/cookieController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/public/images/db0ef13e-3d9e-4cca-82db-42dc6ee5e057.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/controllers/commentsController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/commentsController.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/imageController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/imageController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/models/comments.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/comments.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/image.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/image.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/models/user.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/routes/imageRoutes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/test.test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/test.test.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +26,16 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="initial commit" />
+        <option name="rewordedMessage" value="squashed commit" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="45d5ff4015971168a0b23ce24e133998cde0041d" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -70,8 +53,9 @@
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/gallery/server/mocks/images&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/linux/Desktop/fireoffer-monorepo&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -97,7 +81,7 @@
       <recent name="$PROJECT_DIR$/public" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start (1)">
+  <component name="RunManager" selected="Jest.main tests">
     <configuration name="main tests" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -111,7 +95,35 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="main tests./images/.images.GET / (all images)" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="main tests./images/" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/server/src/test.test.ts" />
+      <test-names>
+        <test-name value="main tests" />
+        <test-name value="/images/" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="main tests./users" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/server/node_modules/jest" />
+      <working-dir value="$PROJECT_DIR$/server" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/server/src/test.test.ts" />
+      <test-names>
+        <test-name value="main tests" />
+        <test-name value="/users" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="main tests./users./, /login, /logout, /:id(getUser) ./login" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/server/node_modules/jest" />
@@ -121,20 +133,16 @@
       <test-file value="$PROJECT_DIR$/server/src/test.test.ts" />
       <test-names>
         <test-name value="main tests" />
-        <test-name value="/images/" />
-        <test-name value="images" />
-        <test-name value="GET / (all images)" />
+        <test-name value="/users" />
+        <test-name value="/, /login, /logout, /:id(getUser) " />
+        <test-name value="/login" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="start (1)" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/client/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml">
+        <settings />
+      </deployment>
       <method v="2" />
     </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
@@ -147,30 +155,20 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="test" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/server/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="test" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
     <list>
+      <item itemvalue="Jest.main tests./images/" />
+      <item itemvalue="Jest.main tests./users" />
+      <item itemvalue="Jest.main tests./users./, /login, /logout, /:id(getUser) ./login" />
       <item itemvalue="Jest.main tests" />
-      <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
-      <item itemvalue="npm.start (1)" />
       <item itemvalue="npm.start" />
-      <item itemvalue="npm.test" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start (1)" />
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.test" />
         <item itemvalue="Jest.main tests" />
-        <item itemvalue="Jest.main tests./images/.images.GET / (all images)" />
+        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.main tests./images/" />
+        <item itemvalue="Jest.main tests./users" />
+        <item itemvalue="Jest.main tests./users./, /login, /logout, /:id(getUser) ./login" />
       </list>
     </recent_temporary>
   </component>
@@ -236,6 +234,14 @@
       <workItem from="1677508072643" duration="1596000" />
       <workItem from="1677622399317" duration="3912000" />
       <workItem from="1677655742161" duration="16083000" />
+      <workItem from="1677712603306" duration="8881000" />
+      <workItem from="1677768908075" duration="8328000" />
+      <workItem from="1677793991478" duration="4160000" />
+      <workItem from="1677858990346" duration="6247000" />
+      <workItem from="1677865962749" duration="806000" />
+      <workItem from="1677866777260" duration="594000" />
+      <workItem from="1677870738126" duration="166000" />
+      <workItem from="1677940732016" duration="9184000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -328,7 +334,28 @@
       <option name="project" value="LOCAL" />
       <updated>1677616475703</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="fix post, add patch, add mockData, split and refactor code">
+      <created>1677861400061</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1677861400061</updated>
+    </task>
+    <task id="LOCAL-00015" summary="add auth middleware user prop drilling">
+      <created>1677867325120</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1677867325120</updated>
+    </task>
+    <task id="LOCAL-00016" summary="add user roles, tests and patch refactoring">
+      <created>1677997630551</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1677997630551</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,6 +367,21 @@
         <entry key="MAIN">
           <value>
             <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
           </value>
         </entry>
       </map>
@@ -360,6 +402,9 @@
     <MESSAGE value="add direct image deleting from the server" />
     <MESSAGE value="finish with main functionality" />
     <MESSAGE value="add tests and basic server functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tests and basic server functionality" />
+    <MESSAGE value="fix post, add patch, add mockData, split and refactor code" />
+    <MESSAGE value="add auth middleware user prop drilling" />
+    <MESSAGE value="add user roles, tests and patch refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="add user roles, tests and patch refactoring" />
   </component>
 </project>

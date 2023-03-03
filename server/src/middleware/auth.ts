@@ -8,9 +8,9 @@ export const authMiddleware = (
 ): void => {
   try {
     const token =
-      req.headers?.cookie?.split("set-cookie=").join("") ||
-      req.headers["set-cookie"][0];
-    jwt.verify(token, process.env.JWT_SECRET_KEY);
+      req.headers?.cookie?.split("token=").join("") || req.headers.token;
+    const tokenString = Array.isArray(token) ? token.join("") : token;
+    req.body.user = jwt.verify(tokenString, process.env.JWT_SECRET_KEY).login;
     next();
   } catch (e) {
     res.status(401).json({ message: e.message });
