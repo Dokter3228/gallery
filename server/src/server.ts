@@ -18,6 +18,7 @@ const mongoUrl =
   process.env.NODE_ENV === "production"
     ? process.env.MONGO_URL
     : process.env.MONGO_TESTURL;
+
 console.log(mongoUrl);
 mongoose.connect(mongoUrl).then();
 const database = mongoose.connection;

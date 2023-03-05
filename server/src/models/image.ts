@@ -5,7 +5,7 @@ export type Image = {
   author: string;
   creationDate: string;
   src: string;
-  comments: mongoose.Types.ObjectId[];
+  comments: [ObjectId | string];
 };
 
 const imageSchema = new mongoose.Schema<Image>({
@@ -17,10 +17,12 @@ const imageSchema = new mongoose.Schema<Image>({
     require: true,
     type: String,
   },
-  comments: {
-    type: [Schema.Types.ObjectId],
-    ref: "Comment",
-  },
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
   src: {
     type: String,
     require: true,

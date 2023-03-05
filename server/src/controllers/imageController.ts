@@ -5,6 +5,7 @@ import * as process from "process";
 import { Request, Response } from "express";
 import { v4 as uuid } from "uuid";
 import { Comment } from "../models/comments";
+import * as fs from "fs";
 
 class imageController {
   async getImages(req: Request, res: Response) {
@@ -24,12 +25,18 @@ class imageController {
       image = req.files.image;
       const fileExtension = image.name.split(".")[1];
       uploadPath =
-        path.join(process.cwd(), "/public/images") + `/${id}.${fileExtension}`;
+        process.env.NODE_ENV === "production"
+          ? path.join(process.cwd(), "/public/images") +
+            `/${id}.${fileExtension}`
+          : path.join(process.cwd(), "/public/testImages") +
+            `/${id}.${fileExtension}`;
       const date = new Date().toLocaleDateString();
       const imageDb = new Image({
         author: author,
         creationDate: date,
-        src: `http://localhost:${process.env.PORT}/images/${id}.${fileExtension}`,
+        src: `http://localhost:${process.env.PORT}/${
+          process.env.NODE_ENV === "production" ? "images" : "testImages"
+        }/${id}.${fileExtension}`,
       });
       const user = await User.findOne({ login: author });
       await user.save();
@@ -60,19 +67,32 @@ class imageController {
       const user = await User.findOne({ login: image.author });
 
       for (let comment of image.comments) {
-        const commentDb = await Comment.deleteOne({ _id: comment });
-        const index = user.comments.indexOf(comment._id.toString());
+        await Comment.deleteOne({ _id: comment });
+        const index = user.comments.indexOf(comment.toString());
         if (index != -1) user.comments.splice(index, 1);
       }
       const imageIndex = user.images.indexOf(image._id.toString());
       if (imageIndex != -1) user.images.splice(imageIndex, 1);
       user.save();
       const deletedImage = await Image.findByIdAndDelete(id);
+      console.log(deletedImage.src.split("testImages/"));
+      const deletePath =
+        process.env.NODE_ENV === "production"
+          ? path.join(process.cwd(), "/public/images") +
+            `/${deletedImage.src.split("images/")[1]}`
+          : path.join(process.cwd(), "/public/testImages") +
+            `/${deletedImage.src.split("testImages/")[1]}`;
+      fs.unlink(deletePath, (err) => {
+        if (err) console.log(err);
+        else {
+          console.log("\nDeleted file: ", deletePath);
+        }
+      });
       res.status(200).json(deletedImage);
     } catch (e) {
       res
         .status(400)
-        .json({ error: "Something went wrong when deleting the image" });
+        .json({ error: "Something went wrong while deleting the image" });
     }
   }
 }

@@ -52,9 +52,10 @@ class commentsController {
           author: comment.author,
           text: comment.text,
         });
+        console.log(commentDb);
         const user = await User.findOne({ login: comment.author });
-        if (user?.comments) user.comments.push(commentDb);
-        if (image?.comments) image.comments.push(commentDb);
+        if (user?.comments) user.comments.push(commentDb._id.toString());
+        if (image?.comments) image.comments.push(commentDb._id.toString());
         await commentDb.save();
         await user.save();
       }

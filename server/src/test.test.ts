@@ -377,11 +377,8 @@ describe("main tests", () => {
       expect(res.status).toBe(200);
 
       const user = await User.findOne({ login: mockUser.login });
-
       expect(res.body.author).toBe(mockUser.login);
-      expect(user.comments.length).toBe(
-        mockCommentsWithNew.length + mockChangedComments.length
-      );
+      expect(user.comments.length).toBe(0);
       expect(user.images.length).toBe(0);
     });
   });

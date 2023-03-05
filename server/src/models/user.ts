@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { ObjectId, Schema } from "mongoose";
 import { Comment, CommentType } from "./comments";
 import bcrypt from "bcrypt";
 
@@ -11,7 +11,7 @@ export type UserType = {
   avatar?: string;
   role: "user" | "admin";
   images: [string];
-  comments: [String];
+  comments: [String | ObjectId];
 };
 
 const userSchema = new mongoose.Schema<UserType>({
@@ -32,14 +32,18 @@ const userSchema = new mongoose.Schema<UserType>({
   role: {
     type: String,
   },
-  comments: [String],
-  // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
-  // {
-  //       type: Schema.Types.ObjectId,
-  //       ref: "Comment",
-  //     },
-  // but RETAINS FULL COMMENT ARRAY! NOT OBJECT IDS ARRAY
-  images: [String],
+  comments: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
+  images: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Image",
+    },
+  ],
 });
 
 userSchema.pre("save", function (next) {
