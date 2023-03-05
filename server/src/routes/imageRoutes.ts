@@ -9,16 +9,16 @@ imageRouter.use(
   fileUpload({
     createParentPath: true,
     limits: {
-      fileSize: 1000000, // 1mb limit
+      fileSize: 2000000, // 2mb limit
     },
     abortOnLimit: true,
   })
 );
 
-imageRouter.get("/", imageController.getImages); // get all images
-imageRouter.post("/", imageController.postImage); // post one image
-imageRouter.get("/:id", imageController.getImage); // get one image by id
-imageRouter.delete("/:id", imageController.deleteImage); // delete one image by id
+imageRouter.get("/", imageController.getImages);
+imageRouter.post("/", imageController.postImage);
+imageRouter.get("/:id", imageController.getImage);
+imageRouter.delete("/:id", imageController.deleteImage);
 imageRouter.use("/", commentsRouter);
 imageRouter.use("/", tagsRouter);
 

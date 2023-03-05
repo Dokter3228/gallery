@@ -1,16 +1,15 @@
 import Image from "../models/image";
-import path from "path";
 import { Comment, CommentType } from "../models/comments";
 import User from "../models/user";
-import * as process from "process";
 import { Request, Response } from "express";
-import { v4 as uuid } from "uuid";
 
 class commentsController {
   async updateImageComments(req: Request, res: Response) {
     try {
-      const { comments } = req.body;
+      const { comments }: { comments: CommentType[] } = req.body;
+
       const user = await User.findOne({ login: req.body.user });
+
       const updatedComments = [];
       for (let comment of comments) {
         if (!comment.author || !comment.new || !comment._id) {
@@ -24,6 +23,7 @@ class commentsController {
         }
         if (comment.author !== user.login && user.role !== "admin")
           throw new Error("You can't edit this comment");
+
         const commentDb = await Comment.findById(comment._id);
         commentDb.text = comment.text;
         updatedComments.push(commentDb);
@@ -42,20 +42,26 @@ class commentsController {
   async postImageComments(req: Request, res: Response) {
     try {
       const id = req.params.id;
-      const { comments } = req.body;
+
+      const { comments }: { comments: CommentType[] } = req.body;
+
       let image = await Image.findById(id);
       for (let comment of comments) {
         if (comment.new && comment._id) throw new Error("new error");
+
         const commentDb = new Comment({
           author: comment.author,
           text: comment.text,
         });
+
         const user = await User.findOne({ login: comment.author });
+
         if (user?.comments) user.comments.push(commentDb._id.toString());
         if (image?.comments) image.comments.push(commentDb._id.toString());
         await commentDb.save();
         await user.save();
       }
+
       await image.save();
       res.status(200).json(image);
     } catch (e) {
@@ -73,10 +79,12 @@ class commentsController {
     try {
       const id = req.params.id;
       const imageDb = await Image.findById(id);
+
       const comments = [];
       for await (let commentDb of imageDb.comments) {
         comments.push(await Comment.findById(commentDb));
       }
+
       res.status(200).json(comments);
     } catch (e) {
       res.status(400).json({ message: e.message });
@@ -86,11 +94,13 @@ class commentsController {
   async getCommentsByEntityIds(req: Request, res: Response) {
     try {
       const comments = req.body;
+
       const result = [];
       for (let commentId of comments) {
         const commentDb = await Comment.findById(commentId);
         result.push(commentDb);
       }
+
       res.status(200).json(result);
     } catch (e) {
       res.status(400).json({ message: e.message });

@@ -3,7 +3,6 @@ import { app } from "./server";
 import request from "supertest";
 import User from "./models/user";
 import path from "path";
-import { v4 as uuid } from "uuid";
 import jwt from "jsonwebtoken";
 import Image from "./models/image";
 
@@ -11,7 +10,7 @@ import Image from "./models/image";
 import {
   mockUser,
   mockCommentsWithNew,
-  mockChangedComments,
+  mockAnotherCommentsWithNew,
   mockCommentsWithNewAndId,
   mockUserAdmin,
   mockUser2,
@@ -30,18 +29,14 @@ describe("main tests", () => {
     await mongoose.connection.db.dropDatabase();
   });
 
-  describe("/users", () => {
-    describe("/, /login, /logout, /:id(getUser) ", () => {
+  describe("users", () => {
+    describe("/users (registration), /login, /logout, /users/:id (getUser) ", () => {
       afterAll(async () => {
         await mongoose.connection.db.dropDatabase();
       });
 
-      test("/users (registration) ", async () => {
-        const res = await request(app).post("/users").send({
-          login: mockUser.login,
-          password: mockUser.password,
-          role: mockUser.role,
-        });
+      test("/users (registration) (simple user)", async () => {
+        const res = await request(app).post("/users").send(mockUser);
 
         User.findOne({ login: mockUser.login }, (err, user) => {
           user.comparePassword(mockUser.password, function (err, isMatch) {
@@ -65,12 +60,8 @@ describe("main tests", () => {
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
 
-      test("/users (registration) (ADMIN) ", async () => {
-        const res = await request(app).post("/users").send({
-          login: mockUserAdmin.login,
-          password: mockUserAdmin.password,
-          role: mockUserAdmin.role,
-        });
+      test("/users (registration) (admin) ", async () => {
+        const res = await request(app).post("/users").send(mockUserAdmin);
 
         User.findOne({ login: mockUserAdmin.login }, (err, user) => {
           user.comparePassword(mockUserAdmin.password, function (err, isMatch) {
@@ -94,10 +85,8 @@ describe("main tests", () => {
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
 
-      test("/register when the user is already registered", async () => {
-        const res = await request(app)
-          .post("/users")
-          .send({ login: mockUser.login, password: mockUser.password });
+      test("/users (register when the user is already registered)", async () => {
+        const res = await request(app).post("/users").send(mockUser);
 
         expect(res.status).toBe(409);
       });
@@ -109,21 +98,22 @@ describe("main tests", () => {
 
         expect(res.status).toBe(200);
 
-        const savedUser = await User.findById(res.body._id);
+        const user = await User.findById(res.body._id);
 
-        expect(savedUser.login).toBe(res.body.login);
+        expect(user.login).toBe(res.body.login);
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
 
-      test("/login with random credentials(user is not signed up)", async () => {
-        const res = await request(app)
-          .post("/login")
-          .send({ login: "Equsfoa21doijwfaw", password: "12owiefj@oifj2332" });
+      test("/login (with random credentials, user is not signed up)", async () => {
+        const res = await request(app).post("/login").send({
+          login: "Equsfoa21241doi21jwfaw",
+          password: "12owie1fj@oifj2332",
+        });
 
         expect(res.status).toBe(401);
       });
 
-      test("/:id get user by ObjectId", async () => {
+      test("/users/:id (get user by ObjectId)", async () => {
         const savedUser = await User.findOne({ login: mockUser.login });
         const id = savedUser._id.toString();
 
@@ -142,12 +132,9 @@ describe("main tests", () => {
     });
   });
 
-  describe("/images/", () => {
+  describe("/images", () => {
     beforeAll(async () => {
-      const res = await request(app)
-        // register a user
-        .post("/users")
-        .send(mockUser);
+      const res = await request(app).post("/users").send(mockUser);
 
       expect(res.status).toBe(200);
     });
@@ -268,6 +255,7 @@ describe("main tests", () => {
       expect(res.status).toBe(200);
       expect(res.body.length).toEqual(mockCommentsWithNew.length);
       expect(res.body[0]._id).toBeDefined();
+
       expect(
         res.body.every((comment) => comment?.author && comment?.text)
       ).toBe(true);
@@ -340,7 +328,7 @@ describe("main tests", () => {
       expect(res4.status).toBe(401);
     });
 
-    test("correct POST /images/:id/comments", async () => {
+    test("another POST /images/:id/comments", async () => {
       const token = jwt.sign(
         {
           login: mockUser.login,
@@ -354,12 +342,12 @@ describe("main tests", () => {
         .post(`/images/${imageId}/comments`)
         .set("token", token)
         .send({
-          comments: mockChangedComments,
+          comments: mockAnotherCommentsWithNew,
         });
 
       expect(res.status).toBe(200);
       expect(res.body.comments.length).toEqual(
-        mockChangedComments.length + mockCommentsWithNew.length
+        mockAnotherCommentsWithNew.length + mockCommentsWithNew.length
       );
       expect(res.body._id).toBe(imageId);
     });
@@ -390,10 +378,7 @@ describe("main tests", () => {
   describe("tags functionality", () => {
     let imageId;
     beforeAll(async () => {
-      const res = await request(app)
-        // register a user
-        .post("/users")
-        .send(mockUser);
+      const res = await request(app).post("/users").send(mockUser);
 
       expect(res.status).toBe(200);
       expect(res.body.role).toBe("user");
@@ -456,11 +441,11 @@ describe("main tests", () => {
         .send(mockTags);
 
       expect(res.status).toBe(200);
-      const tag = await Tag.findById(res.body.tags[0]);
-      expect(tag.name).toBe(mockTags[0].name);
+      const tag1 = await Tag.findById(res.body.tags[0]);
+      expect(tag1.name).toBe(mockTags[0].name);
       const tag2 = await Tag.findById(res.body.tags[1]);
       expect(tag2.name).toBe(mockTags[1].name);
-      tagsIds.push(tag);
+      tagsIds.push(tag1);
       tagsIds.push(tag2);
     });
 
@@ -489,8 +474,10 @@ describe("main tests", () => {
         ]);
 
       expect(res.status).toBe(200);
+
       const tag = await Tag.findById(res.body[0]._id);
       expect(tag.name).toBe("changed name");
+
       const tag2 = await Tag.findById(res.body[1]._id);
       expect(tag2.name).toBe("another changed name");
     });
@@ -516,8 +503,10 @@ describe("main tests", () => {
         ]);
 
       expect(res.status).toBe(200);
+
       const tag = await Tag.findById(res.body[0]._id);
       expect(tag.name).toBe("change name again here");
+
       expect(res.body.length).toBe(1);
     });
   });
@@ -527,36 +516,24 @@ describe("main tests", () => {
     let user2Id;
     let user3Id;
     beforeAll(async () => {
-      const resAdmin = await request(app)
-        // register a user
-        .post("/users")
-        .send(mockUserAdmin);
+      const resAdmin = await request(app).post("/users").send(mockUserAdmin);
 
       expect(resAdmin.status).toBe(200);
       expect(resAdmin.body.role).toBe("admin");
 
-      const res = await request(app)
-        // register a user
-        .post("/users")
-        .send(mockUser);
+      const res = await request(app).post("/users").send(mockUser);
 
       expect(res.status).toBe(200);
       expect(res.body.role).toBe("user");
       userId = res.body._id;
 
-      const res2 = await request(app)
-        // register a user
-        .post("/users")
-        .send(mockUser2);
+      const res2 = await request(app).post("/users").send(mockUser2);
 
       expect(res2.status).toBe(200);
       expect(res2.body.role).toBe("user");
       user2Id = res2.body._id;
 
-      const res3 = await request(app)
-        // register a user
-        .post("/users")
-        .send(mockUser3);
+      const res3 = await request(app).post("/users").send(mockUser3);
 
       expect(res3.status).toBe(200);
       expect(res3.body.role).toBe("user");
@@ -582,15 +559,15 @@ describe("main tests", () => {
         .set("token", token)
         .send([
           {
-            id: userId,
+            _id: userId,
             role: "admin",
           },
           {
-            id: user2Id,
+            _id: user2Id,
             role: "admin",
           },
           {
-            id: user3Id,
+            _id: user3Id,
             role: "admin",
           },
         ]);
@@ -605,15 +582,15 @@ describe("main tests", () => {
         .set("token", token)
         .send([
           {
-            id: userId,
+            _id: userId,
             role: "user",
           },
           {
-            id: user2Id,
+            _id: user2Id,
             role: "user",
           },
           {
-            id: user2Id,
+            _id: user2Id,
             role: "user",
           },
         ]);
@@ -639,46 +616,46 @@ describe("main tests", () => {
         .set("token", token)
         .send([
           {
-            id: userId,
+            _id: userId,
             login: "changedLogin",
           },
           {
-            id: user2Id,
-            login: "changedLogin",
+            _id: user2Id,
+            login: "changedLogin2",
           },
           {
-            id: user3Id,
-            login: "changedLogin",
+            _id: user3Id,
+            login: "changedLogin3",
           },
         ]);
 
       expect(res.status).toBe(200);
       expect(res.body[0].login).toBe("changedLogin");
-      expect(res.body[1].login).toBe("changedLogin");
-      expect(res.body[2].login).toBe("changedLogin");
+      expect(res.body[1].login).toBe("changedLogin2");
+      expect(res.body[2].login).toBe("changedLogin3");
 
       const res2 = await request(app)
         .patch(`/users/`)
         .set("token", token)
         .send([
           {
-            id: userId,
+            _id: userId,
             login: "anotherChangedLoginHere",
           },
           {
-            id: user2Id,
-            login: "anotherChangedLoginHere",
+            _id: user2Id,
+            login: "anotherChangedLoginHere2",
           },
           {
-            id: user3Id,
-            login: "anotherChangedLoginHere",
+            _id: user3Id,
+            login: "anotherChangedLoginHere3",
           },
         ]);
 
       expect(res2.status).toBe(200);
       expect(res2.body[0].login).toBe("anotherChangedLoginHere");
-      expect(res2.body[1].login).toBe("anotherChangedLoginHere");
-      expect(res2.body[2].login).toBe("anotherChangedLoginHere");
+      expect(res2.body[1].login).toBe("anotherChangedLoginHere2");
+      expect(res2.body[2].login).toBe("anotherChangedLoginHere3");
     });
 
     test("PATCH /users/ by not an admin (error 401)", async () => {
@@ -696,16 +673,8 @@ describe("main tests", () => {
         .set("token", token)
         .send([
           {
-            id: userId,
-            login: "changedLogin",
-          },
-          {
-            id: user2Id,
-            login: "changedLogin",
-          },
-          {
-            id: user3Id,
-            login: "changedLogin",
+            _id: userId,
+            login: "some request",
           },
         ]);
 
@@ -716,16 +685,8 @@ describe("main tests", () => {
         .set("token", token)
         .send([
           {
-            id: userId,
-            login: "anotherChangedLoginHere",
-          },
-          {
-            id: user2Id,
-            login: "anotherChangedLoginHere",
-          },
-          {
-            id: user3Id,
-            login: "anotherChangedLoginHere",
+            _id: userId,
+            login: "some request",
           },
         ]);
 

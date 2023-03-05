@@ -9,8 +9,8 @@ const Tag = mongoose.model<TagType>("Tag", imageTagSchema);
 
 export type TagType = {
   name: string;
-  _id: ObjectId | string;
-  imageId: ObjectId | string;
+  _id?: ObjectId | string;
+  imageId?: ObjectId | string;
   new?: boolean;
   author: string;
 };

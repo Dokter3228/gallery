@@ -1,23 +1,27 @@
-import User from "../models/user";
+import User, { UserType } from "../models/user";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 
-export const doesUserExistCheck = async function (login) {
-  return User.findOne({ login: login });
+export const doesUserExistCheck = async function (
+  login: string
+): Promise<UserType> {
+  return User.findOne({ login });
 };
 
 class userController {
   async createNewUser(req: Request, res: Response) {
     const { login, password, role } = req.body;
-    const doesUserExist = await doesUserExistCheck(login);
-    if (!doesUserExist) {
-      try {
+    try {
+      const doesUserExist = await doesUserExistCheck(login);
+
+      if (!doesUserExist) {
         const user = new User({
           login,
           password,
           role,
         });
         const userToSave = await user.save();
+
         const token = jwt.sign(
           {
             login,
@@ -29,12 +33,13 @@ class userController {
         res.cookie("token", token, {
           httpOnly: true,
         });
+
         res.status(200).json(userToSave);
-      } catch (error) {
-        res.status(400).json({ message: error.message });
+      } else {
+        res.status(409).json({ message: "this user already exists" });
       }
-    } else {
-      res.status(409).json({ message: "this user already exists" });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
     }
   }
 
@@ -42,6 +47,7 @@ class userController {
     try {
       const id = req.params.id;
       const user = await User.findById(id);
+
       res.status(200).json(user);
     } catch (e) {
       res.status(400).json({ message: e.message });
@@ -50,10 +56,11 @@ class userController {
 
   async patchUser(req: Request, res: Response) {
     try {
-      const users = req.body;
+      const users: UserType[] = req.body;
+
       const result = [];
       for (let userUpdate of users) {
-        const userDb = await User.findById(userUpdate.id);
+        const userDb = await User.findById(userUpdate._id);
         if (userUpdate.role) userDb.role = userUpdate.role;
         if (userUpdate.login) userDb.login = userUpdate.login;
         await userDb.save();

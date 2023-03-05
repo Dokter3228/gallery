@@ -10,16 +10,18 @@ class tagsController {
 
       for (let tag of tags) {
         if (!tag.new) throw new Error("new error");
+
         const tagDb = new Tag({
           name: tag.name,
           imageId: image._id,
           author: req.body.user,
         });
+
         await tagDb.save();
         image.tags.push(tagDb._id.toString());
       }
-      await image.save();
 
+      await image.save();
       res.status(200).json(image);
     } catch (e) {
       if (e.message === "new error")
@@ -47,13 +49,18 @@ class tagsController {
         if (doesTagExist === -1) {
           image.tags.splice(index, 1);
         }
+
         if (!tag._id) throw new Error("id error");
+
         const tagDb = await Tag.findById(tag._id.toString());
+
         if (tagDb.author !== req.body.user) throw new Error("auth error");
+
         tagDb.name = tag.name;
         await tagDb.save();
         result.push(tagDb);
       }
+
       await image.save();
       res.status(200).json(result);
     } catch (e) {

@@ -1,12 +1,15 @@
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { doesUserExistCheck } from "./userController";
+import { TokenInterface } from "../middleware/auth";
 class authController {
   checkAuth = (req: Request, res: Response) => {
     try {
       const token = req.cookies["token"];
       let userAuthorized =
-        token && jwt.verify(token, process.env.JWT_SECRET_KEY);
+        token &&
+        (jwt.verify(token, process.env.JWT_SECRET_KEY) as TokenInterface);
+
       if (typeof userAuthorized !== "string" && userAuthorized !== undefined) {
         const { login } = userAuthorized;
         res.status(200).json({
@@ -22,6 +25,7 @@ class authController {
 
   async login(req: Request, res: Response) {
     const { login, password } = req.body;
+
     const doesUserExist = await doesUserExistCheck(login);
     if (doesUserExist) {
       try {

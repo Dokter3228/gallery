@@ -68,12 +68,15 @@ class imageController {
 
       for (let comment of image.comments) {
         await Comment.deleteOne({ _id: comment });
-        const index = user.comments.indexOf(comment.toString());
-        if (index != -1) user.comments.splice(index, 1);
+        const commentIndex = user.comments.indexOf(comment.toString());
+        if (commentIndex != -1) user.comments.splice(commentIndex, 1);
       }
+
       const imageIndex = user.images.indexOf(image._id.toString());
       if (imageIndex != -1) user.images.splice(imageIndex, 1);
+
       user.save();
+
       const deletedImage = await Image.findByIdAndDelete(id);
       const deletePath =
         process.env.NODE_ENV === "production"
@@ -84,6 +87,7 @@ class imageController {
       fs.unlink(deletePath, (err) => {
         if (err) console.log(err);
       });
+
       res.status(200).json(deletedImage);
     } catch (e) {
       res

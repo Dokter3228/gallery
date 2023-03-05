@@ -1,28 +1,32 @@
-export const mockUser = {
+import { UserType } from "../src/models/user";
+import { CommentType } from "../src/models/comments";
+import { TagType } from "../src/models/tags";
+
+export const mockUser: UserType = {
   login: "Vladimir",
   password: "putin228",
   role: "user",
 };
 
-export const mockUser2 = {
+export const mockUser2: UserType = {
   login: "Abdul",
   password: "abrakadabra2018",
   role: "user",
 };
 
-export const mockUser3 = {
+export const mockUser3: UserType = {
   login: "Caren",
   password: "kasparov1337",
   role: "user",
 };
 
-export const mockUserAdmin = {
+export const mockUserAdmin: UserType = {
   login: "Admin",
   password: "admin228",
   role: "admin",
 };
 
-export const mockCommentsWithNew = [
+export const mockCommentsWithNew: CommentType[] = [
   {
     author: mockUser.login,
     text: "South Africa",
@@ -50,7 +54,7 @@ export const mockCommentsWithNew = [
   },
 ];
 
-export const mockCommentsWithNewAndId = [
+export const mockCommentsWithNewAndId: CommentType[] = [
   {
     author: "Vladimir",
     text: "South Africa",
@@ -81,7 +85,7 @@ export const mockCommentsWithNewAndId = [
   },
 ];
 
-export const mockChangedComments = [
+export const mockAnotherCommentsWithNew: CommentType[] = [
   {
     author: "Vladimir",
     text: "Austria",
@@ -99,7 +103,7 @@ export const mockChangedComments = [
   },
 ];
 
-export const mockTags = [
+export const mockTags: TagType[] = [
   {
     author: "Vladimir",
     name: "first tag",

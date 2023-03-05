@@ -10,7 +10,6 @@ import { imageRouter } from "./routes/imageRoutes";
 import { authMiddleware } from "./middleware/auth";
 import * as process from "process";
 import { authRouter } from "./routes/authRoutes";
-import { adminCheckMiddleware } from "./middleware/admin";
 
 // TODO -> rootisalie add proxy to cra => how does cors changes
 
@@ -20,7 +19,6 @@ const mongoUrl =
     ? process.env.MONGO_URL
     : process.env.MONGO_TESTURL;
 
-console.log(mongoUrl);
 mongoose.connect(mongoUrl).then();
 const database = mongoose.connection;
 

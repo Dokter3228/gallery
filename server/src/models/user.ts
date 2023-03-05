@@ -1,5 +1,5 @@
 import mongoose, { ObjectId, Schema } from "mongoose";
-import { Comment, CommentType } from "./comments";
+import { Comment } from "./comments";
 import bcrypt from "bcrypt";
 
 const SALT_WORK_FACTOR = 10;
@@ -10,8 +10,9 @@ export type UserType = {
   name?: string;
   avatar?: string;
   role: "user" | "admin";
-  images: [string];
-  comments: [String | ObjectId];
+  images?: [string];
+  comments?: [String | ObjectId];
+  _id?: string;
 };
 
 const userSchema = new mongoose.Schema<UserType>({
