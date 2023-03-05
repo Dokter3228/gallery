@@ -9,10 +9,8 @@ import { v4 as uuid } from "uuid";
 class commentsController {
   async updateImageComments(req: Request, res: Response) {
     try {
-      const id = req.params.id;
       const { comments } = req.body;
       const user = await User.findOne({ login: req.body.user });
-      console.log(user);
       const updatedComments = [];
       for (let comment of comments) {
         if (!comment.author || !comment.new || !comment._id) {
@@ -52,7 +50,6 @@ class commentsController {
           author: comment.author,
           text: comment.text,
         });
-        console.log(commentDb);
         const user = await User.findOne({ login: comment.author });
         if (user?.comments) user.comments.push(commentDb._id.toString());
         if (image?.comments) image.comments.push(commentDb._id.toString());
@@ -63,9 +60,9 @@ class commentsController {
       res.status(200).json(image);
     } catch (e) {
       if (e.message === "new error") {
-        res
-          .status(400)
-          .json({ new: "property 'new' can't be in the comment with 'id'" });
+        res.status(400).json({
+          new: "property 'new' can't be in the comment together with 'id'",
+        });
       } else {
         res.status(400).json({ message: e.message });
       }

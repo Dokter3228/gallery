@@ -14,7 +14,11 @@ import {
   mockChangedComments,
   mockCommentsWithNewAndId,
   mockUserAdmin,
+  mockUser2,
+  mockUser3,
+  mockTags,
 } from "../mocks/mockData";
+import { Tag } from "./models/tags";
 
 const mockImagePath = path.join(
   process.cwd(),
@@ -242,7 +246,7 @@ describe("main tests", () => {
 
       expect(res2.status).toBe(400);
       expect(res2.body.new).toBe(
-        "property 'new' can't be in the comment with 'id'"
+        "property 'new' can't be in the comment together with 'id'"
       );
     });
 
@@ -380,6 +384,352 @@ describe("main tests", () => {
       expect(res.body.author).toBe(mockUser.login);
       expect(user.comments.length).toBe(0);
       expect(user.images.length).toBe(0);
+    });
+  });
+
+  describe("tags functionality", () => {
+    let imageId;
+    beforeAll(async () => {
+      const res = await request(app)
+        // register a user
+        .post("/users")
+        .send(mockUser);
+
+      expect(res.status).toBe(200);
+      expect(res.body.role).toBe("user");
+
+      const token = jwt.sign(
+        {
+          login: mockUser.login,
+          password: mockUser.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+      const res2 = await request(app)
+        .post("/images/")
+        .set("token", token)
+        .attach("image", mockImagePath)
+        .field("author", mockUser.login);
+
+      expect(res2.status).toBe(200);
+
+      const postedImage = await Image.findById(res2.body._id.toString());
+      imageId = res2.body._id.toString();
+      expect(postedImage._id.toString()).toBe(res2.body._id.toString());
+      expect(postedImage.author).toBe(mockUser.login);
+    });
+
+    afterAll(async () => {
+      const token = jwt.sign(
+        {
+          login: mockUser.login,
+          password: mockUser.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .delete(`/images/${imageId}`)
+        .set("token", token);
+
+      expect(res.status).toBe(200);
+
+      await mongoose.connection.db.dropDatabase();
+    });
+
+    let tagsIds = [];
+    test("POST tags /images/id/tags", async () => {
+      const token = jwt.sign(
+        {
+          login: mockUser.login,
+          password: mockUser.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .post(`/images/${imageId}/tags`)
+        .set("token", token)
+        .send(mockTags);
+
+      expect(res.status).toBe(200);
+      const tag = await Tag.findById(res.body.tags[0]);
+      expect(tag.name).toBe(mockTags[0].name);
+      const tag2 = await Tag.findById(res.body.tags[1]);
+      expect(tag2.name).toBe(mockTags[1].name);
+      tagsIds.push(tag);
+      tagsIds.push(tag2);
+    });
+
+    test("PATCH tags /images/id/tags", async () => {
+      const token = jwt.sign(
+        {
+          login: mockUser.login,
+          password: mockUser.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .patch(`/images/${imageId}/tags`)
+        .set("token", token)
+        .send([
+          {
+            _id: tagsIds[0]._id,
+            name: "changed name",
+          },
+          {
+            _id: tagsIds[1]._id,
+            name: "another changed name",
+          },
+        ]);
+
+      expect(res.status).toBe(200);
+      const tag = await Tag.findById(res.body[0]._id);
+      expect(tag.name).toBe("changed name");
+      const tag2 = await Tag.findById(res.body[1]._id);
+      expect(tag2.name).toBe("another changed name");
+    });
+
+    test("PATCH (delete) tags /images/id/tags", async () => {
+      const token = jwt.sign(
+        {
+          login: mockUser.login,
+          password: mockUser.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .patch(`/images/${imageId}/tags`)
+        .set("token", token)
+        .send([
+          {
+            _id: tagsIds[0]._id,
+            name: "change name again here",
+          },
+        ]);
+
+      expect(res.status).toBe(200);
+      const tag = await Tag.findById(res.body[0]._id);
+      expect(tag.name).toBe("change name again here");
+      expect(res.body.length).toBe(1);
+    });
+  });
+
+  describe("admin functionality", () => {
+    let userId;
+    let user2Id;
+    let user3Id;
+    beforeAll(async () => {
+      const resAdmin = await request(app)
+        // register a user
+        .post("/users")
+        .send(mockUserAdmin);
+
+      expect(resAdmin.status).toBe(200);
+      expect(resAdmin.body.role).toBe("admin");
+
+      const res = await request(app)
+        // register a user
+        .post("/users")
+        .send(mockUser);
+
+      expect(res.status).toBe(200);
+      expect(res.body.role).toBe("user");
+      userId = res.body._id;
+
+      const res2 = await request(app)
+        // register a user
+        .post("/users")
+        .send(mockUser2);
+
+      expect(res2.status).toBe(200);
+      expect(res2.body.role).toBe("user");
+      user2Id = res2.body._id;
+
+      const res3 = await request(app)
+        // register a user
+        .post("/users")
+        .send(mockUser3);
+
+      expect(res3.status).toBe(200);
+      expect(res3.body.role).toBe("user");
+      user3Id = res3.body._id;
+    });
+
+    afterAll(async () => {
+      await mongoose.connection.db.dropDatabase();
+    });
+
+    test("PATCH /users/ changing a role", async () => {
+      const token = jwt.sign(
+        {
+          login: mockUserAdmin.login,
+          password: mockUserAdmin.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .patch(`/users/`)
+        .set("token", token)
+        .send([
+          {
+            id: userId,
+            role: "admin",
+          },
+          {
+            id: user2Id,
+            role: "admin",
+          },
+          {
+            id: user3Id,
+            role: "admin",
+          },
+        ]);
+
+      expect(res.status).toBe(200);
+      expect(res.body[0].role).toBe("admin");
+      expect(res.body[1].role).toBe("admin");
+      expect(res.body[2].role).toBe("admin");
+
+      const res2 = await request(app)
+        .patch(`/users/`)
+        .set("token", token)
+        .send([
+          {
+            id: userId,
+            role: "user",
+          },
+          {
+            id: user2Id,
+            role: "user",
+          },
+          {
+            id: user2Id,
+            role: "user",
+          },
+        ]);
+
+      expect(res2.status).toBe(200);
+      expect(res2.body[0].role).toBe("user");
+      expect(res2.body[1].role).toBe("user");
+      expect(res2.body[2].role).toBe("user");
+    });
+
+    test("PATCH /users/ changing a login", async () => {
+      const token = jwt.sign(
+        {
+          login: mockUserAdmin.login,
+          password: mockUserAdmin.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .patch(`/users/`)
+        .set("token", token)
+        .send([
+          {
+            id: userId,
+            login: "changedLogin",
+          },
+          {
+            id: user2Id,
+            login: "changedLogin",
+          },
+          {
+            id: user3Id,
+            login: "changedLogin",
+          },
+        ]);
+
+      expect(res.status).toBe(200);
+      expect(res.body[0].login).toBe("changedLogin");
+      expect(res.body[1].login).toBe("changedLogin");
+      expect(res.body[2].login).toBe("changedLogin");
+
+      const res2 = await request(app)
+        .patch(`/users/`)
+        .set("token", token)
+        .send([
+          {
+            id: userId,
+            login: "anotherChangedLoginHere",
+          },
+          {
+            id: user2Id,
+            login: "anotherChangedLoginHere",
+          },
+          {
+            id: user3Id,
+            login: "anotherChangedLoginHere",
+          },
+        ]);
+
+      expect(res2.status).toBe(200);
+      expect(res2.body[0].login).toBe("anotherChangedLoginHere");
+      expect(res2.body[1].login).toBe("anotherChangedLoginHere");
+      expect(res2.body[2].login).toBe("anotherChangedLoginHere");
+    });
+
+    test("PATCH /users/ by not an admin (error 401)", async () => {
+      const token = jwt.sign(
+        {
+          login: mockUser.login,
+          password: mockUser.password,
+        },
+        process.env.JWT_SECRET_KEY,
+        { expiresIn: "15m" }
+      );
+
+      const res = await request(app)
+        .patch(`/users/`)
+        .set("token", token)
+        .send([
+          {
+            id: userId,
+            login: "changedLogin",
+          },
+          {
+            id: user2Id,
+            login: "changedLogin",
+          },
+          {
+            id: user3Id,
+            login: "changedLogin",
+          },
+        ]);
+
+      expect(res.status).toBe(401);
+
+      const res2 = await request(app)
+        .patch(`/users/`)
+        .set("token", token)
+        .send([
+          {
+            id: userId,
+            login: "anotherChangedLoginHere",
+          },
+          {
+            id: user2Id,
+            login: "anotherChangedLoginHere",
+          },
+          {
+            id: user3Id,
+            login: "anotherChangedLoginHere",
+          },
+        ]);
+
+      expect(res2.status).toBe(401);
     });
   });
 });

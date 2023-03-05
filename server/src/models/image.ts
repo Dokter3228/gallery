@@ -6,6 +6,7 @@ export type Image = {
   creationDate: string;
   src: string;
   comments: [ObjectId | string];
+  tags?: [ObjectId | string];
 };
 
 const imageSchema = new mongoose.Schema<Image>({
@@ -21,6 +22,12 @@ const imageSchema = new mongoose.Schema<Image>({
     {
       type: Schema.Types.ObjectId,
       ref: "Comment",
+    },
+  ],
+  tags: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Tag",
     },
   ],
   src: {

@@ -4,6 +4,18 @@ export const mockUser = {
   role: "user",
 };
 
+export const mockUser2 = {
+  login: "Abdul",
+  password: "abrakadabra2018",
+  role: "user",
+};
+
+export const mockUser3 = {
+  login: "Caren",
+  password: "kasparov1337",
+  role: "user",
+};
+
 export const mockUserAdmin = {
   login: "Admin",
   password: "admin228",
@@ -73,13 +85,34 @@ export const mockChangedComments = [
   {
     author: "Vladimir",
     text: "Austria",
+    new: true,
   },
   {
     author: "Vladimir",
     text: "India",
+    new: true,
   },
   {
     author: "Vladimir",
     text: "Vietnam",
+    new: true,
+  },
+];
+
+export const mockTags = [
+  {
+    author: "Vladimir",
+    name: "first tag",
+    new: true,
+  },
+  {
+    author: "Vladimir",
+    name: "second tag",
+    new: true,
+  },
+  {
+    author: "Vladimir",
+    name: "third tag",
+    new: true,
   },
 ];

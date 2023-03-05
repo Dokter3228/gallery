@@ -75,7 +75,6 @@ class imageController {
       if (imageIndex != -1) user.images.splice(imageIndex, 1);
       user.save();
       const deletedImage = await Image.findByIdAndDelete(id);
-      console.log(deletedImage.src.split("testImages/"));
       const deletePath =
         process.env.NODE_ENV === "production"
           ? path.join(process.cwd(), "/public/images") +
@@ -84,9 +83,6 @@ class imageController {
             `/${deletedImage.src.split("testImages/")[1]}`;
       fs.unlink(deletePath, (err) => {
         if (err) console.log(err);
-        else {
-          console.log("\nDeleted file: ", deletePath);
-        }
       });
       res.status(200).json(deletedImage);
     } catch (e) {

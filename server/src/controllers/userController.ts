@@ -47,6 +47,23 @@ class userController {
       res.status(400).json({ message: e.message });
     }
   }
+
+  async patchUser(req: Request, res: Response) {
+    try {
+      const users = req.body;
+      const result = [];
+      for (let userUpdate of users) {
+        const userDb = await User.findById(userUpdate.id);
+        if (userUpdate.role) userDb.role = userUpdate.role;
+        if (userUpdate.login) userDb.login = userUpdate.login;
+        await userDb.save();
+        result.push(userDb);
+      }
+      res.status(200).json(result);
+    } catch (e) {
+      res.status(200).json({ message: e.message });
+    }
+  }
 }
 
 export default new userController();
