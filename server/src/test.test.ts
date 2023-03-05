@@ -25,6 +25,7 @@ describe("main tests", () => {
   afterAll(async () => {
     await mongoose.connection.db.dropDatabase();
   });
+
   describe("/users", () => {
     describe("/, /login, /logout, /:id(getUser) ", () => {
       afterAll(async () => {
@@ -37,18 +38,22 @@ describe("main tests", () => {
           password: mockUser.password,
           role: mockUser.role,
         });
+
         User.findOne({ login: mockUser.login }, (err, user) => {
           user.comparePassword(mockUser.password, function (err, isMatch) {
             if (err) throw err;
             expect(isMatch).toBe(true);
           });
         });
+
         expect(res.status).toBe(200);
         expect(res.body.login).toBe(mockUser.login);
         expect(res.body.comments.length).toBe(0);
         expect(res.body.images.length).toBe(0);
         expect(res.body.role).toBe("user");
+
         const savedUser = await User.findById(res.body._id);
+
         expect(savedUser.login).toBe(res.body.login);
         expect(savedUser.password).toBe(res.body.password);
         expect(savedUser.comments.length).toBe(0);
@@ -62,18 +67,22 @@ describe("main tests", () => {
           password: mockUserAdmin.password,
           role: mockUserAdmin.role,
         });
+
         User.findOne({ login: mockUserAdmin.login }, (err, user) => {
           user.comparePassword(mockUserAdmin.password, function (err, isMatch) {
             if (err) throw err;
             expect(isMatch).toBe(true);
           });
         });
+
         expect(res.status).toBe(200);
         expect(res.body.login).toBe(mockUserAdmin.login);
         expect(res.body.comments.length).toBe(0);
         expect(res.body.images.length).toBe(0);
         expect(res.body.role).toBe("admin");
+
         const savedUser = await User.findById(res.body._id);
+
         expect(savedUser.login).toBe(res.body.login);
         expect(savedUser.password).toBe(res.body.password);
         expect(savedUser.comments.length).toBe(0);
@@ -85,6 +94,7 @@ describe("main tests", () => {
         const res = await request(app)
           .post("/users")
           .send({ login: mockUser.login, password: mockUser.password });
+
         expect(res.status).toBe(409);
       });
 
@@ -94,7 +104,9 @@ describe("main tests", () => {
           .send({ login: mockUser.login, password: mockUser.password });
 
         expect(res.status).toBe(200);
+
         const savedUser = await User.findById(res.body._id);
+
         expect(savedUser.login).toBe(res.body.login);
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
@@ -103,19 +115,23 @@ describe("main tests", () => {
         const res = await request(app)
           .post("/login")
           .send({ login: "Equsfoa21doijwfaw", password: "12owiefj@oifj2332" });
+
         expect(res.status).toBe(401);
       });
 
       test("/:id get user by ObjectId", async () => {
         const savedUser = await User.findOne({ login: mockUser.login });
         const id = savedUser._id.toString();
+
         const res = await request(app).get(`/users/${id}`);
+
         expect(res.status).toBe(200);
         expect(res.body.login).toBe(savedUser.login);
       });
 
       test("/logout", async () => {
         const res = await request(app).post("/logout");
+
         expect(res.status).toBe(200);
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeTruthy();
       });
@@ -127,7 +143,8 @@ describe("main tests", () => {
       const res = await request(app)
         // register a user
         .post("/users")
-        .send({ login: mockUser.login, password: mockUser.password });
+        .send(mockUser);
+
       expect(res.status).toBe(200);
     });
 
@@ -145,6 +162,7 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .post("/images/")
         .set("token", token)
@@ -152,8 +170,10 @@ describe("main tests", () => {
         .field("author", mockUser.login);
 
       expect(res.status).toBe(200);
-      imageId = res.body._id.toString();
+
       const postedImage = await Image.findById(res.body._id.toString());
+      imageId = res.body._id.toString();
+
       expect(postedImage._id.toString()).toBe(res.body._id.toString());
       expect(postedImage.author).toBe(mockUser.login);
     });
@@ -167,9 +187,11 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .get(`/images/${imageId}`)
         .set("token", token);
+
       expect(res.status).toBe(200);
       expect(res.body.author).toBe(mockUser.login);
     });
@@ -183,7 +205,9 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app).get("/images/").set("token", token);
+
       expect(res.status).toBe(200);
       expect(res.body.length).toBeGreaterThanOrEqual(1);
     });
@@ -197,6 +221,7 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .post(`/images/${imageId}/comments`)
         .set("token", token)
@@ -222,7 +247,6 @@ describe("main tests", () => {
     });
 
     let mockCommentsWithIdsForPatch;
-
     test("GET /images/:id/comments", async () => {
       const token = jwt.sign(
         {
@@ -243,6 +267,7 @@ describe("main tests", () => {
       expect(
         res.body.every((comment) => comment?.author && comment?.text)
       ).toBe(true);
+
       mockCommentsWithIdsForPatch = res.body;
     });
 
@@ -276,6 +301,39 @@ describe("main tests", () => {
 
       expect(res2.status).toBe(400);
       expect(res2.body.author).toBe("Author isn't provided");
+
+      const res3 = await request(app)
+        .patch(`/images/${imageId}/comments`)
+        .set("token", token)
+        .send({
+          comments: mockCommentsWithIdsForPatch.map((comment) => {
+            return {
+              ...comment,
+              text: "new updated text",
+              new: true,
+            };
+          }),
+        });
+
+      expect(res3.status).toBe(200);
+      expect(res3.body[0].text).toBe("new updated text");
+      expect(res3.body[0].new).not.toBeDefined();
+
+      const res4 = await request(app)
+        .patch(`/images/${imageId}/comments`)
+        .set("token", token)
+        .send({
+          comments: mockCommentsWithIdsForPatch.map((comment) => {
+            return {
+              ...comment,
+              text: "new updated text",
+              new: true,
+              author: "some dude who isn't the author",
+            };
+          }),
+        });
+
+      expect(res4.status).toBe(401);
     });
 
     test("correct POST /images/:id/comments", async () => {
@@ -287,12 +345,14 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .post(`/images/${imageId}/comments`)
         .set("token", token)
         .send({
           comments: mockChangedComments,
         });
+
       expect(res.status).toBe(200);
       expect(res.body.comments.length).toEqual(
         mockChangedComments.length + mockCommentsWithNew.length
@@ -309,11 +369,15 @@ describe("main tests", () => {
         process.env.JWT_SECRET_KEY,
         { expiresIn: "15m" }
       );
+
       const res = await request(app)
         .delete(`/images/${imageId}`)
         .set("token", token);
+
       expect(res.status).toBe(200);
+
       const user = await User.findOne({ login: mockUser.login });
+
       expect(res.body.author).toBe(mockUser.login);
       expect(user.comments.length).toBe(
         mockCommentsWithNew.length + mockChangedComments.length

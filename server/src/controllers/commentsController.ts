@@ -11,21 +11,33 @@ class commentsController {
     try {
       const id = req.params.id;
       const { comments } = req.body;
-      const user = User.findById({ login: req.body.user });
+      const user = await User.findOne({ login: req.body.user });
+      console.log(user);
+      const updatedComments = [];
       for (let comment of comments) {
-        if (comment?.author !== user.login && user.role !== "admin") continue;
         if (!comment.author || !comment.new || !comment._id) {
           const error = {
             author: comment.author || "Author isn't provided",
             new: comment.new || "New isn't provided",
             _id: comment._id || "Id isn't provided",
-            text: comment.text,
           };
-          throw error;
+          res.status(400).json(error);
+          return;
         }
+        if (comment.author !== user.login && user.role !== "admin")
+          throw new Error("You can't edit this comment");
+        const commentDb = await Comment.findById(comment._id);
+        commentDb.text = comment.text;
+        updatedComments.push(commentDb);
+        await commentDb.save();
       }
+      res.status(200).json(updatedComments);
     } catch (e) {
-      res.status(400).json(e);
+      if (e.message === "You can't edit this comment") {
+        res.status(401).json({ message: e.message });
+        return;
+      }
+      res.status(400).json({ message: e.message });
     }
   }
 

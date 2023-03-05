@@ -12,27 +12,27 @@ export const mockUserAdmin = {
 
 export const mockCommentsWithNew = [
   {
-    author: "Vladimir",
+    author: mockUser.login,
     text: "South Africa",
     new: true,
   },
   {
-    author: "Vladimir",
+    author: mockUser.login,
     text: "Italy",
     new: true,
   },
   {
-    author: "Vladimir",
+    author: mockUser.login,
     text: "United States",
     new: true,
   },
   {
-    author: "Vladimir",
+    author: mockUser.login,
     text: "Singapore",
     new: true,
   },
   {
-    author: "Vladimir",
+    author: mockUser.login,
     text: "Philippines",
     new: true,
   },
