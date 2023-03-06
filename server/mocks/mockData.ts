@@ -2,25 +2,25 @@ import { UserType } from "../src/models/user";
 import { CommentType } from "../src/models/comments";
 import { TagType } from "../src/models/tags";
 
-export const mockUser: UserType = {
+export const mockUser: Partial<UserType> = {
   login: "Vladimir",
   password: "putin228",
   role: "user",
 };
 
-export const mockUser2: UserType = {
+export const mockUser2: Partial<UserType> = {
   login: "Abdul",
   password: "abrakadabra2018",
   role: "user",
 };
 
-export const mockUser3: UserType = {
+export const mockUser3: Partial<UserType> = {
   login: "Caren",
   password: "kasparov1337",
   role: "user",
 };
 
-export const mockUserAdmin: UserType = {
+export const mockUserAdmin: Partial<UserType> = {
   login: "Admin",
   password: "admin228",
   role: "admin",
@@ -28,27 +28,27 @@ export const mockUserAdmin: UserType = {
 
 export const mockCommentsWithNew: CommentType[] = [
   {
-    author: mockUser.login,
+    author: mockUser.login!,
     text: "South Africa",
     new: true,
   },
   {
-    author: mockUser.login,
+    author: mockUser.login!,
     text: "Italy",
     new: true,
   },
   {
-    author: mockUser.login,
+    author: mockUser.login!,
     text: "United States",
     new: true,
   },
   {
-    author: mockUser.login,
+    author: mockUser.login!,
     text: "Singapore",
     new: true,
   },
   {
-    author: mockUser.login,
+    author: mockUser.login!,
     text: "Philippines",
     new: true,
   },

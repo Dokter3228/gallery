@@ -17,7 +17,8 @@ import {
   mockUser3,
   mockTags,
 } from "../mocks/mockData";
-import { Tag } from "./models/tags";
+import { Tag, TagType } from "./models/tags";
+import { CommentType } from "./models/comments";
 
 const mockImagePath = path.join(
   process.cwd(),
@@ -38,50 +39,75 @@ describe("main tests", () => {
       test("/users (registration) (simple user)", async () => {
         const res = await request(app).post("/users").send(mockUser);
 
-        User.findOne({ login: mockUser.login }, (err, user) => {
-          user.comparePassword(mockUser.password, function (err, isMatch) {
-            if (err) throw err;
-            expect(isMatch).toBe(true);
-          });
-        });
+        User.findOne(
+          { login: mockUser.login },
+          (
+            err: any,
+            user: {
+              comparePassword: (
+                arg0: string | undefined,
+                arg1: (err: any, isMatch: any) => void
+              ) => void;
+            }
+          ) => {
+            user.comparePassword(mockUser.password, function (err, isMatch) {
+              if (err) throw err;
+              expect(isMatch).toBe(true);
+            });
+          }
+        );
 
         expect(res.status).toBe(200);
-        expect(res.body.login).toBe(mockUser.login);
+        expect(res.body.login!).toBe(mockUser.login!);
         expect(res.body.comments.length).toBe(0);
         expect(res.body.images.length).toBe(0);
         expect(res.body.role).toBe("user");
 
         const savedUser = await User.findById(res.body._id);
 
-        expect(savedUser.login).toBe(res.body.login);
-        expect(savedUser.password).toBe(res.body.password);
-        expect(savedUser.comments.length).toBe(0);
-        expect(savedUser.images.length).toBe(0);
+        savedUser && expect(savedUser.login!).toBe(res.body.login!);
+        savedUser && expect(savedUser.password).toBe(res.body.password);
+        savedUser && expect(savedUser.comments.length).toBe(0);
+        savedUser && expect(savedUser.images.length).toBe(0);
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
 
       test("/users (registration) (admin) ", async () => {
         const res = await request(app).post("/users").send(mockUserAdmin);
 
-        User.findOne({ login: mockUserAdmin.login }, (err, user) => {
-          user.comparePassword(mockUserAdmin.password, function (err, isMatch) {
-            if (err) throw err;
-            expect(isMatch).toBe(true);
-          });
-        });
+        User.findOne(
+          { login: mockUserAdmin.login },
+          (
+            err: any,
+            user: {
+              comparePassword: (
+                arg0: string | undefined,
+                arg1: (err: unknown, isMatch: boolean) => void
+              ) => void;
+            }
+          ) => {
+            user.comparePassword(
+              mockUserAdmin.password,
+              function (err: unknown, isMatch: boolean) {
+                if (err) throw err;
+                expect(isMatch).toBe(true);
+              }
+            );
+          }
+        );
 
         expect(res.status).toBe(200);
-        expect(res.body.login).toBe(mockUserAdmin.login);
+        expect(res.body.login!).toBe(mockUserAdmin.login!);
         expect(res.body.comments.length).toBe(0);
         expect(res.body.images.length).toBe(0);
         expect(res.body.role).toBe("admin");
 
         const savedUser = await User.findById(res.body._id);
 
-        expect(savedUser.login).toBe(res.body.login);
-        expect(savedUser.password).toBe(res.body.password);
-        expect(savedUser.comments.length).toBe(0);
-        expect(savedUser.images.length).toBe(0);
+        savedUser && expect(savedUser.login!).toBe(res.body.login!);
+        savedUser && expect(savedUser.password).toBe(res.body.password);
+        savedUser && expect(savedUser.comments.length).toBe(0);
+        savedUser && expect(savedUser.images.length).toBe(0);
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
 
@@ -100,7 +126,7 @@ describe("main tests", () => {
 
         const user = await User.findById(res.body._id);
 
-        expect(user.login).toBe(res.body.login);
+        user && expect(user.login!).toBe(res.body.login!);
         expect(res.headers["set-cookie"][0].includes("token=;")).toBeFalsy();
       });
 
@@ -115,12 +141,14 @@ describe("main tests", () => {
 
       test("/users/:id (get user by ObjectId)", async () => {
         const savedUser = await User.findOne({ login: mockUser.login });
-        const id = savedUser._id.toString();
+        if (savedUser) {
+          const id = savedUser._id.toString();
 
-        const res = await request(app).get(`/users/${id}`);
+          const res = await request(app).get(`/users/${id}`);
 
-        expect(res.status).toBe(200);
-        expect(res.body.login).toBe(savedUser.login);
+          expect(res.status).toBe(200);
+          savedUser && expect(res.body.login!).toBe(savedUser.login!);
+        }
       });
 
       test("/logout", async () => {
@@ -143,7 +171,7 @@ describe("main tests", () => {
       await mongoose.connection.db.dropDatabase();
     });
 
-    let imageId;
+    let imageId: string;
     test("POST / (one image)", async () => {
       const token = jwt.sign(
         {
@@ -158,15 +186,16 @@ describe("main tests", () => {
         .post("/images/")
         .set("token", token)
         .attach("image", mockImagePath)
-        .field("author", mockUser.login);
+        .field("author", mockUser.login!);
 
       expect(res.status).toBe(200);
 
       const postedImage = await Image.findById(res.body._id.toString());
       imageId = res.body._id.toString();
 
-      expect(postedImage._id.toString()).toBe(res.body._id.toString());
-      expect(postedImage.author).toBe(mockUser.login);
+      postedImage &&
+        expect(postedImage._id.toString()).toBe(res.body._id.toString());
+      postedImage && expect(postedImage.author).toBe(mockUser.login!);
     });
 
     test("GET /:id (one image)", async () => {
@@ -184,7 +213,7 @@ describe("main tests", () => {
         .set("token", token);
 
       expect(res.status).toBe(200);
-      expect(res.body.author).toBe(mockUser.login);
+      expect(res.body.author).toBe(mockUser.login!);
     });
 
     test("GET / (all images)", async () => {
@@ -237,7 +266,7 @@ describe("main tests", () => {
       );
     });
 
-    let mockCommentsWithIdsForPatch;
+    let mockCommentsWithIdsForPatch: CommentType[];
     test("GET /images/:id/comments", async () => {
       const token = jwt.sign(
         {
@@ -257,7 +286,9 @@ describe("main tests", () => {
       expect(res.body[0]._id).toBeDefined();
 
       expect(
-        res.body.every((comment) => comment?.author && comment?.text)
+        (res.body as CommentType[]).every(
+          (comment) => comment?.author && comment?.text
+        )
       ).toBe(true);
 
       mockCommentsWithIdsForPatch = res.body;
@@ -315,7 +346,7 @@ describe("main tests", () => {
         .patch(`/images/${imageId}/comments`)
         .set("token", token)
         .send({
-          comments: mockCommentsWithIdsForPatch.map((comment) => {
+          comments: mockCommentsWithIdsForPatch.map((comment: CommentType) => {
             return {
               ...comment,
               text: "new updated text",
@@ -369,14 +400,14 @@ describe("main tests", () => {
       expect(res.status).toBe(200);
 
       const user = await User.findOne({ login: mockUser.login });
-      expect(res.body.author).toBe(mockUser.login);
-      expect(user.comments.length).toBe(0);
-      expect(user.images.length).toBe(0);
+      expect(res.body.author).toBe(mockUser.login!);
+      user && expect(user.comments.length).toBe(0);
+      user && expect(user.images.length).toBe(0);
     });
   });
 
   describe("tags functionality", () => {
-    let imageId;
+    let imageId: string;
     beforeAll(async () => {
       const res = await request(app).post("/users").send(mockUser);
 
@@ -395,14 +426,15 @@ describe("main tests", () => {
         .post("/images/")
         .set("token", token)
         .attach("image", mockImagePath)
-        .field("author", mockUser.login);
+        .field("author", mockUser.login!);
 
       expect(res2.status).toBe(200);
 
       const postedImage = await Image.findById(res2.body._id.toString());
       imageId = res2.body._id.toString();
-      expect(postedImage._id.toString()).toBe(res2.body._id.toString());
-      expect(postedImage.author).toBe(mockUser.login);
+      postedImage &&
+        expect(postedImage._id.toString()).toBe(res2.body._id.toString());
+      postedImage && expect(postedImage.author).toBe(mockUser.login!);
     });
 
     afterAll(async () => {
@@ -424,7 +456,7 @@ describe("main tests", () => {
       await mongoose.connection.db.dropDatabase();
     });
 
-    let tagsIds = [];
+    let tagsIds: TagType[] = [];
     test("POST tags /images/id/tags", async () => {
       const token = jwt.sign(
         {
@@ -442,11 +474,11 @@ describe("main tests", () => {
 
       expect(res.status).toBe(200);
       const tag1 = await Tag.findById(res.body.tags[0]);
-      expect(tag1.name).toBe(mockTags[0].name);
+      tag1 && expect(tag1.name).toBe(mockTags[0].name);
       const tag2 = await Tag.findById(res.body.tags[1]);
-      expect(tag2.name).toBe(mockTags[1].name);
-      tagsIds.push(tag1);
-      tagsIds.push(tag2);
+      tag2 && expect(tag2.name).toBe(mockTags[1].name);
+      tag1 && tagsIds.push(tag1);
+      tag2 && tagsIds.push(tag2);
     });
 
     test("PATCH tags /images/id/tags", async () => {
@@ -476,10 +508,10 @@ describe("main tests", () => {
       expect(res.status).toBe(200);
 
       const tag = await Tag.findById(res.body[0]._id);
-      expect(tag.name).toBe("changed name");
+      tag && expect(tag.name).toBe("changed name");
 
       const tag2 = await Tag.findById(res.body[1]._id);
-      expect(tag2.name).toBe("another changed name");
+      tag2 && expect(tag2.name).toBe("another changed name");
     });
 
     test("PATCH (delete) tags /images/id/tags", async () => {
@@ -505,16 +537,16 @@ describe("main tests", () => {
       expect(res.status).toBe(200);
 
       const tag = await Tag.findById(res.body[0]._id);
-      expect(tag.name).toBe("change name again here");
+      tag && expect(tag.name).toBe("change name again here");
 
       expect(res.body.length).toBe(1);
     });
   });
 
   describe("admin functionality", () => {
-    let userId;
-    let user2Id;
-    let user3Id;
+    let userId: string;
+    let user2Id: string;
+    let user3Id: string;
     beforeAll(async () => {
       const resAdmin = await request(app).post("/users").send(mockUserAdmin);
 
@@ -630,9 +662,9 @@ describe("main tests", () => {
         ]);
 
       expect(res.status).toBe(200);
-      expect(res.body[0].login).toBe("changedLogin");
-      expect(res.body[1].login).toBe("changedLogin2");
-      expect(res.body[2].login).toBe("changedLogin3");
+      expect(res.body[0].login!).toBe("changedLogin");
+      expect(res.body[1].login!).toBe("changedLogin2");
+      expect(res.body[2].login!).toBe("changedLogin3");
 
       const res2 = await request(app)
         .patch(`/users/`)
@@ -653,9 +685,9 @@ describe("main tests", () => {
         ]);
 
       expect(res2.status).toBe(200);
-      expect(res2.body[0].login).toBe("anotherChangedLoginHere");
-      expect(res2.body[1].login).toBe("anotherChangedLoginHere2");
-      expect(res2.body[2].login).toBe("anotherChangedLoginHere3");
+      expect(res2.body[0].login!).toBe("anotherChangedLoginHere");
+      expect(res2.body[1].login!).toBe("anotherChangedLoginHere2");
+      expect(res2.body[2].login!).toBe("anotherChangedLoginHere3");
     });
 
     test("PATCH /users/ by not an admin (error 401)", async () => {
@@ -729,13 +761,13 @@ describe("main tests", () => {
 //
 //     expect(res.status).toBe(301);
 //
-//     expect(res.body.login).toBe(mockUser.login);
+//     expect(res.body.login!).toBe(mockUser.login!);
 //     expect(res.body.password).toBe(mockUser.password);
 //
 //     // айди из монги
 //     // expect(res.body._id).toBe("user");
 //     const savedUser = await User.findById(res.body._id);
-//     expect(savedUser.login).toBe(res.body.login);
+//     expect(savedUser.login!).toBe(res.body.login!);
 //     expect(savedUser.password).toBe(res.body.password);
 //   });
 //
@@ -745,7 +777,7 @@ describe("main tests", () => {
 //       .post("/users/login")
 //       .send({ login: mockUser.login, password: mockUser.password });
 //     expect(res.status).toBe(200);
-//     expect(res.body.login).toBe(mockUser.login);
+//     expect(res.body.login!).toBe(mockUser.login!);
 //     expect(res.body.password).toBe(mockUser.password);
 //     expect(res.headers["set-cookie"]).toBeTruthy();
 //   });
@@ -793,7 +825,7 @@ describe("main tests", () => {
 //       expect(res.headers["set-cookie"]).toBeFalsy();
 //       expect(res.body.id).toBe(1);
 //       expect(res.body.uuid).toBe("string");
-//       expect(res.body.author).toBe(mockUser.login);
+//       expect(res.body.author).toBe(mockUser.login!);
 //       expect(res.body.date).toBeTruthy();
 //       expect(res.body.comments).toBe("");
 //     });
