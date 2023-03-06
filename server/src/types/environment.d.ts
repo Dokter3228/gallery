@@ -1,5 +1,13 @@
-declare const MONGO_URL: string;
-declare const JWT_SECRET_KEY: string;
-declare const MONGO_TEST_URL: string;
-declare const NODE_ENV: 'development' | 'production' | 'test';
-declare const PORT: string;
+declare global {
+  namespace NodeJS {
+    interface ProcessEnv {
+      MONGO_URL: string;
+      JWT_SECRET_KEY: string;
+      MONGO_TEST_URL: string;
+      NODE_ENV: 'development' | 'production' | 'test';
+      PORT: string;
+    }
+  }
+}
+
+export default global;
