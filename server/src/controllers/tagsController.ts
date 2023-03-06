@@ -1,6 +1,6 @@
-import Image from '../models/image';
-import { Tag } from '../models/tags';
-import { Request, Response } from 'express';
+import Image from "../models/image";
+import { Tag } from "../models/tags";
+import { type Request, type Response } from "express";
 
 class tagsController {
   async postTags(req: Request, res: Response) {
@@ -8,9 +8,9 @@ class tagsController {
       const id = req.params.id;
       const tags = req.body;
       const image = await Image.findById(id);
-      if (image) {
-        for (let tag of tags) {
-          if (!tag.new) throw new Error('new error');
+      if (image != null) {
+        for (const tag of tags) {
+          if (!tag.new) throw new Error("new error");
           const tagDb = new Tag({
             name: tag.name,
             imageId: image._id,
@@ -26,7 +26,7 @@ class tagsController {
       }
     } catch (error) {
       if (error instanceof Error) {
-        if (error.message === 'new error') return res.status(400).json("tag can't be added without 'new' property");
+        if (error.message === "new error") return res.status(400).json("tag can't be added without 'new' property");
         res.status(400).json({ message: error.message });
       }
     }
@@ -71,8 +71,8 @@ class tagsController {
       // }
     } catch (error) {
       if (error instanceof Error) {
-        if (error.message === 'id error') return res.status(400).json("tag can't be edited without '_id' property");
-        if (error.message === 'auth error') return res.status(401).json("you're not authorized to edit this comment");
+        if (error.message === "id error") return res.status(400).json("tag can't be edited without '_id' property");
+        if (error.message === "auth error") return res.status(401).json("you're not authorized to edit this comment");
         res.status(400).json({ message: error.message });
       }
     }

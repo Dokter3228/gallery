@@ -2,15 +2,16 @@
 <project version="4">
   <component name="AnalysisUIOptions">
     <option name="ANALYZE_INJECTED_CODE" value="false" />
+    <option name="SCOPE_TYPE" value="8" />
+    <option name="CUSTOM_SCOPE_NAME" value="Unnamed" />
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add some basic changes for eslint">
+    <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="change eslint prettier to doubleQuotes from singleQuote">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/controllers/tagsController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/controllers/tagsController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/types/environment.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/types/environment.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +38,9 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="Unnamed" pattern="file[gallery]:server//*" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -246,7 +250,7 @@
       <workItem from="1677866777260" duration="594000" />
       <workItem from="1677870738126" duration="166000" />
       <workItem from="1677940732016" duration="9184000" />
-      <workItem from="1678127258140" duration="1496000" />
+      <workItem from="1678127258140" duration="3056000" />
     </task>
     <task id="LOCAL-00001" summary="fasdfas">
       <created>1675794331278</created>
@@ -409,7 +413,21 @@
       <option name="project" value="LOCAL" />
       <updated>1678128411122</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix environment.d.ts">
+      <created>1678128784643</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1678128784643</updated>
+    </task>
+    <task id="LOCAL-00025" summary="change eslint prettier to doubleQuotes from singleQuote">
+      <created>1678130177702</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1678130177702</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,7 +487,9 @@
     <MESSAGE value="add eslint and husky" />
     <MESSAGE value="fix eslint config" />
     <MESSAGE value="add some basic changes for eslint" />
-    <option name="LAST_COMMIT_MESSAGE" value="add some basic changes for eslint" />
+    <MESSAGE value="fix environment.d.ts" />
+    <MESSAGE value="change eslint prettier to doubleQuotes from singleQuote" />
+    <option name="LAST_COMMIT_MESSAGE" value="change eslint prettier to doubleQuotes from singleQuote" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
