@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AnalysisUIOptions">
+    <option name="ANALYZE_INJECTED_CODE" value="false" />
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6c517cf7-e4ce-49bc-8339-c9fe1f6325a9" name="Changes" comment="add eslint and husky">
-      <change afterPath="$PROJECT_DIR$/server/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.prettierignore" beforeDir="false" afterPath="$PROJECT_DIR$/server/.prettierignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/.prettierrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/.prettierrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/.eslintrc.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/middleware/admin.ts" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/middleware/admin.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +60,16 @@
     "WebServerToolWindowFactoryState": "false",
     "last_opened_file_path": "/home/linux/Desktop/fireoffer-monorepo",
     "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs.jest.jest_package": "/home/linux/Desktop/gallery/server/node_modules/jest",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/home/rootisalie/WebstormProjects/gallery/client/node_modules/prettier",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
     "ts.external.directory.path": "/home/rootisalie/WebstormProjects/gallery/client/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -385,7 +389,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678124950470</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="add eslint and husky">
+      <created>1678124961006</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1678124961006</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
