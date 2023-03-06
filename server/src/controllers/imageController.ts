@@ -1,11 +1,11 @@
-import Image from "../models/image";
-import path from "path";
-import User from "../models/user";
-import * as process from "process";
-import { Request, Response } from "express";
-import { v4 as uuid } from "uuid";
-import { Comment } from "../models/comments";
-import * as fs from "fs";
+import Image from '../models/image';
+import path from 'path';
+import User from '../models/user';
+import * as process from 'process';
+import { type Request, type Response } from 'express';
+import { v4 as uuid } from 'uuid';
+import { Comment } from '../models/comments';
+import * as fs from 'fs';
 
 class imageController {
   async getImages(req: Request, res: Response) {
@@ -20,23 +20,21 @@ class imageController {
       let image;
       let uploadPath;
       if (!req.files || Object.keys(req.files).length === 0) {
-        return res.status(400).send("No files were uploaded.");
+        return res.status(400).send('No files were uploaded.');
       }
       image = req.files.image;
       if (!Array.isArray(image)) {
-        const fileExtension = image.name.split(".")[1];
+        const fileExtension = image.name.split('.')[1];
         uploadPath =
-          process.env.NODE_ENV === "production"
-            ? path.join(process.cwd(), "/public/images") +
-              `/${id}.${fileExtension}`
-            : path.join(process.cwd(), "/public/testImages") +
-              `/${id}.${fileExtension}`;
+          process.env.NODE_ENV === 'production'
+            ? path.join(process.cwd(), '/public/images') + `/${id}.${fileExtension}`
+            : path.join(process.cwd(), '/public/testImages') + `/${id}.${fileExtension}`;
         const date = new Date().toLocaleDateString();
         const imageDb = new Image({
           author: author,
           creationDate: date,
           src: `http://localhost:${process.env.PORT}/${
-            process.env.NODE_ENV === "production" ? "images" : "testImages"
+            process.env.NODE_ENV === 'production' ? 'images' : 'testImages'
           }/${id}.${fileExtension}`,
         });
         const user = await User.findOne({ login: author });
@@ -70,7 +68,7 @@ class imageController {
     try {
       const id = req.params.id;
       const image = await Image.findById(id);
-      if (image) {
+      if (image != null) {
         const user = await User.findOne({ login: image.author });
         if (user) {
           for (let comment of image.comments) {
@@ -86,11 +84,9 @@ class imageController {
           const deletedImage = await Image.findByIdAndDelete(id);
           if (deletedImage) {
             const deletePath =
-              process.env.NODE_ENV === "production"
-                ? path.join(process.cwd(), "/public/images") +
-                  `/${deletedImage.src.split("images/")[1]}`
-                : path.join(process.cwd(), "/public/testImages") +
-                  `/${deletedImage.src.split("testImages/")[1]}`;
+              process.env.NODE_ENV === 'production'
+                ? path.join(process.cwd(), '/public/images') + `/${deletedImage.src.split('images/')[1]}`
+                : path.join(process.cwd(), '/public/testImages') + `/${deletedImage.src.split('testImages/')[1]}`;
             fs.unlink(deletePath, (err) => {
               if (err) console.log(err);
             });
@@ -100,9 +96,7 @@ class imageController {
       }
     } catch (error) {
       if (error instanceof Error) {
-        res
-          .status(400)
-          .json({ error: "Something went wrong while deleting the image" });
+        res.status(400).json({ error: 'Something went wrong while deleting the image' });
       }
     }
   }

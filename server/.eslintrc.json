@@ -3,8 +3,9 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["eslint:recommended","standard-with-typescript", "prettier"],
-    "overrides": [
+    "extends": ["eslint:recommended","standard-with-typescript",  "eslint-config-prettier"],
+    "plugins": [
+        "eslint-plugin-prettier"
     ],
     "parserOptions": {
         "project": ["tsconfig.json"],
@@ -12,6 +13,7 @@
         "sourceType": "module"
     },
     "rules": {
+        "@typescript-eslint/consistent-type-definitions": ["error", "type"],
         "prettier/prettier": "error"
     }
 }

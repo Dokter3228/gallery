@@ -1,25 +1,14 @@
-import jwt from "jsonwebtoken";
-import { NextFunction, Request, Response } from "express";
+import jwt from 'jsonwebtoken';
+import { type NextFunction, type Request, type Response } from 'express';
+import { type JwtWithLogin } from './admin';
 
-declare module "jsonwebtoken" {
-  export interface JwtWithLogin extends jwt.JwtPayload {
-    login: string;
-    password: string;
-  }
-}
-
-export const authMiddleware = (
-  req: Request,
-  res: Response,
-  next: NextFunction
-): void => {
+export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   try {
-    const token =
-      req.headers?.cookie?.split("token=").join("") || req.headers.token;
-    const tokenString = Array.isArray(token) ? token.join("") : token;
+    const token = req.headers?.cookie?.split('token=').join('') ?? (req.headers.token as string);
+    const tokenString = Array.isArray(token) ? token.join('') : token;
 
-    const jwtPayload = jwt.verify(tokenString!, process.env.JWT_SECRET_KEY!);
-    if (typeof jwtPayload !== "string" && "login" in jwtPayload) {
+    const jwtPayload = jwt.decode(tokenString, { json: true }) as JwtWithLogin;
+    if ('login' in jwtPayload) {
       req.body.user = jwtPayload.login;
     }
     next();
