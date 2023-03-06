@@ -1,14 +1,12 @@
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import { doesUserExistCheck } from "./userController";
-import { TokenInterface } from "../middleware/auth";
 class authController {
   checkAuth = (req: Request, res: Response) => {
     try {
       const token = req.cookies["token"];
       let userAuthorized =
-        token &&
-        (jwt.verify(token, process.env.JWT_SECRET_KEY) as TokenInterface);
+        token && jwt.verify(token, process.env.JWT_SECRET_KEY!);
 
       if (typeof userAuthorized !== "string" && userAuthorized !== undefined) {
         const { login } = userAuthorized;
@@ -18,8 +16,10 @@ class authController {
       } else {
         res.status(401).json({ message: "user is not authorized" });
       }
-    } catch (e) {
-      res.status(400).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
     }
   };
 
@@ -34,7 +34,7 @@ class authController {
             login,
             password,
           },
-          process.env.JWT_SECRET_KEY,
+          process.env.JWT_SECRET_KEY!,
           { expiresIn: "15m" }
         );
         res.cookie("token", token, {
@@ -43,8 +43,10 @@ class authController {
         res
           .status(200)
           .json({ _id: doesUserExist._id, login: doesUserExist.login });
-      } catch (e) {
-        res.status(400).json({ message: e.message });
+      } catch (error) {
+        if (error instanceof Error) {
+          res.status(400).json({ message: error.message });
+        }
       }
     } else {
       res.status(401).json({ message: "you are not signed up" });
@@ -55,8 +57,10 @@ class authController {
     try {
       res.clearCookie("token");
       res.status(200).json({ message: "logged out" });
-    } catch (e) {
-      res.status(400).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
     }
   }
 }

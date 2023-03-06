@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 
 export const doesUserExistCheck = async function (
   login: string
-): Promise<UserType> {
+): Promise<UserType | null> {
   return User.findOne({ login });
 };
 
@@ -27,7 +27,7 @@ class userController {
             login,
             password,
           },
-          process.env.JWT_SECRET_KEY,
+          process.env.JWT_SECRET_KEY!,
           { expiresIn: "15m" }
         );
         res.cookie("token", token, {
@@ -39,7 +39,9 @@ class userController {
         res.status(409).json({ message: "this user already exists" });
       }
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
     }
   }
 
@@ -49,8 +51,10 @@ class userController {
       const user = await User.findById(id);
 
       res.status(200).json(user);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
     }
   }
 
@@ -61,14 +65,18 @@ class userController {
       const result = [];
       for (let userUpdate of users) {
         const userDb = await User.findById(userUpdate._id);
-        if (userUpdate.role) userDb.role = userUpdate.role;
-        if (userUpdate.login) userDb.login = userUpdate.login;
-        await userDb.save();
+        if (userUpdate.role && userDb) userDb.role = userUpdate.role;
+        if (userUpdate.login && userDb) userDb.login = userUpdate.login;
+        userDb && (await userDb.save());
         result.push(userDb);
       }
+
       res.status(200).json(result);
-    } catch (e) {
-      res.status(200).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        // FIXME 200 on Error
+        res.status(200).json({ message: error.message });
+      }
     }
   }
 }

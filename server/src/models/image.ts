@@ -5,8 +5,8 @@ export type Image = {
   author: string;
   creationDate: string;
   src: string;
-  comments: [ObjectId | string];
-  tags?: [ObjectId | string];
+  comments: string[];
+  tags: string[];
 };
 
 const imageSchema = new mongoose.Schema<Image>({

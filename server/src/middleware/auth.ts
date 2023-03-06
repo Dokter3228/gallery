@@ -1,9 +1,11 @@
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 
-export interface TokenInterface {
-  login: string;
-  password: string;
+declare module "jsonwebtoken" {
+  export interface JwtWithLogin extends jwt.JwtPayload {
+    login: string;
+    password: string;
+  }
 }
 
 export const authMiddleware = (
@@ -15,11 +17,15 @@ export const authMiddleware = (
     const token =
       req.headers?.cookie?.split("token=").join("") || req.headers.token;
     const tokenString = Array.isArray(token) ? token.join("") : token;
-    req.body.user = (
-      jwt.verify(tokenString, process.env.JWT_SECRET_KEY) as TokenInterface
-    ).login;
+
+    const jwtPayload = jwt.verify(tokenString!, process.env.JWT_SECRET_KEY!);
+    if (typeof jwtPayload !== "string" && "login" in jwtPayload) {
+      req.body.user = jwtPayload.login;
+    }
     next();
-  } catch (e) {
-    res.status(401).json({ message: e.message });
+  } catch (error) {
+    if (error instanceof Error) {
+      res.status(401).json({ message: error.message });
+    }
   }
 };

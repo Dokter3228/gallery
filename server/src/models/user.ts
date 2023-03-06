@@ -10,8 +10,8 @@ export type UserType = {
   name?: string;
   avatar?: string;
   role: "user" | "admin";
-  images?: [string];
-  comments?: [String | ObjectId];
+  images: string[];
+  comments: string[];
   _id?: string;
 };
 
@@ -67,11 +67,16 @@ userSchema.pre("save", function (next) {
   });
 });
 
-userSchema.methods.comparePassword = function (candidatePassword, cb) {
+userSchema.methods.comparePassword = function (
+  candidatePassword: string | Buffer,
+  cb: Comparer
+) {
   bcrypt.compare(candidatePassword, this.password, function (err, isMatch) {
     if (err) return cb(err);
     cb(null, isMatch);
   });
 };
+
+export type Comparer = (err: Error | null, issMatch?: boolean) => void;
 
 export default mongoose.model<UserType>("User", userSchema);

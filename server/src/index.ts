@@ -2,7 +2,8 @@ import mongoose, { mongo } from "mongoose";
 import express from "express";
 import morgan from "morgan";
 import { config } from "dotenv";
-const cors = require("cors");
+import cors from "cors";
+
 config();
 
 import { userRouter } from "./routes/userRoutes";
@@ -13,11 +14,12 @@ import { authRouter } from "./routes/authRoutes";
 
 // TODO -> rootisalie add proxy to cra => how does cors changes
 
+
 const port = process.env.PORT;
 const mongoUrl =
   process.env.NODE_ENV === "production"
-    ? process.env.MONGO_URL
-    : process.env.MONGO_TESTURL;
+    ? process.env.MONGO_URL!
+    : process.env.MONGO_TEST_URL!;
 
 mongoose.connect(mongoUrl).then();
 const database = mongoose.connection;
@@ -32,7 +34,7 @@ database.once("connected", () => {
 
 const app = express();
 const whitelist = ["http://localhost:3000"];
-const corsOptions = {
+const corsOptions:cors.CorsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.includes(origin)) {
       callback(null, true);

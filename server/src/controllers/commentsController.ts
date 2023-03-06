@@ -21,21 +21,25 @@ class commentsController {
           res.status(400).json(error);
           return;
         }
-        if (comment.author !== user.login && user.role !== "admin")
+        if (user && comment.author !== user.login && user.role !== "admin")
           throw new Error("You can't edit this comment");
 
         const commentDb = await Comment.findById(comment._id);
-        commentDb.text = comment.text;
-        updatedComments.push(commentDb);
-        await commentDb.save();
+        if (commentDb) {
+          commentDb.text = comment.text;
+          updatedComments.push(commentDb);
+          await commentDb.save();
+        }
       }
       res.status(200).json(updatedComments);
-    } catch (e) {
-      if (e.message === "You can't edit this comment") {
-        res.status(401).json({ message: e.message });
-        return;
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message === "You can't edit this comment") {
+          res.status(401).json({ message: error.message });
+          return;
+        }
+        res.status(400).json({ message: error.message });
       }
-      res.status(400).json({ message: e.message });
     }
   }
 
@@ -59,18 +63,20 @@ class commentsController {
         if (user?.comments) user.comments.push(commentDb._id.toString());
         if (image?.comments) image.comments.push(commentDb._id.toString());
         await commentDb.save();
-        await user.save();
+        user && (await user.save());
       }
 
-      await image.save();
+      image && (await image.save());
       res.status(200).json(image);
-    } catch (e) {
-      if (e.message === "new error") {
-        res.status(400).json({
-          new: "property 'new' can't be in the comment together with 'id'",
-        });
-      } else {
-        res.status(400).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        if (error.message === "new error") {
+          res.status(400).json({
+            new: "property 'new' can't be in the comment together with 'id'",
+          });
+        } else {
+          res.status(400).json({ message: error.message });
+        }
       }
     }
   }
@@ -79,15 +85,19 @@ class commentsController {
     try {
       const id = req.params.id;
       const imageDb = await Image.findById(id);
-
       const comments = [];
-      for await (let commentDb of imageDb.comments) {
-        comments.push(await Comment.findById(commentDb));
+
+      if (imageDb) {
+        for await (let commentDb of imageDb.comments) {
+          comments.push(await Comment.findById(commentDb));
+        }
       }
 
       res.status(200).json(comments);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
     }
   }
 
@@ -102,8 +112,10 @@ class commentsController {
       }
 
       res.status(200).json(result);
-    } catch (e) {
-      res.status(400).json({ message: e.message });
+    } catch (error) {
+      if (error instanceof Error) {
+        res.status(400).json({ message: error.message });
+      }
     }
   }
 }
