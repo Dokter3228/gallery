@@ -9,7 +9,7 @@ import {
   usePatchImageCommentsMutation,
 } from "../../features/api/imagesApi";
 import Logout from "../Logout/Logout";
-import ImagePlate from "../UI/imagePlate/ImagePlate";
+import ImagePlate from "../imagePlate/ImagePlate";
 import { useAppSelector } from "../../App/store";
 import { useAppDispatch } from "../../hooks";
 import { addImage, Image } from "../../features/slices/imagesSlice";

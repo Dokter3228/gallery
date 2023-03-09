@@ -3,15 +3,12 @@ import {
   changeImage,
   deleteImage,
   Image,
-} from "../../../features/slices/imagesSlice";
-import { useAppDispatch } from "../../../hooks";
-import {
-  addComment,
-  deleteComment,
-} from "../../../features/slices/commentsSlice";
-import { Comment } from "../../../features/slices/commentsSlice";
-import { useDeleteImageMutation } from "../../../features/api/imagesApi";
-import { useAppSelector } from "../../../App/store";
+} from "../../features/slices/imagesSlice";
+import { useAppDispatch } from "../../hooks";
+import { addComment, deleteComment } from "../../features/slices/commentsSlice";
+import { Comment } from "../../features/slices/commentsSlice";
+import { useDeleteImageMutation } from "../../features/api/imagesApi";
+import { useAppSelector } from "../../App/store";
 import CommentPlate from "./Comment";
 import { Simulate } from "react-dom/test-utils";
 import change = Simulate.change;

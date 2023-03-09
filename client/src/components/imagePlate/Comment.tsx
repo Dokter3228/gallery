@@ -1,8 +1,8 @@
 import React from "react";
-import { useAppSelector } from "../../../App/store";
-import { useAppDispatch } from "../../../hooks";
+import { useAppSelector } from "../../App/store";
+import { useAppDispatch } from "../../hooks";
 import { EntityId } from "@reduxjs/toolkit";
-import { Comment, deleteComment } from "../../../features/slices/commentsSlice";
+import { Comment, deleteComment } from "../../features/slices/commentsSlice";
 
 const CommentPlate = (props: { img: any; comment: Comment }) => {
   const allImages = useAppSelector((state) => state.images.entities);
