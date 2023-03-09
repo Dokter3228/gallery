@@ -4,17 +4,17 @@ import { useSignupMutation } from "../../features/api/usersApi";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks";
 
-export default function Signin() {
+export default function Signup() {
   const [credentials, setCredentials] = useState({ login: "", password: "" });
   const [userAlreadyExistsError, setUserAlreadyExistsError] = useState(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const [signInTheUser] = useSignupMutation();
+  const [signUpTheUser] = useSignupMutation();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const check = await signInTheUser({
+    const check = await signUpTheUser({
       login: credentials.login,
       password: credentials.password,
     });

@@ -1,5 +1,5 @@
 import Login from "../components/Login/Login";
-import Signin from "../components/SignIn/Signin";
+import Signup from "../components/Signup/Signup";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../components/App/App";
 
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/signin",
-    element: <Signin />,
+    path: "/signup",
+    element: <Signup />,
   },
 ]);
 

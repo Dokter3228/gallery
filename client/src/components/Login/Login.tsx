@@ -68,7 +68,7 @@ export default function Login() {
           </div>
           {authError && <h1 className="text-red-400">wrong credentials!</h1>}
         </form>
-        <Link className="text-red-300 mt-6" to="/signin">
+        <Link className="text-red-300 mt-6" to="/signup">
           Don't have an account? Sign In here
         </Link>
       </div>
