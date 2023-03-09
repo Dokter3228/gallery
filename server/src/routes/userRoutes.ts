@@ -6,8 +6,21 @@ const userRouter = express.Router();
 
 userRouter.use(cookieParser("secret key"));
 
-userRouter.post("/", userController.createNewUser);
-userRouter.get("/:id", userController.getUser);
-userRouter.patch("/", adminCheckMiddleware, userController.patchUser);
-// FIXME patch user-meta/:id name/avatar -> user
+userRouter.post("/", (req, res) => {
+  void userController.createNewUser(req, res);
+});
+userRouter.get("/:id", (req, res) => {
+  void userController.getUser(req, res);
+});
+
+userRouter.patch(
+  "/",
+  (req, res, next) => {
+    void adminCheckMiddleware(req, res, next);
+  },
+  (req, res) => {
+    void userController.patchUser(req, res);
+  }
+);
+
 export { userRouter };

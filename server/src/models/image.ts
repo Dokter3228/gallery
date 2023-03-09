@@ -1,5 +1,4 @@
-import mongoose, { ObjectId, Schema } from "mongoose";
-import { Comment } from "./comments";
+import mongoose, { Schema } from "mongoose";
 
 export type Image = {
   author: string;

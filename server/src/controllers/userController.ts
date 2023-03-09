@@ -1,20 +1,19 @@
-import User, { UserType } from "../models/user";
+import User, { type UserType } from "../models/user";
 import jwt from "jsonwebtoken";
-import { Request, Response } from "express";
+import { type Request, type Response } from "express";
+import { jwtSecretKey } from "../index";
 
-export const doesUserExistCheck = async function (
-  login: string
-): Promise<UserType | null> {
-  return User.findOne({ login });
+export const doesUserExistCheck = async function (login: string): Promise<UserType | null> {
+  return await User.findOne({ login });
 };
 
-class userController {
-  async createNewUser(req: Request, res: Response) {
+class UserController {
+  async createNewUser(req: Request, res: Response): Promise<void> {
     const { login, password, role } = req.body;
     try {
       const doesUserExist = await doesUserExistCheck(login);
 
-      if (!doesUserExist) {
+      if (doesUserExist == null) {
         const user = new User({
           login,
           password,
@@ -27,7 +26,7 @@ class userController {
             login,
             password,
           },
-          process.env.JWT_SECRET_KEY!,
+          jwtSecretKey,
           { expiresIn: "15m" }
         );
         res.cookie("token", token, {
@@ -45,7 +44,7 @@ class userController {
     }
   }
 
-  async getUser(req: Request, res: Response) {
+  async getUser(req: Request, res: Response): Promise<void> {
     try {
       const id = req.params.id;
       const user = await User.findById(id);
@@ -58,16 +57,16 @@ class userController {
     }
   }
 
-  async patchUser(req: Request, res: Response) {
+  async patchUser(req: Request, res: Response): Promise<void> {
     try {
       const users: UserType[] = req.body;
 
       const result = [];
-      for (let userUpdate of users) {
+      for (const userUpdate of users) {
         const userDb = await User.findById(userUpdate._id);
-        if (userUpdate.role && userDb) userDb.role = userUpdate.role;
-        if (userUpdate.login && userDb) userDb.login = userUpdate.login;
-        userDb && (await userDb.save());
+        if ("role" in userUpdate && userDb !== null) userDb.role = userUpdate.role;
+        if ("login" in userUpdate && userDb !== null) userDb.login = userUpdate.login;
+        userDb != null && (await userDb.save());
         result.push(userDb);
       }
 
@@ -81,4 +80,4 @@ class userController {
   }
 }
 
-export default new userController();
+export default new UserController();

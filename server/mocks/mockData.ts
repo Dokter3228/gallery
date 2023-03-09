@@ -1,8 +1,8 @@
-import { UserType } from "../src/models/user";
-import { CommentType } from "../src/models/comments";
-import { TagType } from "../src/models/tags";
+import { type UserType } from "../src/models/user";
+import { type CommentType } from "../src/models/comments";
+import { type TagType } from "../src/models/tags";
 
-export const mockUser: Partial<UserType> = {
+export const mockUser: Partial<UserType> & { login: string } = {
   login: "Vladimir",
   password: "putin228",
   role: "user",
@@ -28,27 +28,27 @@ export const mockUserAdmin: Partial<UserType> = {
 
 export const mockCommentsWithNew: CommentType[] = [
   {
-    author: mockUser.login!,
+    author: mockUser.login,
     text: "South Africa",
     new: true,
   },
   {
-    author: mockUser.login!,
+    author: mockUser.login,
     text: "Italy",
     new: true,
   },
   {
-    author: mockUser.login!,
+    author: mockUser.login,
     text: "United States",
     new: true,
   },
   {
-    author: mockUser.login!,
+    author: mockUser.login,
     text: "Singapore",
     new: true,
   },
   {
-    author: mockUser.login!,
+    author: mockUser.login,
     text: "Philippines",
     new: true,
   },

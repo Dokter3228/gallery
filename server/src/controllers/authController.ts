@@ -1,14 +1,16 @@
 import jwt from "jsonwebtoken";
-import { Request, Response } from "express";
+import { type Request, type Response } from "express";
 import { doesUserExistCheck } from "./userController";
-class authController {
-  checkAuth = (req: Request, res: Response) => {
-    try {
-      const token = req.cookies["token"];
-      let userAuthorized =
-        token && jwt.verify(token, process.env.JWT_SECRET_KEY!);
+import { jwtSecretKey } from "../index";
 
-      if (typeof userAuthorized !== "string" && userAuthorized !== undefined) {
+class AuthController {
+  checkAuth = (req: Request, res: Response): void => {
+    try {
+      const token = req.cookies.token;
+      const userAuthorized = jwt.verify(token, jwtSecretKey) as {
+        login: string;
+      };
+      if ("login" in userAuthorized) {
         const { login } = userAuthorized;
         res.status(200).json({
           login,
@@ -23,26 +25,24 @@ class authController {
     }
   };
 
-  async login(req: Request, res: Response) {
+  async login(req: Request, res: Response): Promise<void> {
     const { login, password } = req.body;
 
     const doesUserExist = await doesUserExistCheck(login);
-    if (doesUserExist) {
+    if (doesUserExist != null) {
       try {
         const token = jwt.sign(
           {
             login,
             password,
           },
-          process.env.JWT_SECRET_KEY!,
+          jwtSecretKey,
           { expiresIn: "15m" }
         );
         res.cookie("token", token, {
           httpOnly: true,
         });
-        res
-          .status(200)
-          .json({ _id: doesUserExist._id, login: doesUserExist.login });
+        res.status(200).json({ _id: doesUserExist._id, login: doesUserExist.login });
       } catch (error) {
         if (error instanceof Error) {
           res.status(400).json({ message: error.message });
@@ -53,7 +53,7 @@ class authController {
     }
   }
 
-  async logout(req: Request, res: Response) {
+  async logout(req: Request, res: Response): Promise<void> {
     try {
       res.clearCookie("token");
       res.status(200).json({ message: "logged out" });
@@ -65,4 +65,4 @@ class authController {
   }
 }
 
-export default new authController();
+export default new AuthController();

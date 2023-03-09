@@ -1,8 +1,8 @@
 import express from "express";
-const fileUpload = require("express-fileupload");
 import imageController from "../controllers/imageController";
 import { commentsRouter } from "./commentsRoutes";
 import { tagsRouter } from "./tagsRoutes";
+import fileUpload from "express-fileupload";
 const imageRouter = express.Router();
 
 imageRouter.use(
@@ -15,10 +15,21 @@ imageRouter.use(
   })
 );
 
-imageRouter.get("/", imageController.getImages);
-imageRouter.post("/", imageController.postImage);
-imageRouter.get("/:id", imageController.getImage);
-imageRouter.delete("/:id", imageController.deleteImage);
+imageRouter.get("/", (req, res) => {
+  void imageController.getImages(req, res);
+});
+
+imageRouter.post("/", (req, res) => {
+  void imageController.postImage(req, res);
+});
+
+imageRouter.get("/:id", (req, res) => {
+  void imageController.getImage(req, res);
+});
+
+imageRouter.delete("/:id", (req, res) => {
+  void imageController.deleteImage(req, res);
+});
 imageRouter.use("/", commentsRouter);
 imageRouter.use("/", tagsRouter);
 

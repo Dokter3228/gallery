@@ -3,7 +3,11 @@ import tagsController from "../controllers/tagsController";
 
 const tagsRouter = express.Router();
 
-tagsRouter.post("/:id/tags", tagsController.postTags);
-tagsRouter.patch("/:id/tags", tagsController.patchTags);
+tagsRouter.post("/:id/tags", (req, res) => {
+  void tagsController.postTags(req, res);
+});
+tagsRouter.patch("/:id/tags", (req, res) => {
+  void tagsController.patchTags(req, res);
+});
 
 export { tagsRouter };

@@ -1,10 +1,8 @@
-import mongoose, { mongo } from "mongoose";
+import mongoose from "mongoose";
 import express from "express";
 import morgan from "morgan";
 import { config } from "dotenv";
 import cors from "cors";
-
-config();
 
 import { userRouter } from "./routes/userRoutes";
 import { imageRouter } from "./routes/imageRoutes";
@@ -12,16 +10,12 @@ import { authMiddleware } from "./middleware/auth";
 import * as process from "process";
 import { authRouter } from "./routes/authRoutes";
 
-// TODO -> rootisalie add proxy to cra => how does cors changes
+config();
+export const jwtSecretKey = process.env.JWT_SECRET_KEY ?? "default-secret-key";
+export const port = process.env.PORT ?? 10000;
 
-
-const port = process.env.PORT;
-const mongoUrl =
-  process.env.NODE_ENV === "production"
-    ? process.env.MONGO_URL!
-    : process.env.MONGO_TEST_URL!;
-
-mongoose.connect(mongoUrl).then();
+const mongoUrl = process.env.NODE_ENV === "production" ? process.env.MONGO_URL : process.env.MONGO_TESTURL;
+void mongoose.connect(mongoUrl ?? "some backup link").then();
 const database = mongoose.connection;
 
 database.on("error", (err) => {
@@ -34,9 +28,9 @@ database.once("connected", () => {
 
 const app = express();
 const whitelist = ["http://localhost:3000"];
-const corsOptions:cors.CorsOptions = {
+const corsOptions: cors.CorsOptions = {
   origin: function (origin, callback) {
-    if (!origin || whitelist.includes(origin)) {
+    if (origin == null || whitelist.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("Not allowed by CORS"));
@@ -52,11 +46,6 @@ app.use(express.static("public"));
 app.listen(port, () => {
   console.log(`Server Started at port: ${port}`);
 });
-
-type ConfigResponse = {
-  token: string; // bcrypt token
-  domain: string; // localhost:PORT
-};
 
 app.use("/", authRouter);
 app.use("/users", userRouter);

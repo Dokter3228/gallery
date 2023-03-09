@@ -6,8 +6,12 @@ const authRouter = express.Router();
 
 authRouter.use(cookieParser("secret key"));
 
-authRouter.post("/login", authController.login);
-authRouter.post("/logout", authController.logout);
+authRouter.post("/login", (req, res) => {
+  void authController.login(req, res);
+});
+authRouter.post("/logout", (req, res) => {
+  void authController.logout(req, res);
+});
 authRouter.post("/check-auth", authController.checkAuth);
 
 export { authRouter };
